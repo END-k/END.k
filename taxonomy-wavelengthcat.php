@@ -8,8 +8,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
         <h2>波長<?php echo get_queried_object()->name; ?></h2>
         <ul class="language flex pc">
             <li><span>LANGUAGE</span></li>
-            <li><a href="#">JAPANESE</a></li>
-            <li class="en"><a href="#">ENGLISH</a></li>
+            <li class="en"><a href="https://eng.opt-ron.com/">ENGLISH</a></li>
         </ul>
     </section>
     <div id="main">
@@ -20,7 +19,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                     <?php if($parentId == 0){
                         $args = array(
                             'taxonomy' => 'wavelengthcat',
-                            'hide_empty' => 0,
+                            // 'hide_empty' => 0,
                             'exclude' => '',
                             'parent' => get_queried_object()->term_id,
                         );
@@ -46,7 +45,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
                             <input type="hidden" name="s" value="">
                             <input type="hidden" name="search_type" value="4">
-                            <input type="text" placeholder="532nm" name="cat03" class="inputText">
+                            <input type="text" placeholder="532nm" name="s" class="inputText">
                             <input type="submit" value="検索" class="inputButton">
                         </form>
                         </div>
@@ -60,13 +59,15 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         <ul class="conUl">
                             <li>
                                 <p class="ttl"><span>■</span>出力を指定する (入力なしの場合は全て表示されます)</p>
-                                <div class="radioBox">
-                                    <input type="text" name="output" placeholder="200" class="txtInput">
+                                <div class="radioBox radioBox_w">
+                                    <input type="number" id="mW" name="output" placeholder="200" class="txtInput wavetext wavetext01">
+                                    <input type="number" name="output" placeholder="200" class="txtInput wavetext wavetext02">
                                     <ul class="rdoUl">
-                                        <li><label><input type="radio" name="w" value="mW"><span>mW</span></label></li>
+                                        <li><label><input type="radio" id="mW" name="w" value="mW" checked="checked"><span>mW</span></label></li>
                                         <li><label><input type="radio" name="w" value="W"><span>W</span></label></li>
                                     </ul>
                                 </div>
+                                <div class="cnt_area cnt_danger">mWでの検索は1~999までの整数のみ対応しております。</div>
                             </li>
                             <li>
                                 <p class="ttl"><span>■</span>発振形式 (複数選択可能)</p>
@@ -94,14 +95,26 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         </ul>
                         <div class="lkBox flexC">
                             <p>指定した条件で</p>
-                            <div class="link"><a href="#">検索</a></div>
+                            <div class="link linkbtn"><a href="#">検索</a></div>
                         </div>
-                    <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
+                    </form>
                 </div>
             </div>
+            <?php if(!have_posts()): ?>
+            <div class="thanks">
+            <p class="ttl">申し訳ありません。<br>入力した条件では製品が見つかりませんでした。</p>
+            <p>条件を変更し検索を行うか、トップページよりご希望のページをお探しください。</p>
+
+            <div class="comBtn"><a href="<?php bloginfo('url');?>">TOPページに戻る</a></div>
+            </div>
+            <?php else: ?>
             <h4 class="headLine05">該当製品数<span><?php echo $numall; ?><small>件</small></span></h4>
             <?php if($parentId == 0){ if($terms){ ?>
-            <?php foreach($terms as $term) { $curId = $term->term_id; ?>
+            <?php
+                foreach($terms as $term) {
+                    $curId = $term->term_id;
+                    $curSlug = $term->slug;
+            ?>
             <p class="waveTtl"><span><?php $array01=explode('n', $term->name); echo $array01[0]; ?><small>nm</small></span></p>
             <?php
             $args01 = array(
@@ -116,60 +129,66 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                     ),
                 ),
             ); $query = new WP_Query( $args01 ); if ( $query->have_posts() ) { $num = 0; ?>
-            <ul class="comItemList flex">
-            <?php while ( $query->have_posts() ) { $query->the_post(); $num++; ?>
+            <ul class="comItemList flex wavelengthcatList">
+                <?php while ( $query->have_posts() ) { $query->the_post(); $num++; ?>
+                <?php $post_id = get_the_ID(); ?>
                 <li>
-                    <a href="<?php the_permalink(); ?>">							
+                    <a href="<?php the_permalink(); ?>">
                         <div class="phoBox"><div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></div></div>
                         <h3 class="headLine04"><?php the_title(); ?></h3>
                         <?php
                         $featured_posts = get_field('ff_distributor');
                         if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>
                         <p class="ttl"><?php the_title(); ?></p>
-                        <?php endforeach;wp_reset_postdata(); endif; ?>
-                        <p class="txt"><?php get_excerpt(54); ?></p>
-                        <?php $terms01 = get_the_terms($post->ID,'productcat'); $terms02 = get_the_terms($post->ID,'wavelengthcat'); if($terms01||$terms02){ ?>
+                        <?php
+                            endforeach;
+                            wp_reset_postdata();
+                            endif;
+                        ?>
+                        <div class="txt">
+                            <?php the_field("ff_excerpt", $post_id); ?>
+                        </div>
+                        <?php
+                            $taxonomy = 'productcat';
+                            $terms01 = get_the_terms($post_id,$taxonomy);
+                            $ancestor_maxnum = 1;
+                            $ff_wavelengthlabel = get_field('ff_wavelengthlabel', $post_id);
+                        ?>
                         <ul class="tag">
-                        <?php  ?>
                             <?php foreach($terms01 as $term01){ ?>
-                            <?php if($term01->parent == 0){ $biggestId = $term01->term_id; ?><li><?php echo $term01->name; ?></li><?php } ?>
+                            <?php
+                                $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                            ?>
+                            <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
                             <?php } ?>
-                            <?php foreach($terms01 as $term01){ ?>
-                            <?php if($term01->parent == $biggestId){ $secondId = $term01->term_id; ?><li style="border-color: #0fd000;"><?php echo $term01->name; ?></li><?php } ?>
-                            <?php } ?>
-                            <?php foreach($terms01 as $term01){ ?>
-                            <?php if($term01->parent == $secondId){ ?><li style="border-color: #0fd000;"><?php echo $term01->name; ?></li><?php } ?>
-                            <?php } ?>
+                            <?php
+                                $terms02 = get_ordered_terms($post_id,'slug', 'ASC', 'wavelengthcat');
+                            ?>
+                            <?php if($terms02): ?>
+                            <?php if($ff_wavelengthlabel): ?>
+                            <li class="rainbow"><span><?php echo $ff_wavelengthlabel; ?></span></li>
+                            <?php else: ?>
                             <?php foreach($terms02 as $term02){ ?>
-                            <?php if($term02->parent != 0){ ?><li style="border-color: #f20000;"><?php echo $term02->name; ?></li><?php } ?>
+                            <?php if($term02->parent != 0){ ?><li class="rainbow"><span><?php echo $term02->name; ?></span></li><?php } ?>
                             <?php } ?>
+                            <?php endif; ?>
+                            <?php endif; ?>
                         </ul>
-                        <?php } ?>
-                    </a>				
+                    </a>
                 </li>
             <?php } ?>
             </ul>
             <?php } wp_reset_postdata(); if($num > 6){ ?>
-            <div class="comBtn"><a href="#">もっと見る</a></div>
+            <div class="comBtn"><a href="<?php echo esc_url( home_url( '/' ) ); ?>wavelengthcat/<?php echo $curSlug; ?>">もっと見る</a></div>
+
             <?php } } } }else { ?>
+
+
             <p class="waveTtl"><span><?php $array01=explode('n', get_queried_object()->name); echo $array01[0]; ?><small>nm</small></span></p>
-            <?php
-            $args01 = array(
-                'post_type' => 'product',
-                'posts_per_page' => -1,
-                'tax_query' => array(
-                    array(
-                        'taxonomy' => 'wavelengthcat',
-                        'field'    => 'term_id',
-                        'terms'    => array( get_queried_object()->term_id ),
-                        'operator' => 'IN',
-                    ),
-                ),
-            ); $query = new WP_Query( $args01 ); if ( $query->have_posts() ) { $num = 0; ?>
             <ul class="comItemList flex">
-            <?php while ( $query->have_posts() ) { $query->the_post(); $num++; ?>
+                <?php while ( have_posts() ): the_post(); $num++; ?>
                 <li>
-                    <a href="<?php the_permalink(); ?>">							
+                    <a href="<?php the_permalink(); ?>">
                         <div class="phoBox"><div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></div></div>
                         <h3 class="headLine04"><?php the_title(); ?></h3>
                         <?php
@@ -177,31 +196,51 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>
                         <p class="ttl"><?php the_title(); ?></p>
                         <?php endforeach;wp_reset_postdata(); endif; ?>
-                        <p class="txt"><?php get_excerpt(54); ?></p>
-                        <?php $terms01 = get_the_terms($post->ID,'productcat'); $terms02 = get_the_terms($post->ID,'wavelengthcat'); if($terms01||$terms02){ ?>
+                        <div class="txt">
+                            <?php the_field("ff_excerpt"); ?>
+                        </div>
+                        <?php
+                            $taxonomy = 'productcat';
+                            $terms01 = get_the_terms($post->ID,$taxonomy);
+                            $ancestor_maxnum = 1;
+                            $ff_wavelengthlabel = get_field('ff_wavelengthlabel');
+                        ?>
                         <ul class="tag">
-                        <?php  ?>
                             <?php foreach($terms01 as $term01){ ?>
-                            <?php if($term01->parent == 0){ $biggestId = $term01->term_id; ?><li><?php echo $term01->name; ?></li><?php } ?>
+                            <?php
+                                $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                            ?>
+                            <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
                             <?php } ?>
-                            <?php foreach($terms01 as $term01){ ?>
-                            <?php if($term01->parent == $biggestId){ $secondId = $term01->term_id; ?><li style="border-color: #0fd000;"><?php echo $term01->name; ?></li><?php } ?>
-                            <?php } ?>
-                            <?php foreach($terms01 as $term01){ ?>
-                            <?php if($term01->parent == $secondId){ ?><li style="border-color: #0fd000;"><?php echo $term01->name; ?></li><?php } ?>
-                            <?php } ?>
+                            <?php
+                                $terms02 = get_ordered_terms($post->ID,'slug', 'ASC', 'wavelengthcat');
+                            ?>
+                            <?php if($terms02): ?>
+                            <?php if($ff_wavelengthlabel): ?>
+                            <li class="rainbow"><span><?php echo $ff_wavelengthlabel; ?></span></li>
+                            <?php else: ?>
                             <?php foreach($terms02 as $term02){ ?>
-                            <?php if($term02->parent != 0){ ?><li style="border-color: #f20000;"><?php echo $term02->name; ?></li><?php } ?>
+                            <?php if($term02->parent != 0){ ?><li class="rainbow"><span><?php echo $term02->name; ?></span></li><?php } ?>
                             <?php } ?>
+                            <?php endif; ?>
+                            <?php endif; ?>
                         </ul>
-                        <?php } ?>
-                    </a>				
+                    </a>
                 </li>
-            <?php } ?>
+                <?php endwhile; ?>
             </ul>
-            <?php } wp_reset_postdata(); if($num > 6){ ?>
-            <div class="comBtn"><a href="#">もっと見る</a></div>
-            <?php } } ?>
+            <?php if(function_exists('wp_pagenavi')) { wp_pagenavi( array(
+                'options' => array(
+                    'prev_text' => '<img src="'.get_template_directory_uri().'/img/common/icon07.png" width="8" alt="prev">',
+                    'next_text' => '<img src="'.get_template_directory_uri().'/img/common/icon06.png" width="8" alt="next">',
+                    'dotleft_text' => '<img src="'.get_template_directory_uri().'/img/common/line04.png" width="28" alt="">',
+                    'dotright_text' => '<img src="'.get_template_directory_uri().'/img/common/line04.png" width="28" alt="">',
+                ),
+            ) );}?>
+
+            <?php } ?>
+
+            <?php endif; ?>
             <div class="comWaveBox comWaveBox01">
                 <h3 class="headLine01">他の波長から探す</h3>
                 <p class="pTop">WAVELENGTH</p>
@@ -211,53 +250,56 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                     <div class="waveBox sp"><img src="<?php bloginfo('template_url');?>/img/common/sp_photo08.jpg" alt="WAVELENGTH" class="sp"></div>
                     <ul class="comLinkUl comLinkUl01 flex">
                         <li>
-                        <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=286&search_type=2"><span>200<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=290&search_type=2"><span>300<small>nm~</small></span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=301&search_type=2" class="bor bor01"><span>400<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=323&search_type=2" class="bor bor03"><span>500<small>nm~</small></span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=345&search_type=2" class="bor bor02"><span>600<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=372&search_type=2" class="bor bor04"><span>700<small>nm~</small></span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=388&search_type=2"><span>800<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=401&search_type=2"><span>900<small>nm~</small></span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=418&search_type=2"><span>1000<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=475&search_type=2"><span>1500<small>nm~</small></span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=518&search_type=2"><span>2000<small>nm~</small></span></a></li>
-                            <li><a href="#"><span class="txt">多波長<br>
-                                チューナブル</span></a></li>
-                        </ul>
-                    </li>
+                            <ul>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/200nm"><span>200<small>nm~</small></span></a></li>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/300nm"><span>300<small>nm~</small></span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/400nm" class="bor bor01"><span>400<small>nm~</small></span></a></li>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/500nm" class="bor bor03"><span>500<small>nm~</small></span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/600nm" class="bor bor02"><span>600<small>nm~</small></span></a></li>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/700nm" class="bor bor04"><span>700<small>nm~</small></span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li><a href="<?php bloginfo('url');?>/?wavelengthcat/800nm"><span>800<small>nm~</small></span></a></li>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/900nm"><span>900<small>nm~</small></span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1000nm"><span>1000<small>nm~</small></span></a></li>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1500nm"><span>1500<small>nm~</small></span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/2000nm"><span>2000<small>nm~</small></span></a></li>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/multi-wavelength"><span class="txt">多波長<br>
+                                    チューナブル</span></a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <p class="waveTtl"><span>良く探されている<br class="sp">波長から探す</span></p>
                 <ul class="comLinkUl comLinkUl01 comLinkUl02 flex">
-                    <li><a href="<?php bloginfo('url');?>/?s=&cat03=332&search_type=2" class="bor bor05"><span>532<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/?s=&cat03=390&search_type=2"><span>808<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/?s=&cat03=394&search_type=2"><span>850<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/?s=&cat03=409&search_type=2"><span>940<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/?s=&cat03=mul01&search_type=2"><span>976/980<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/?s=&cat03=mul02&search_type=2"><span>1060/1064<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/?s=&cat03=mul03&search_type=2"><span>1310/1550<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/532nm" class="bor bor05"><span>532<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/808nm"><span>808<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/850nm"><span>850<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/940nm"><span>940<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/976nm"><span>976<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/980nm"><span>980<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/1060nm"><span>1060<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/1064nm"><span>1064<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/1310nm"><span>1310<small>nm</small></span></a></li>
+                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/1550nm"><span>1550<small>nm</small></span></a></li>
                 </ul>
             </div>
 

@@ -1,12 +1,11 @@
-    <footer id="gFooter">
+<footer id="gFooter">
         <div class="hBox flexB">
             <div class="lBox">
                 <div class="fLogo"><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/f_logo.png" alt="株式会社オプトロンサイエンスOptronscience,Inc."></a></div>
                 <p class="place sp">商品名・型番・メーカーまたはキーワードを入力</p>
                 <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
-                    <input type="hidden" name="search_type" value="1">
                     <div class="inputBox">
-                        <input type="text" name="s" placeholder="商品名・型番・メーカーまたはキーワードを入力" class="inputText">
+                        <input type="text" name="s" class="inputText">
                         <input type="submit" value="検索" class="inputButton">
                     </div>
                 </form>
@@ -32,7 +31,7 @@
                                             <?php
                                                 $args01 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 2,
                                                 );
@@ -55,7 +54,7 @@
                                             <?php
                                                 $args02 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 53,
                                                 );
@@ -78,7 +77,7 @@
                                             <?php
                                                 $args03 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 65,
                                                 );
@@ -100,7 +99,7 @@
                                             <?php
                                                 $args04 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 110,
                                                 );
@@ -122,7 +121,7 @@
                                             <?php
                                                 $args05 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 157,
                                                 );
@@ -144,7 +143,7 @@
                                             <?php
                                                 $args06 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 162,
                                                 );
@@ -170,7 +169,7 @@
                                             <?php
                                                 $args07 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 197,
                                                 );
@@ -188,33 +187,11 @@
                                             </div>
                                             <?php } ?>
                                         </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/光学材料・消耗品">光学材料・消耗品</a>
-                                            <?php
-                                                $args08 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 242,
-                                                );
-                                            ?>
-                                            <?php $terms08 = get_terms( $args08 ); if($terms08){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">光学材料・消耗品<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms08 as $term08) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term08->term_id );?>"><?php echo $term08->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/測定器・検出器・試験機">測定機・検出器・試験機</a>
+                                        <li><a href="<?php bloginfo('url');?>/productcat/測定機・検出器・試験機">測定機・検出器・試験機</a>
                                             <?php
                                                 $args09 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 205,
                                                 );
@@ -232,11 +209,33 @@
                                             </div>
                                             <?php } ?>
                                         </li>
+                                        <li><a href="<?php bloginfo('url');?>/productcat/光学材料・消耗品">光学材料・消耗品</a>
+                                            <?php
+                                                $args08 = array(
+                                                    'taxonomy' => 'productcat',
+                                                    // 'hide_empty' => 0,
+                                                    'exclude' => '',
+                                                    'parent' => 242,
+                                                );
+                                            ?>
+                                            <?php $terms08 = get_terms( $args08 ); if($terms08){ ?>
+                                            <div class="grandSubBox sp">
+                                                <p class="ttl">光学材料・消耗品<br>
+                                                カテゴリーを見る</p>
+                                                <ul class="grandSubUl">
+                                                <?php foreach($terms08 as $term08) { ?>
+                                                    <li><a href="<?php echo get_term_link( $term08->term_id );?>"><?php echo $term08->name; ?></a></li>
+                                                <?php } ?>
+                                                </ul>
+                                                <p class="close"><span>閉じる <small>-</small></span></p>
+                                            </div>
+                                            <?php } ?>
+                                        </li>
                                         <li><a href="<?php bloginfo('url');?>/productcat/光学機器・光学解析ソフトウェア">光学機器・光学解析ソフトウェア</a>
                                             <?php
                                                 $args10 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 255,
                                                 );
@@ -258,7 +257,7 @@
                                             <?php
                                                 $args11 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 259,
                                                 );
@@ -276,11 +275,11 @@
                                             </div>
                                             <?php } ?>
                                         </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/光通信">光通信用オプティカルツール</a>
+                                        <li><a href="<?php bloginfo('url');?>/productcat/光通信">光通信</a>
                                             <?php
                                                 $args12 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => 277,
                                                 );
@@ -323,8 +322,11 @@
     <div class="pageTop"><a href="#container"><span>TOP</span></a></div>
     </footer>
 </div>
-<script src="<?php bloginfo('template_url');?>/js/jquery.js"></script> 
+
+<script src="<?php bloginfo('template_url');?>/js/jquery.js"></script>
 <script src="<?php bloginfo('template_url');?>/js/jquery.matchHeight.js"></script>
+<script src="<?php bloginfo('template_url');?>/js/jquery.jscrollpane.js"></script>
+<script src="<?php bloginfo('template_url');?>/js/jquery.mousewheel.js"></script>
 <?php if(is_home()||is_front_page()||is_page("detail")){ ?>
 <script src="<?php bloginfo('template_url');?>/js/slick/slick.js"></script>
 <?php }else if(is_singular("product")){ ?>
@@ -354,7 +356,7 @@
                 variableWidth: true,
             });
         }
-        
+
         $('.index .mainVisual .innBox .comBtn a').click(function(){
             $('.index .mainVisual .innBox .form01').submit();
             return false;
@@ -396,16 +398,17 @@
             url: '<?php bloginfo('template_url');?>/title.php?id=' + window.location.hash.replace("#", ""),
             success: function(res) {
                 $('.contact .formBox td .textArea01').val(res.title);
+                $('.contact .formBox td .textArea02').val(res.permlink);
             },
             error : function(error){  }
         });
     }
-    
+
     $(function(){
         if(window.location.hash.replace("#", "")!=0){
             get();
         }
-        
+
         $('select[name="consult"]').find('option').eq(0).val('');
     });
 </script>
@@ -422,7 +425,7 @@
             $('.wavelength .conditionsBox form').submit();
             return false;
         });
-        
+
         $(".comTopBorBox .down a").click(function(){
 			$(this).html("もっと細かく指定する<span>+</span>");
 			$(this).toggleClass("on");
@@ -434,6 +437,14 @@
 </script>
 <?php }else if(is_singular("product")){ ?>
 <script>
+    $( '.productDetailWrap iframe' ).wrap( '<div class="iframeWrap"></div>' );
+
+    $(document).ready(function(){
+        $(".comSubBox-close").click(function(){
+            $(".comSubBox").hide();
+        });
+    });
+
 	$(function(){
 		$('#gFooter').addClass("ftrPadding");
 		$('#main .phoList li h3').matchHeight();
@@ -450,15 +461,16 @@
             });
             var length = $('.slideBox02 li').length - 1;
             $('.slideBox02 .slide').slick({
-                slidesToShow: length,
                 slidesToScroll: 1,
-                arrows: false,
+                arrows: true,
                 autoplay: false,
                 dots: false,
                 asNavFor: '.slideBox01 .slide',
                 centerPadding: 0,
                 focusOnSelect: true,
-                variableWidth: true
+                variableWidth: true,
+                prevArrow: '<div class="prev"><button class="slide-arrow prev-arrow"></button></div>',
+                nextArrow: '<div class="next"><button class="slide-arrow next-arrow"></button></div>'
             });
         })
         if($(window).width() < 897){
@@ -477,6 +489,16 @@
             });
         }
 	});
+</script>
+<?php }else if(is_singular('case')){ ?>
+<script>
+    $(function(){
+        $( '.caseDetailWrap iframe' ).wrap( '<div class="iframeWrap"></div>' );
+
+        $('.comSubBox-close').on('click', () => {
+            $('.comSubBox').hide();
+        });
+    });
 </script>
 <?php }else if(is_page('detail')){ ?>
 <script>
@@ -499,6 +521,14 @@
             });
         }
 	});
+</script>
+<?php }else if(is_search()){ ?>
+<script>
+	$(function(){
+        $('.sdwLink').click(function() {
+            $('.sdwBox--toggle').toggle(200);
+        })
+    });
 </script>
 <?php } ?>
 <?php wp_footer(); ?>

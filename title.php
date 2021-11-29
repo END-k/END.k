@@ -7,6 +7,7 @@ $res = array(
 $id = @$_GET['id'] ? @$_GET['id'] : '';
 
 $res['title'] = get_the_title($id);
+$res['permlink'] = get_permalink($id);
 
 echo json_encode($res);
 ?>

@@ -1,14 +1,30 @@
 <?php get_header(); ?>
+
 <div class="index">
     <section class="mainVisual">
         <div class="svgBox pc">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="161.01600646972656" viewBox="0 0 1441.225 161.016">
-              <g id="line"  transform="translate(1104.861 -327.377)">
-                  <path id="パス_6516" data-name="パス 6516" d="M-1104,342.732s273.026,122.48,548.951,0S-76.94,426.463,83.019,427.878,336,330.763,336,330.763" transform="translate(0 60)" fill="none" stroke="#f20000" stroke-width="1" class="svg-elem-1"></path>
-                  <path id="パス_6517" data-name="パス 6517" d="M336,372.467S268.42,427.555-7.5,305.711s-492.771,88.986-737.217,94S-1104,280.7-1104,280.7" transform="translate(0 60)" fill="none" stroke="#0fd000" stroke-width="1" class="svg-elem-2"></path>
-                  <path id="パス_6518" data-name="パス 6518" d="M-1104.623,329.992s171,92.744,361.29,33.706c275.924-121.843,417.555-8.188,622.75-8.188S336,280.7,336,280.7" transform="translate(0 90)" fill="none" stroke="#0b7ef1" stroke-width="1" class="svg-elem-3"></path>
-                </g>
-              </svg>
+            <div class="modern">
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <defs>
+                        <path id="gentle-wave" fill="none" stroke-width="0.1" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+                    </defs>
+                    <g class="parallax">
+                        <use xlink:href="#gentle-wave" x="48" y="0" stroke="#f20000" fill="none" />
+                        <use xlink:href="#gentle-wave" x="48" y="3" stroke="#0fd000" fill="none" />
+                        <use xlink:href="#gentle-wave" x="48" y="5" stroke="#0b7ef1" fill="none" />
+                    </g>
+                </svg>
+            </div>
+            <div class="ie">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="161.01600646972656" viewBox="0 0 1441.225 161.016">
+                    <g id="line"  transform="translate(1104.861 -327.377)">
+                        <path id="パス_6516" data-name="パス 6516" d="M-1104,342.732s273.026,122.48,548.951,0S-76.94,426.463,83.019,427.878,336,330.763,336,330.763" transform="translate(0 60)" fill="none" stroke="#f20000" stroke-width="1" class="svg-elem-1"></path>
+                        <path id="パス_6517" data-name="パス 6517" d="M336,372.467S268.42,427.555-7.5,305.711s-492.771,88.986-737.217,94S-1104,280.7-1104,280.7" transform="translate(0 60)" fill="none" stroke="#0fd000" stroke-width="1" class="svg-elem-2"></path>
+                        <path id="パス_6518" data-name="パス 6518" d="M-1104.623,329.992s171,92.744,361.29,33.706c275.924-121.843,417.555-8.188,622.75-8.188S336,280.7,336,280.7" transform="translate(0 90)" fill="none" stroke="#0b7ef1" stroke-width="1" class="svg-elem-3"></path>
+                    </g>
+                </svg>
+            </div>
         </div>
         <div class="svgBox sp">
             <svg xmlns="http://www.w3.org/2000/svg" width="375" height="84" viewBox="0 0 375 84">
@@ -25,11 +41,10 @@
                     </g>
                 </g>
             </svg>
-        </div> 
+        </div>
         <ul class="language flex pc">
             <li><span>LANGUAGE</span></li>
-            <li><a href="#">JAPANESE</a></li>
-            <li class="en"><a href="#">ENGLISH</a></li>
+            <li class="en"><a href="https://eng.opt-ron.com/">ENGLISH</a></li>
         </ul>
         <div class="content innBox flexB">
             <div class="lBox">
@@ -42,7 +57,6 @@
                 <p class="sp text01">商品名・型番・メーカーまたはキーワードを入力</p>
                 <div class="inputBox">
                     <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
-                        <input type="hidden" name="search_type" value="1">
                         <input type="text" name="s" placeholder="商品名・型番・メーカーまたはキーワードを入力" class="inputText">
                         <input type="submit" value="検索" class="inputButton">
                     </form>
@@ -59,7 +73,7 @@
                                 <?php
                                     $args = array(
                                         'taxonomy' => 'productcat',
-                                        'hide_empty' => 0,
+                                        // 'hide_empty' => 0,
                                         'exclude' => '',
                                         'parent' => 0,
                                     );
@@ -72,7 +86,7 @@
                                             <?php
                                                 $args01 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => $bigId,
                                                 );
@@ -85,7 +99,7 @@
                                                     <?php
                                                         $args02 = array(
                                                             'taxonomy' => 'productcat',
-                                                            'hide_empty' => 0,
+                                                            // 'hide_empty' => 0,
                                                             'exclude' => '',
                                                             'parent' => $secondId,
                                                         );
@@ -118,7 +132,7 @@
                                 <?php
                                     $args03 = array(
                                         'taxonomy' => 'distributorcat',
-                                        'hide_empty' => 0,
+                                        // 'hide_empty' => 0,
                                         'exclude' => '',
                                         'parent' => 0,
                                     );
@@ -170,26 +184,26 @@
                                     <ul class="enUl03">
                                         <li><p><span>波長域から探す</span></p>
                                             <ul class="flex">
-                                                <li><a href="#" data-id01="286">200nm~</a></li>
-                                                <li><a href="#" data-id01="290">300nm~</a></li>
-                                                <li><a href="#" data-id01="301">400nm~</a></li>
-                                                <li><a href="#" data-id01="323">500nm~</a></li>
-                                                <li><a href="#" data-id01="345">600nm~</a></li>
-                                                <li><a href="#" data-id01="372">700nm~</a></li>
-                                                <li><a href="#" data-id01="388">800nm~</a></li>
-                                                <li><a href="#" data-id01="401">900nm~</a></li>
-                                                <li><a href="#" data-id01="418">1000nm~</a></li>
-                                                <li><a href="#" data-id01="475">1500nm~</a></li>
-                                                <li><a href="#" data-id01="518">2000nm~</a></li>
-                                                <li><a href="#" data-id01="">多波長チューナブル~</a></li>
+                                                <li><a href="#" data-id01="617">200nm~</a></li>
+                                                <li><a href="#" data-id01="612">300nm~</a></li>
+                                                <li><a href="#" data-id01="286">400nm~</a></li>
+                                                <li><a href="#" data-id01="583">500nm~</a></li>
+                                                <li><a href="#" data-id01="591">600nm~</a></li>
+                                                <li><a href="#" data-id01="287">700nm~</a></li>
+                                                <li><a href="#" data-id01="288">800nm~</a></li>
+                                                <li><a href="#" data-id01="592">900nm~</a></li>
+                                                <li><a href="#" data-id01="289">1000nm~</a></li>
+                                                <li><a href="#" data-id01="593">1500nm~</a></li>
+                                                <li><a href="#" data-id01="594">2000nm~</a></li>
+                                                <li><a href="#" data-id01="290">多波長チューナブル~</a></li>
                                             </ul>
                                         </li>
                                         <li><p><span>良く探されている波長から探す</span></p>
                                             <ul class="flex">
-                                                <li><a href="#" data-id01="332">532nm</a></li>
-                                                <li><a href="#" data-id01="390">808nm</a></li>
-                                                <li><a href="#" data-id01="394">850nm</a></li>
-                                                <li><a href="#" data-id01="409">940nm</a></li>
+                                                <li><a href="#" data-id01="608">532nm</a></li>
+                                                <li><a href="#" data-id01="291">808nm</a></li>
+                                                <li><a href="#" data-id01="584">850nm</a></li>
+                                                <li><a href="#" data-id01="324">940nm</a></li>
                                                 <li><a href="#" data-id01="mul01">976/980nm</a></li>
                                                 <li><a href="#" data-id01="mul02">1060/1064nm</a></li>
                                                 <li><a href="#" data-id01="mul03">1310/1550nm</a></li>
@@ -213,9 +227,35 @@
             </div>
             <div class="slideBox">
                 <ul class="linkUl01 flex slide">
-                    <li style="border-color: #0fd000;"><a href="#"><img src="<?php bloginfo('template_url');?>/img/index/photo01.jpg" alt="おすすめ商品"></a></li>
-                    <li style="border-color: #0b7ef1;"><a href="#"><img src="<?php bloginfo('template_url');?>/img/index/photo02.jpg" alt="おすすめ商品"></a></li>
-                    <li style="border-color: #f20000;"><a href="#"><img src="<?php bloginfo('template_url');?>/img/index/photo03.jpg" alt="おすすめ商品"></a></li>
+                    <!-- <li style="border-color: #0fd000;"><a href="<?php echo esc_url( home_url( '/' ) ); ?>?search_type=1&s=&cat01=206&cat02=&cat03="><img src="<?php bloginfo('template_url');?>/img/index/photo01.jpg" alt="おすすめ商品"></a></li>
+                    <li style="border-color: #0b7ef1;"><a href="<?php echo esc_url( home_url( '/' ) ); ?>product/optron_bandle"><img src="<?php bloginfo('template_url');?>/img/index/photo02.jpg" alt="おすすめ商品"></a></li>
+                    <li style="border-color: #f20000;"><a href="<?php echo esc_url( home_url( '/' ) ); ?>product/opticon_opn-3102i"><img src="<?php bloginfo('template_url');?>/img/index/photo03.jpg" alt="おすすめ商品"></a></li> -->
+                    <?php
+                        $args = array(
+                            'posts_per_page' => 3, // 表示する投稿数＝３記事
+                            'post_type' => array('recommend'), // 取得する投稿タイプのスラッグ
+                            'orderby' => 'date', //日付で並び替え（投稿日）
+                            'order' => 'DESC' // 降順=最新３記事のみ
+                        );
+                        $my_posts = get_posts($args);
+                        ?>
+                    <?php foreach ($my_posts as $post) : setup_postdata($post); ?>
+                    <li style="border-color: <?php echo get_field('border_color'); ?>;">
+                        <a href="<?php echo esc_url( home_url( '/' ) ); echo get_field("recommend_url"); ?>">
+                            <?php
+                                // アイキャッチ画像を取得
+                                $thumbnail_id = get_post_thumbnail_id($post->ID);
+                                $thumb_url = wp_get_attachment_image_src($thumbnail_id,'full');
+                                if (get_post_thumbnail_id($post->ID)) {
+                                echo '<img src="' . $thumb_url[0] . '" alt="おすすめ商品">';
+                                } else {
+                                // アイキャッチ画像が登録されていなかったときの画像
+                                echo '<img src="' . get_template_directory_uri() . '/img/index/img-default.png" alt="recommend_default">';
+                                }
+                            ?>
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
@@ -230,12 +270,12 @@
                     <ul class="comItemList comItemList01 flex">
                     <?php foreach($terms as $term) { $curId = $term->term_id; $showname = get_field('ff_showname', 'productcat_'.$curId); $showimg = get_field('ff_showimg', 'productcat_'.$curId); ?>
                         <li>
-                            <a href="<?php echo get_term_link( $curId );?>">							
+                            <a href="<?php echo get_term_link( $curId );?>">
                                 <div class="phoBox"><div class="pho" style="background-image: url(<?php echo $showimg; ?>);"></div></div>
                                 <div class="txtBox">
                                     <p class="link"><?php if($showname){ echo $showname; }else { echo $term->name; } ?></p>
                                 </div>
-                            </a>				
+                            </a>
                         </li>
                     <?php } ?>
                     </ul>
@@ -262,38 +302,38 @@
                 <ul class="comLinkUl comLinkUl01 flex">
                     <li>
                         <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=286&search_type=2"><span>200<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=290&search_type=2"><span>300<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/200nm"><span>200<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/300nm"><span>300<small>nm~</small></span></a></li>
                         </ul>
                     </li>
                     <li>
                         <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=301&search_type=2" class="bor bor01"><span>400<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=323&search_type=2" class="bor bor03"><span>500<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/400nm" class="bor bor01"><span>400<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/500nm" class="bor bor03"><span>500<small>nm~</small></span></a></li>
                         </ul>
                     </li>
                     <li>
                         <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=345&search_type=2" class="bor bor02"><span>600<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=372&search_type=2" class="bor bor04"><span>700<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/600nm" class="bor bor02"><span>600<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/700nm" class="bor bor04"><span>700<small>nm~</small></span></a></li>
                         </ul>
                     </li>
                     <li>
                         <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=388&search_type=2"><span>800<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=401&search_type=2"><span>900<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/800nm"><span>800<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/900nm"><span>900<small>nm~</small></span></a></li>
                         </ul>
                     </li>
                     <li>
                         <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=418&search_type=2"><span>1000<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=475&search_type=2"><span>1500<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/1000nm"><span>1000<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/1500nm"><span>1500<small>nm~</small></span></a></li>
                         </ul>
                     </li>
                     <li>
                         <ul>
-                            <li><a href="<?php bloginfo('url');?>/?s=&cat03=518&search_type=2"><span>2000<small>nm~</small></span></a></li>
-                            <li><a href="#"><span class="txt">多波長<br>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/2000nm"><span>2000<small>nm~</small></span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/?s=%E5%A4%9A%E6%B3%A2%E9%95%B7%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8A%E3%83%96%E3%83%AB"><span class="txt">多波長<br>
                                 チューナブル</span></a></li>
                         </ul>
                     </li>
@@ -301,13 +341,16 @@
             </div>
             <p class="waveTtl"><span>良く探されている<br class="sp">波長から探す</span></p>
             <ul class="comLinkUl comLinkUl01 comLinkUl02 flex">
-                <li><a href="<?php bloginfo('url');?>/?s=&cat03=332&search_type=2" class="bor bor05"><span>532<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&cat03=390&search_type=2"><span>808<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&cat03=394&search_type=2"><span>850<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&cat03=409&search_type=2"><span>940<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&cat03=mul01&search_type=2"><span>976/980<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&cat03=mul02&search_type=2"><span>1060/1064<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&cat03=mul03&search_type=2"><span>1310/1550<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=532nm" class="bor bor05"><span>532<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=808nm"><span>808<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=850nm"><span>850<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=940nm"><span>940<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=976nm"><span>976<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=980nm"><span>980<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=1060nm"><span>1060<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=1064nm"><span>1064<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=1310nm"><span>1310<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=1550nm"><span>1550<small>nm</small></span></a></li>
             </ul>
         </div>
         <div class="point">
@@ -366,45 +409,44 @@
             <div class="comBtn"><a href="<?php bloginfo('url');?>/case">一覧を見る</a></div>
         </div>
         <?php endif; wp_reset_query(); ?>
+
+        <?php
+			$args = array(
+				'post_type' => 'post',
+				'posts_per_page' => 4,
+                'post_status' => 'publish'
+			);
+			$news_query = new WP_Query($args)
+			?>
+			<?php if ( $news_query->have_posts() ) : ?>
         <div class="news">
             <h3 class="headLine01"><span>ニュース</span></h3>
             <p class="txt01 en">NEWS</p>
             <ul class="comNewsList">
+                <?php while ( $news_query->have_posts() ) : $news_query->the_post(); ?>
+                <?php
+                    $cat= get_the_category();
+                    $cat = $cat[0];
+                    $cat_slug = $cat->slug;
+                    $cat_name = $cat->cat_name;
+                ?>
                 <li>
-                    <a href="<?php bloginfo('url');?>/news/detail">
+                    <a href="<?php the_permalink(); ?>">
                         <dl>
-                            <dt><span class="date">2021.00.00</span><span class="tag">オプトロンニュース</span></dt>
-                            <dd><span class="txt">自社製品のシングルモードファイバパッチコードに新作が登場しました！</span></dd>
+                            <dt>
+                                <span class="date"><?php the_time('Y.m.d'); ?></span>
+                                <span class="tag" <?php if(!in_category(array('optronnews', 'notice'))): ?>style="background-color:<?php if(in_category(array('new-products', 'others'))): ?>#0fd000;<?php elseif(in_category('exhibition')): ?>#0b7ef1<?php endif; ?>"<?php endif; ?>><?php echo $cat_name; ?></span></dt>
+                            <dd><span class="txt"><?php the_title(); ?></span></dd>
                         </dl>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <dl>
-                            <dt><span class="date">2021.00.00</span><span class="tag" style="background-color:#0fd000;">新製品情報</span></dt>
-                            <dd><span class="txt">取り扱いメーカーにACB産業さまが追加されました！</span></dd>
-                        </dl>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <dl>
-                            <dt><span class="date">2021.00.00</span><span class="tag" style="background-color:#0b7ef1;">展示会情報</span></dt>
-                            <dd><span class="txt">自社製品のシングルモードファイバパッチコードに新作が登場しました！</span></dd>
-                        </dl>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <dl>
-                            <dt><span class="date">2021.00.00</span><span class="tag">お知らせ</span></dt>
-                            <dd><span class="txt">GW休業のお知らせ</span></dd>
-                        </dl>
-                    </a>
-                </li>
+                <?php endwhile; ?>
             </ul>
             <div class="comBtn"><a href="<?php bloginfo('url');?>/news">一覧を見る</a></div>
         </div>
+        <?php endif; ?>
+		<?php wp_reset_postdata(); ?>
+
     </div>
 </div>
 <?php get_footer(); ?>

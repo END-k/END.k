@@ -48,7 +48,7 @@ function get_top_parent_page_id() {
 }
 
 function needRemoveP() {
-	remove_filter('the_content', 'wpautop'); 
+	remove_filter('the_content', 'wpautop');
 }
 
 //add_action ('loop_start', 'needRemoveP');
@@ -60,7 +60,7 @@ function curPageURL() {
 	}
 	$pageURL .= "://";
 	return $pageURL;
-} 
+}
 
 /**
  * shortcode
@@ -257,5 +257,164 @@ function new_post_product(){
 			'show_in_rest' => true,
 			)
 		);
+		register_taxonomy(
+			'waveoutputcat',
+			'product',
+			array(
+				'label' => '波長出力カテゴリ',
+				'public' => true,
+				'hierarchical' => true,
+				'show_in_rest' => true,
+				)
+			);
+	
 }
 add_action('init', 'new_post_product');
+
+/**
+* おすすめ商品バナー
+**/
+function new_post_recommend(){
+	register_post_type(
+		'recommend',
+		array(
+			'label' => 'おすすめ商品バナー',
+			'public' => true,
+			'hierarchical' => false,
+			'has_archive' => true,
+			'show_in_rest' => true,
+			'supports' => array(
+				'title',
+				'custom-fields',
+				'thumbnail'
+				),
+			'menu_position' => 6
+			)
+	);
+}
+add_action('init', 'new_post_recommend');
+
+
+function mytheme_admin_enqueue() {
+    wp_enqueue_style( 'my_admin_css', get_template_directory_uri() . '/my-admin-style.css' );
+}
+add_action( 'admin_enqueue_scripts', 'mytheme_admin_enqueue' );
+
+
+function SearchFilter($query) {
+  if ($query->is_search) {
+    $query->set('post_type', 'product');
+  }
+return $query;
+}
+add_filter('pre_get_posts','SearchFilter');
+
+/**
+ * サイト内検索の範囲に、カテゴリー名、タグ名、を含める
+ */
+function custom_search($search, $wp_query) {
+global $wpdb;
+
+//サーチページ以外だったら終了
+if (!$wp_query->is_search)
+ return $search;
+
+if (!isset($wp_query->query_vars))
+ return $search;
+
+// タグ名・カテゴリ名も検索対象に
+$search_words = explode(' ', isset($wp_query->query_vars['s']) ? $wp_query->query_vars['s'] : '');
+if ( count($search_words) > 0 ) {
+   	$search = '';
+	foreach ( $search_words as $word ) {
+    	if ( !empty($word) ) {
+       		$search_word = $wpdb->escape("%{$word}%");
+       		$search .= " AND (
+           		{$wpdb->posts}.post_title LIKE '{$search_word}'
+           		OR {$wpdb->posts}.post_content LIKE '{$search_word}'
+		   		OR {$wpdb->posts}.ID IN (
+					SELECT distinct post_id
+					FROM {$wpdb->postmeta}
+					WHERE {$wpdb->postmeta}.meta_key IN ('ff_distributor_search', 'ff_modelnumber') AND meta_value LIKE '{$search_word}'
+				)
+           		OR {$wpdb->posts}.ID IN (
+             		SELECT distinct r.object_id
+             		FROM {$wpdb->term_relationships} AS r
+             		INNER JOIN {$wpdb->term_taxonomy} AS tt ON r.term_taxonomy_id = tt.term_taxonomy_id
+             		INNER JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id
+             		WHERE t.name LIKE '{$search_word}'
+           			OR t.slug LIKE '{$search_word}'
+           			OR tt.description LIKE '{$search_word}'
+           		)
+       		) ";
+     	}
+   	}
+}
+
+return $search;
+}
+add_filter('posts_search','custom_search', 10, 2);
+
+
+function change_posts_per_page($query) {
+	if ( is_admin() || ! $query->is_main_query() ){
+		return;
+	}
+
+	if ( $query->is_tax('productcat') ) {
+		$query->set( 'posts_per_page', '12' );
+		return;
+	}
+
+	if ( $query->is_tax('wavelengthcat') ) {
+		$query->set( 'posts_per_page', '12' );
+		return;
+	}
+
+}
+add_action( 'pre_get_posts', 'change_posts_per_page' );
+
+
+function get_ordered_terms( $id = 0, $orderby = 'term_id', $order = 'ASC', $taxonomy = 'wavelengthcat' ) {
+    $terms = get_the_terms( $id, $taxonomy );
+    if ( $terms ) {
+        $ordered = array();
+        foreach ( $terms as $term ) {
+            if ( isset( $term->$orderby ) ) {
+                $ordered[$term->$orderby] = $term;
+            }
+        }
+        if ( strtoupper( $order ) == 'DESC' ) {
+            $func = 'krsort';
+        } else {
+            $func = 'ksort';
+        }
+        $func( $ordered );
+        return $ordered;
+    }
+}
+
+function get_the_terms_orderby_termorder($taxonomy){
+	global $post;
+	$terms = get_the_terms($post->ID, $taxonomy);
+	$array = array();
+	foreach($terms as $term){
+	        $array[$term->term_order] = (object)array(
+	            "term_id"          => $term->term_id,
+	            "name"             => $term->name,
+	            "slug"             => $term->slug,
+	            "term_group"       => $term->term_group,
+	            "term_order"       => $term->term_order,
+	            "term_taxonomy_id" => $term->term_taxonomy_id,
+	            "taxonomy"         => $term->taxonomy,
+	            "description"      => $term->description,
+	            "parent"           => $term->parent,
+	            "count"            => $term->count,
+	            "object_id"        => $term->object_id
+	        );
+	}
+	ksort($array);
+	$array = (object)$array;
+
+	return $array;
+}
