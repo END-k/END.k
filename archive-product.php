@@ -5,8 +5,7 @@
         <h2>製品カテゴリ</h2>
         <ul class="language flex pc">
             <li><span>LANGUAGE</span></li>
-            <li><a href="#">JAPANESE</a></li>
-            <li class="en"><a href="#">ENGLISH</a></li>
+            <li class="en"><a href="https://eng.opt-ron.com/">ENGLISH</a></li>
         </ul>
     </section>
     <div id="main">
@@ -15,21 +14,27 @@
             <?php
                 $args = array(
                     'taxonomy' => 'productcat',
-                    'hide_empty' => 0,
+                    // 'hide_empty' => 0,
                     'exclude' => '',
                     'parent' => 0,
+                    'orderby' => 'slug'//←カテゴリ「説明」欄にて入れた数値を使ってソートする。
                 );
             ?>
-            <?php $terms = get_terms( $args );
+            <?php
+                $terms = get_terms( $args );//term取得
+                //並べ替え
+                usort($terms, function ($a, $b) {
+                    return $a->description - $b->description;
+                });
                 if($terms){
                     foreach($terms as $term) { $curId = $term->term_id; $showname = get_field('ff_showname', 'productcat_'.$curId); $showimg = get_field('ff_showimg', 'productcat_'.$curId); ?>
                     <li>
-                        <a href="#a<?php echo $curId;?>">							
+                        <a href="#a<?php echo $curId;?>">
                             <div class="phoBox"><div class="pho" style="background-image: url(<?php echo $showimg; ?>)"></div></div>
                             <div class="txtBox">
                                 <p class="link"><?php if($showname){ echo $showname; }else { echo $term->name; } ?></p>
                             </div>
-                        </a>				
+                        </a>
                     </li>
             <?php }}?>
             </ul>
@@ -39,7 +44,7 @@
                 <?php
                     $args01 = array(
                         'taxonomy' => 'productcat',
-                        'hide_empty' => 0,
+                        // 'hide_empty' => 0,
                         'exclude' => '',
                         'child_of' => $curId,
                     );
@@ -50,7 +55,7 @@
                 <?php
                     $args02 = array(
                         'taxonomy' => 'productcat',
-                        'hide_empty' => 0,
+                        // 'hide_empty' => 0,
                         'exclude' => '',
                         'parent' => $curId,
                     );
@@ -63,7 +68,7 @@
                         <?php
                             $args03 = array(
                                 'taxonomy' => 'productcat',
-                                'hide_empty' => 0,
+                                // 'hide_empty' => 0,
                                 'exclude' => '',
                                 'parent' => $secondId,
                             );
@@ -87,6 +92,16 @@
                             </div>
                             <p class="down"><a href="#">もっと見る <span>+</span></a></p>
                         </div>
+                        <?php } elseif(count($catArr) <= 4){ ?>
+                        <div class="downBox">
+                            <div class="comLinkUlBox">
+                                <ul class="comLinkUl flexC">
+                                <?php for($i=4;$i<=count($catArr)-1;$i++){ $small = get_field('ff_showname', 'productcat_'.$catArr[$i]);  ?>
+                                    <li><a href="<?php echo get_term_link( $catArr[$i] );?>"><span><?php if($small){ echo $small; }else { echo get_term_by('id',$catArr[$i],'productcat')->name; } ?></span></a></li>
+                                <?php } ?>
+                                </ul>
+                            </div>
+                        </div>
                         <?php } ?>
                     </li>
                 <?php } } ?>
@@ -95,7 +110,7 @@
                 <?php
                     $args02 = array(
                         'taxonomy' => 'productcat',
-                        'hide_empty' => 0,
+                        // 'hide_empty' => 0,
                         'exclude' => '',
                         'parent' => $curId,
                     );
@@ -103,7 +118,7 @@
                 <?php $terms02 = get_terms( $args02 );
                     if($terms02){ ?>
                 <div class="inn">
-                    <ul class="comLinkUl flexB">
+                    <ul class="comLinkUl flex termList">
                     <?php foreach($terms02 as $term02) { $secondId = $term02->term_id; ?>
                         <li><a href="<?php echo get_term_link( $secondId );?>"><span><?php echo $term02->name;?></span></a></li>
                     <?php } ?>

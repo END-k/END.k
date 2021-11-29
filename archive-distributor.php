@@ -5,8 +5,7 @@
         <h2>取扱メーカー</h2>
         <ul class="language flex pc">
             <li><span>LANGUAGE</span></li>
-            <li><a href="#">JAPANESE</a></li>
-            <li class="en"><a href="#">ENGLISH</a></li>
+            <li class="en"><a href="https://eng.opt-ron.com/">ENGLISH</a></li>
         </ul>
     </section>
     <div id="main">
@@ -20,7 +19,7 @@
                         <?php
                             $args = array(
                                 'taxonomy' => 'distributorcat',
-                                'hide_empty' => 0,
+                                // 'hide_empty' => 0,
                                 'exclude' => '',
                             );
                         ?>
@@ -39,6 +38,7 @@
                 <?php
                     $args = array(
                         'post_type' => 'distributor',
+                        'posts_per_page' => -1,
                         'tax_query' => array(
                             array(
                                 'taxonomy' => 'distributorcat',
@@ -70,7 +70,7 @@
             <?php
                 $argsproduct = array(
                     'taxonomy' => 'productcat',
-                    'hide_empty' => 0,
+                    // 'hide_empty' => 0,
                     'exclude' => '',
                     'parent' => 0,
                 );
@@ -83,12 +83,12 @@
             <ul class="comItemList comItemList01 flex">
             <?php foreach($termspro as $termpro) { $curproId = $termpro->term_id; $showname = get_field('ff_showname', 'productcat_'.$curproId); $showimg = get_field('ff_showimg', 'productcat_'.$curproId); ?>
                 <li>
-                    <a href="<?php echo get_term_link( $curproId );?>">							
+                    <a href="<?php echo get_term_link( $curproId );?>">
                         <div class="phoBox"><div class="pho" style="background-image: url(<?php echo $showimg; ?>);"></div></div>
                         <div class="txtBox">
                             <p class="link"><?php if($showname){ echo $showname; }else { echo $termpro->name; } ?></p>
                         </div>
-                    </a>				
+                    </a>
                 </li>
             <?php } ?>
             </ul>

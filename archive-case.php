@@ -5,8 +5,7 @@
         <h2>事例一覧</h2>
         <ul class="language flex pc">
             <li><span>LANGUAGE</span></li>
-            <li><a href="#">JAPANESE</a></li>
-            <li class="en"><a href="#">ENGLISH</a></li>
+            <li class="en"><a href="https://eng.opt-ron.com/">ENGLISH</a></li>
         </ul>
     </section>
     <div id="main">
@@ -26,16 +25,20 @@
                             </div>
                         </div>
                     </a>
+                    <?php
+                        $terms01 = get_the_terms($post->ID,'casecat');
+                    ?>
+                    <?php if($terms01): ?>
                     <ul class="tag">
-                        <li>カテゴリー</li>
-                        <li style="border-color: #0fd000;">中カテゴリ</li>
-                        <li style="border-color: #0fd000;">子カテゴリ</li>
-                        <li style="border-color: #f20000;">波長(光源のみ)</li>
-                    </ul>				
+                        <?php foreach($terms01 as $term01){ ?>
+                        <li><?php echo $term01->name; ?></li>
+                        <?php } ?>
+                    </ul>
+                    <?php endif; ?>
                 </li>
             <?php endwhile; endif;?>
             </ul>
-            <?php if(function_exists('wp_pagenavi')) { wp_pagenavi( array( 
+            <?php if(function_exists('wp_pagenavi')) { wp_pagenavi( array(
                 'options' => array(
                     'prev_text' => '<img src="'.get_template_directory_uri().'/img/common/icon07.png" width="8" alt="prev">',
                     'next_text' => '<img src="'.get_template_directory_uri().'/img/common/icon06.png" width="8" alt="next">',

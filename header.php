@@ -29,6 +29,7 @@
 	?></title>
 <link rel="icon" type="image/gif" href="<?php bloginfo('template_url');?>/img/common/favicon.ico">
 <meta property="og:image" content="<?php bloginfo('template_url');?>/img/common/ogp.jpg">
+<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/js/jquery.jscrollpane.css">
 <?php if(is_home()||is_front_page()||is_page("detail")){ ?>
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url');?>/js/slick/slick.css">
 <?php }else if(is_singular("product")){ ?>
@@ -53,21 +54,35 @@
                             <?php
                                 $args = array(
                                     'taxonomy' => 'productcat',
-                                    'hide_empty' => 0,
+                                    // 'hide_empty' => 0,
                                     'exclude' => '',
                                     'parent' => 0,
+                                    'orderby' => 'slug'//←カテゴリ「説明」欄にて入れた数値を使ってソートする。
                                 );
+                                $terms = get_terms( $args );//term取得
+                                //並べ替え
+                                usort($terms, function ($a, $b) {
+                                    return $a->description - $b->description;
+                                });
+
+                                if($terms){
                             ?>
-                            <?php $terms = get_terms( $args ); if($terms){ ?>
                             <div class="subUlBox">
                                 <div class="subInnBox">
                                     <ul class="subUl flex">
-                                    <?php foreach($terms as $term) { $curId = $term->term_id; $showname = get_field('ff_showname', 'productcat_'.$curId); $bigId = $term->term_id; ?>
-                                        <li><a href="<?php echo get_term_link( $curId );?>"><span><?php if($showname){ echo $showname; }else { echo $term->name; } ?></span></a>
+                                    <?php foreach($terms as $term) {
+                                        $curId = $term->term_id;
+                                        $showname = get_field('ff_showname', 'productcat_'.$curId);
+                                        $bigId = $term->term_id;
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo get_term_link( $curId );?>">
+                                                <span><?php if($showname){ echo $showname; }else { echo $term->name; } ?></span>
+                                            </a>
                                             <?php
                                                 $args01 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    // 'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => $bigId,
                                                 );
@@ -82,7 +97,7 @@
                                                         <?php
                                                             $args02 = array(
                                                                 'taxonomy' => 'productcat',
-                                                                'hide_empty' => 0,
+                                                                 // 'hide_empty' => 0,
                                                                 'exclude' => '',
                                                                 'parent' => $secondId,
                                                             );
@@ -90,6 +105,7 @@
                                                         <?php $terms02 = get_terms( $args02 ); if($terms02){ ?>
                                                             <div class="borBox">
                                                                 <ul class="linkList flex">
+                                                                    <li><a href="<?php echo get_term_link( $secondId );?>">全て</a></li>
                                                                 <?php foreach($terms02 as $term02) { ?>
                                                                     <li><a href="<?php echo get_term_link( $term02->term_id );?>"><?php echo $term02->name; ?></a></li>
                                                                 <?php } ?>
@@ -114,7 +130,8 @@
                         <li><a href="<?php bloginfo('url');?>/company" class="arrow arrow01"><span>会社情報</span></a>
                             <div class="subUlBox">
                                 <div class="subInnBox">
-                                    <ul class="subUl flex">
+                                    <ul class="subUl2 flex">
+                                        <li class="sp"><a href="<?php bloginfo('url');?>/company"><span>会社情報</span></a></li>
                                         <li><a href="<?php bloginfo('url');?>/policy"><span>環境方針・品質方針</span></a></li>
                                         <li><a href="<?php bloginfo('url');?>/privacy"><span>プライバシーポリシー</span></a></li>
                                         <li><a href="<?php bloginfo('url');?>/recruit"><span>採用情報</span></a></li>
@@ -124,6 +141,12 @@
                         </li>
                         <li><a href="<?php bloginfo('url');?>/news">ニュース</a></li>
                     </ul>
+                    <div class="sp">
+                        <ul class="language flex">
+                            <li><span>LANGUAGE</span></li>
+                            <li class="en"><a href="https://eng.opt-ron.com/">ENGLISH</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="hBtn"><a href="#"></a></div>
             </div>
@@ -136,7 +159,6 @@
                 <p>商品名・型番・メーカーまたはキーワードを入力</p>
                 <div class="inputBox">
                     <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
-                        <input type="hidden" name="search_type" value="1">
                         <input type="text" placeholder="" name="s" class="inputText">
                         <input type="submit" value="検索" class="inputButton">
                     </form>
@@ -160,7 +182,7 @@
                                             <?php
                                                 $args11 = array(
                                                     'taxonomy' => 'productcat',
-                                                    'hide_empty' => 0,
+                                                    //'hide_empty' => 0,
                                                     'exclude' => '',
                                                     'parent' => $bigId,
                                                 );
@@ -173,7 +195,7 @@
                                                     <?php
                                                         $args22 = array(
                                                             'taxonomy' => 'productcat',
-                                                            'hide_empty' => 0,
+                                                            //'hide_empty' => 0,
                                                             'exclude' => '',
                                                             'parent' => $secondId,
                                                         );
@@ -207,7 +229,7 @@
                                 <?php
                                     $args03 = array(
                                         'taxonomy' => 'distributorcat',
-                                        'hide_empty' => 0,
+                                        // 'hide_empty' => 0,
                                         'exclude' => '',
                                         'parent' => 0,
                                     );
@@ -258,26 +280,26 @@
                                     <ul class="enUl03">
                                         <li><p><span>波長域から探す</span></p>
                                             <ul class="flex">
-                                                <li><a href="#" data-id01="286">200nm~</a></li>
-                                                <li><a href="#" data-id01="290">300nm~</a></li>
-                                                <li><a href="#" data-id01="301">400nm~</a></li>
-                                                <li><a href="#" data-id01="323">500nm~</a></li>
-                                                <li><a href="#" data-id01="345">600nm~</a></li>
-                                                <li><a href="#" data-id01="372">700nm~</a></li>
-                                                <li><a href="#" data-id01="388">800nm~</a></li>
-                                                <li><a href="#" data-id01="401">900nm~</a></li>
-                                                <li><a href="#" data-id01="418">1000nm~</a></li>
-                                                <li><a href="#" data-id01="475">1500nm~</a></li>
-                                                <li><a href="#" data-id01="518">2000nm~</a></li>
-                                                <li><a href="#" data-id01="">多波長チューナブル~</a></li>
+                                            <li><a href="#" data-id01="617">200nm~</a></li>
+                                                <li><a href="#" data-id01="612">300nm~</a></li>
+                                                <li><a href="#" data-id01="286">400nm~</a></li>
+                                                <li><a href="#" data-id01="583">500nm~</a></li>
+                                                <li><a href="#" data-id01="591">600nm~</a></li>
+                                                <li><a href="#" data-id01="287">700nm~</a></li>
+                                                <li><a href="#" data-id01="288">800nm~</a></li>
+                                                <li><a href="#" data-id01="592">900nm~</a></li>
+                                                <li><a href="#" data-id01="289">1000nm~</a></li>
+                                                <li><a href="#" data-id01="593">1500nm~</a></li>
+                                                <li><a href="#" data-id01="594">2000nm~</a></li>
+                                                <li><a href="#" data-id01="290">多波長チューナブル~</a></li>
                                             </ul>
                                         </li>
                                         <li><p><span>良く探されている波長から探す</span></p>
                                             <ul class="flex">
-                                                <li><a href="#" data-id01="332">532nm</a></li>
-                                                <li><a href="#" data-id01="390">808nm</a></li>
-                                                <li><a href="#" data-id01="394">850nm</a></li>
-                                                <li><a href="#" data-id01="409">940nm</a></li>
+                                            <li><a href="#" data-id01="608">532nm</a></li>
+                                                <li><a href="#" data-id01="291">808nm</a></li>
+                                                <li><a href="#" data-id01="584">850nm</a></li>
+                                                <li><a href="#" data-id01="324">940nm</a></li>
                                                 <li><a href="#" data-id01="mul01">976/980nm</a></li>
                                                 <li><a href="#" data-id01="mul02">1060/1064nm</a></li>
                                                 <li><a href="#" data-id01="mul03">1310/1550nm</a></li>
@@ -289,7 +311,10 @@
                         </li>
                     </ul>
                 </div>
-                <div class="comBtn"><a href="#"><span>この条件で検索する</span></a></div>
+                <div class="comBtn-wrap">
+                    <div class="comBtn"><a href="#"><span>この条件で検索する</span></a></div>
+                    <div class="hBtn comBtn--close"><a href="#"><span>閉じる</span></a></div>
+                </div>
             </form>
         </div>
     </div>
