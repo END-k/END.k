@@ -23,283 +23,101 @@
                 <ul class="link02 flexB">
                     <li><a href="<?php bloginfo('url');?>/product"><span>製品情報</span></a>
                         <div class="fLinkBox">
-                            <ul class="fatUl flexB">
+                            <!-- PC -->
+                            <ul class="fatUl flexB f_product_box">
+                                <?php
+                                    $args02 = array(
+                                        'taxonomy' => 'productcat',
+                                        // 'hide_empty' => 0,
+                                        'exclude' => '',
+                                        'parent' => 0,
+                                        'orderby' => 'slug'//←カテゴリ「説明」欄にて入れた数値を使ってソートする。
+                                        );
+                                    $terms = get_terms( $args02 );//term取得
+                                    //並べ替え
+                                    usort($terms, function ($a, $b) {
+                                        return $a->description - $b->description;
+                                    });
+                                    if($terms){
+                                ?>
                                 <li>
-                                    <ul class="subUl">
-                                        <li class="liStyle01 li01"><a href="<?php bloginfo('url');?>/productcat/自社製品設計・試作・oem"><span><strong>自社製品</strong><br>
-                                            <small><strong>(設計・試作・OEM)</strong></small></span></a>
-                                            <?php
-                                                $args01 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 2,
-                                                );
-                                            ?>
-                                            <?php $terms01 = get_terms( $args01 ); if($terms01){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">自社製品に含まれる<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms01 as $term01) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term01->term_id );?>"><?php echo $term01->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
+                                    <ul class="subUl f_product">
+                                    <?php foreach($terms as $term) {
+                                        $curId = $term->term_id;
+                                        $showname = get_field('ff_showname', 'productcat_'.$curId);
+                                        $bigId = $term->term_id;
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo get_term_link( $curId );?>">
+                                                <span><?php if($showname){ echo $showname; }else { echo $term->name; } ?></span>
+                                            </a>
                                         </li>
-                                        <li class="liStyle01"><a href="<?php bloginfo('url');?>/productcat/光ファイバ端末加工・処理"><span><strong>光ファイバ端末加工・</strong><br>
-                                            <strong>処理</strong></span></a>
-                                            <?php
-                                                $args02 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 53,
-                                                );
-                                            ?>
-                                            <?php $terms02 = get_terms( $args02 ); if($terms02){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">光ファイバ端末加工・処理<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms02 as $term02) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term02->term_id );?>"><?php echo $term02->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li class="liStyle01"><a href="<?php bloginfo('url');?>/productcat/光ファイバ・ファイバコンポーネント"><span><strong>光ファイバ・</strong><br>
-                                        <strong>ファイバコンポーネント</strong></span></a>
-                                            <?php
-                                                $args03 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 65,
-                                                );
-                                            ?>
-                                            <?php $terms03 = get_terms( $args03 ); if($terms03){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">光ファイバ・ファイバコンポーネント<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms03 as $term03) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term03->term_id );?>"><?php echo $term03->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/光源">光源</a>
-                                            <?php
-                                                $args04 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 110,
-                                                );
-                                            ?>
-                                            <?php $terms04 = get_terms( $args04 ); if($terms04){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">光源<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms04 as $term04) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term04->term_id );?>"><?php echo $term04->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/光変調器">光変調器 </a>
-                                            <?php
-                                                $args05 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 157,
-                                                );
-                                            ?>
-                                            <?php $terms05 = get_terms( $args05 ); if($terms05){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">光変調器<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms05 as $term05) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term05->term_id );?>"><?php echo $term05->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/光学部品">光学部品</a>
-                                            <?php
-                                                $args06 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 162,
-                                                );
-                                            ?>
-                                            <?php $terms06 = get_terms( $args06 ); if($terms06){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">光学部品<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms06 as $term06) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term06->term_id );?>"><?php echo $term06->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
+                                        <?php } ?>
                                     </ul>
                                 </li>
-                                <li>
-                                    <ul class="subUl">
-                                        <li><a href="<?php bloginfo('url');?>/productcat/エレクトロニクス">エレクトロニクス</a>
-                                            <?php
-                                                $args07 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 197,
-                                                );
-                                            ?>
-                                            <?php $terms07 = get_terms( $args07 ); if($terms07){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">エレクトロニクス<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms07 as $term07) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term07->term_id );?>"><?php echo $term07->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/測定機・検出器・試験機">測定機・検出器・試験機</a>
-                                            <?php
-                                                $args09 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 205,
-                                                );
-                                            ?>
-                                            <?php $terms09 = get_terms( $args09 ); if($terms09){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">測定機・検出器・試験機<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms09 as $term09) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term09->term_id );?>"><?php echo $term09->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/光学材料・消耗品">光学材料・消耗品</a>
-                                            <?php
-                                                $args08 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 242,
-                                                );
-                                            ?>
-                                            <?php $terms08 = get_terms( $args08 ); if($terms08){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">光学材料・消耗品<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms08 as $term08) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term08->term_id );?>"><?php echo $term08->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/光学機器・光学解析ソフトウェア">光学機器・光学解析ソフトウェア</a>
-                                            <?php
-                                                $args10 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 255,
-                                                );
-                                            ?>
-                                            <?php $terms06 = get_terms( $args10 ); if($terms10){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">光学機器・光学解析ソフトウェア<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms10 as $term10) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term10->term_id );?>"><?php echo $term10->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/自動認識関連機器">自動認識関連機器</a>
-                                            <?php
-                                                $args11 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 259,
-                                                );
-                                            ?>
-                                            <?php $terms11 = get_terms( $args11 ); if($terms11){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">自動認識関連機器<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms11 as $term11) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term11->term_id );?>"><?php echo $term11->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                        <li><a href="<?php bloginfo('url');?>/productcat/光通信">光通信</a>
-                                            <?php
-                                                $args12 = array(
-                                                    'taxonomy' => 'productcat',
-                                                    // 'hide_empty' => 0,
-                                                    'exclude' => '',
-                                                    'parent' => 277,
-                                                );
-                                            ?>
-                                            <?php $terms12 = get_terms( $args12 ); if($terms12){ ?>
-                                            <div class="grandSubBox sp">
-                                                <p class="ttl">光通信用オプティカルツール<br>
-                                                カテゴリーを見る</p>
-                                                <ul class="grandSubUl">
-                                                <?php foreach($terms12 as $term12) { ?>
-                                                    <li><a href="<?php echo get_term_link( $term12->term_id );?>"><?php echo $term12->name; ?></a></li>
-                                                <?php } ?>
-                                                </ul>
-                                                <p class="close"><span>閉じる <small>-</small></span></p>
-                                            </div>
-                                            <?php } ?>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <?php } ?>
                             </ul>
+                            <!-- /PC -->
+                            <!-- SP -->
+                            <ul class="fatUl flexB f_product_box_sp">
+                                <?php
+                                    $args = array(
+                                        'taxonomy' => 'productcat',
+                                        // 'hide_empty' => 0,
+                                        'exclude' => '',
+                                        'parent' => 0,
+                                        'orderby' => 'slug'//←カテゴリ「説明」欄にて入れた数値を使ってソートする。
+                                    );
+                                    $terms = get_terms( $args );//term取得
+                                    //並べ替え
+                                    usort($terms, function ($a, $b) {
+                                        return $a->description - $b->description;
+                                    });
+
+                                    if($terms){
+                                ?>
+                                <div class="subUlBox">
+                                    <div class="subInnBox">
+                                        <ul class="subUl flex">
+                                        <?php foreach($terms as $term) {
+                                            $curId = $term->term_id;
+                                            $showname = get_field('ff_showname', 'productcat_'.$curId);
+                                            $bigId = $term->term_id;
+                                        ?>
+                                            <!-- 大カテゴリ -->
+                                            <li class="liStyle01 li01">
+                                                <a href="<?php echo get_term_link( $curId );?>">
+                                                    <span><strong><?php if($showname){ echo $showname; }else { echo $term->name; } ?></strong></span>
+                                                </a>
+                                                <!-- 中カテゴリ -->
+                                                <?php
+                                                    $args01 = array(
+                                                        'taxonomy' => 'productcat',
+                                                        // 'hide_empty' => 0,
+                                                        'exclude' => '',
+                                                        'parent' => $bigId,
+                                                    );
+                                                ?>
+                                                <?php $terms01 = get_terms( $args01 ); if($terms01){ ?>
+                                                    <div class="grandSubBox sp">
+                                                        <p class="ttl"><?php if($showname){ echo $showname; }else { echo $term->name; } ?><br>
+                                                            カテゴリーを見る</p>
+                                                            <ul class="grandSubUl">
+                                                            <?php foreach($terms01 as $term01) { $secondId = $term01->term_id; ?>
+                                                                <li><a href="<?php echo get_term_link( $term01->term_id );?>"><?php echo $term01->name; ?></a></li>
+                                                            <?php } ?>
+                                                            </ul>
+                                                        <p class="close"><span>閉じる <small>-</small></span></p>
+                                                    </div>
+                                                <?php } ?>
+                                            </li>
+                                        <?php } ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                            </ul>
+                            <!-- /SP -->
                         </div>
                     </li>
                     <li class="liStyle01"><a href="<?php bloginfo('url');?>/company"><span>会社情報</span></a>
