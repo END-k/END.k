@@ -5,7 +5,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
 <div class="product wavelength">
     <section class="pageTitle">
         <embed src="<?php bloginfo('template_url');?>/img/common/line.svg" type="image/svg+xml" class="pc"><img src="<?php bloginfo('template_url');?>/img/common/sp_line.png" alt="" class="sp">
-        <h2>波長<?php echo get_queried_object()->name; ?></h2>
+        <h2><?php echo get_queried_object()->name; ?></h2>
         <ul class="language flex pc">
             <li><span>LANGUAGE</span></li>
             <li class="en"><a href="https://eng.opt-ron.com/">ENGLISH</a></li>
@@ -24,12 +24,24 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             'parent' => get_queried_object()->term_id,
                         );
                     ?>
-                    <?php $terms = get_terms( $args ); if($terms){ ?>
+                    <?php $terms = get_terms( $args );
+                    
+                    // echo('<pre>');
+                    // var_dump($terms);
+                    // echo('</pre>');
+                    
+                    if($terms){ ?>
                     <div class="lBox">
                         <ul class="comLinkUl comLinkUl01 flexC">
-                        <?php foreach($terms as $term) { ?>
+                        <?php
+                        foreach($terms as $term) {
+                            $array=explode('n', $term->name);
+                            if($array[0] === "多波長チューナブル"){
+                        ?>
+                            <li><a href="<?php echo home_url( '/' ); ?>?s=&search_type=2&cat03=<?php echo $term->term_id; ?>"><span><?php $array=explode('n', $term->name); echo $array[0]; ?></span></a></li>
+                            <?php } else{ ?>
                             <li><a href="<?php echo home_url( '/' ); ?>?s=&search_type=2&cat03=<?php echo $term->term_id; ?>"><span><?php $array=explode('n', $term->name); echo $array[0]; ?><small>nm</small></span></a></li>
-                        <?php } ?>
+                        <?php } } ?>
                         </ul>
                     </div>
                     <?php } }else { ?>
@@ -114,8 +126,13 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                 foreach($terms as $term) {
                     $curId = $term->term_id;
                     $curSlug = $term->slug;
+                    $array01=explode('n', $term->name);
             ?>
+            <?php if($array01[0] === "多波長チューナブル"){ ?>
+            <p class="waveTtl"><span><?php $array01=explode('n', $term->name); echo $array01[0]; ?></span></p>
+            <?php } else{ ?>
             <p class="waveTtl"><span><?php $array01=explode('n', $term->name); echo $array01[0]; ?><small>nm</small></span></p>
+            <?php }?>
             <?php
             $args01 = array(
                 'post_type' => 'product',
@@ -178,6 +195,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                 </li>
             <?php } ?>
             </ul>
+            <?php //var_dump($terms); ?>
             <?php } wp_reset_postdata(); if($num > 6){ ?>
             <div class="comBtn"><a href="<?php echo esc_url( home_url( '/' ) ); ?>wavelengthcat/<?php echo $curSlug; ?>">もっと見る</a></div>
 
@@ -269,7 +287,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         </li>
                         <li>
                             <ul>
-                                <li><a href="<?php bloginfo('url');?>/?wavelengthcat/800nm"><span>800<small>nm~</small></span></a></li>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/800nm"><span>800<small>nm~</small></span></a></li>
                                 <li><a href="<?php bloginfo('url');?>/wavelengthcat/900nm"><span>900<small>nm~</small></span></a></li>
                             </ul>
                         </li>

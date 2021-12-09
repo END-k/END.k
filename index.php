@@ -78,7 +78,15 @@
                                         'parent' => 0,
                                     );
                                 ?>
-                                <?php $terms = get_terms( $args ); if($terms){ ?>
+                                <?php
+                                    $terms = get_terms( $args );
+                                    //並べ替え
+                                        usort($terms, function ($a, $b) {
+                                            return $a->description - $b->description;
+                                        });
+
+                                    if($terms){
+                                ?>
                                 <div class="enUlBox enUlBox01">
                                     <ul class="enUl01">
                                         <?php foreach($terms as $term) { ?>
@@ -268,7 +276,12 @@
                     <p class="pTop">自社および各種メーカーの<br>
                     様々な製品をご覧いただけます</p>
                     <ul class="comItemList comItemList01 flex">
-                    <?php foreach($terms as $term) { $curId = $term->term_id; $showname = get_field('ff_showname', 'productcat_'.$curId); $showimg = get_field('ff_showimg', 'productcat_'.$curId); ?>
+                    <?php
+                        foreach($terms as $term) {
+                            $curId = $term->term_id;
+                            $showname = get_field('ff_showname', 'productcat_'.$curId);
+                            $showimg = get_field('ff_showimg', 'productcat_'.$curId);
+                    ?>
                         <li>
                             <a href="<?php echo get_term_link( $curId );?>">
                                 <div class="phoBox"><div class="pho" style="background-image: url(<?php echo $showimg; ?>);"></div></div>
@@ -333,24 +346,23 @@
                     <li>
                         <ul>
                             <li><a href="<?php bloginfo('url');?>/wavelengthcat/2000nm"><span>2000<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=%E5%A4%9A%E6%B3%A2%E9%95%B7%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8A%E3%83%96%E3%83%AB"><span class="txt">多波長<br>
-                                チューナブル</span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/multi-wavelength"><span class="txt">多波長<br>チューナブル</span></a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <p class="waveTtl"><span>良く探されている<br class="sp">波長から探す</span></p>
             <ul class="comLinkUl comLinkUl01 comLinkUl02 flex">
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=532nm" class="bor bor05"><span>532<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=808nm"><span>808<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=850nm"><span>850<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=940nm"><span>940<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=976nm"><span>976<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=980nm"><span>980<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=1060nm"><span>1060<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=1064nm"><span>1064<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=1310nm"><span>1310<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/?s=&search_type=4&s=1550nm"><span>1550<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/532nm" class="bor bor05"><span>532<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/808nm"><span>808<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/850nm"><span>850<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/940nm"><span>940<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/976nm"><span>976<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/980nm"><span>980<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1060nm"><span>1060<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1064nm"><span>1064<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1310nm"><span>1310<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1550nm"><span>1550<small>nm</small></span></a></li>
             </ul>
         </div>
         <div class="point">
