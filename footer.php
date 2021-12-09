@@ -1,4 +1,4 @@
-<footer id="gFooter">
+    <footer id="gFooter">
         <div class="hBox flexB">
             <div class="lBox">
                 <div class="fLogo"><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/f_logo.png" alt="株式会社オプトロンサイエンスOptronscience,Inc."></a></div>

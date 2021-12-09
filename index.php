@@ -346,8 +346,7 @@
                     <li>
                         <ul>
                             <li><a href="<?php bloginfo('url');?>/wavelengthcat/2000nm"><span>2000<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/?s=%E5%A4%9A%E6%B3%A2%E9%95%B7%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8A%E3%83%96%E3%83%AB"><span class="txt">多波長<br>
-                                チューナブル</span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/multi-wavelength"><span class="txt">多波長<br>チューナブル</span></a></li>
                         </ul>
                     </li>
                 </ul>
