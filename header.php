@@ -280,7 +280,7 @@
                                     <ul class="enUl03">
                                         <li><p><span>波長域から探す</span></p>
                                             <ul class="flex">
-                                            <li><a href="#" data-id01="617">200nm~</a></li>
+                                                <li><a href="#" data-id01="617">200nm~</a></li>
                                                 <li><a href="#" data-id01="612">300nm~</a></li>
                                                 <li><a href="#" data-id01="286">400nm~</a></li>
                                                 <li><a href="#" data-id01="583">500nm~</a></li>
@@ -296,7 +296,7 @@
                                         </li>
                                         <li><p><span>良く探されている波長から探す</span></p>
                                             <ul class="flex">
-                                            <li><a href="#" data-id01="608">532nm</a></li>
+                                                <li><a href="#" data-id01="608">532nm</a></li>
                                                 <li><a href="#" data-id01="291">808nm</a></li>
                                                 <li><a href="#" data-id01="584">850nm</a></li>
                                                 <li><a href="#" data-id01="324">940nm</a></li>

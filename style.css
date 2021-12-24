@@ -690,6 +690,10 @@ a[href^="tel:"] {
   background-color: #ffffff;
 }
 
+.comSelectUl .enUlBox01{
+  right: -440px;
+}
+
 .comSelectUl .enUl01 > li {
   margin-bottom: 5px;
   padding: 5px 18px;
@@ -5289,6 +5293,36 @@ a[href^="tel:"] {
   display: inline-block;
 }
 
+.product.result .sdwBox .tag li.rainbow {
+  background-color: white;
+  position: relative;
+  border: none;
+}
+
+.product.result .sdwBox .tag li.rainbow .in {
+  background-color: white;
+  position: relative;
+  right: 6px;
+  padding-right: 3px;
+  border-radius: 7px;
+  text-align: center;
+  width: calc(100% + 8px);
+}
+
+.product.result .sdwBox .tag li.rainbow::after {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  background: -webkit-gradient(linear, left top, right top, from(red), color-stop(orange), color-stop(yellow), color-stop(green), color-stop(aqua), color-stop(blue), to(purple));
+  background: linear-gradient(to right, red, orange, yellow, green, aqua, blue, purple);
+  content: '';
+  z-index: -1;
+  border-radius: 10px;
+  width: calc(100% + 2px);
+}
+
 .product.result .sdwBox .sdwLink {
   display: block;
   padding: 7px 63px 7px 20px;
@@ -7891,10 +7925,10 @@ a[href^="tel:"] {
     margin-bottom: 22px;
   }
   .policy .pageTitle h2 {
-    margin-left: 62px;
+    /* margin-left: 62px; */
     left: 0;
-    -webkit-transform: translate(0, -50%);
-            transform: translate(0, -50%);
+    -webkit-transform: translate(0,0);
+            transform: translate(0,0);
   }
   .policy .headLine01 {
     margin-bottom: 36px;
@@ -8095,8 +8129,8 @@ a[href^="tel:"] {
 
 @media all and (max-width: 896px) {
   .privacy .pageTitle h2 {
-    -webkit-transform: translate(0%, -50%);
-            transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, 0);
+            transform: translate(0%, 0);
     /* margin-left: -135px; */
   }
   .privacy #main {

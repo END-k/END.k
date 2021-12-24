@@ -51,17 +51,17 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         </ul>
                     </div>
                     <?php } ?>
-                    <div class="sBox">
+                    <!-- <div class="sBox">
                         <p class="ttl headLine04">具体的な波長を入力して検索</p>
                         <div class="inputBox">
-                        <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
+                        <form role="search" method="get" action="<?php //echo home_url( '/' ); ?>">
                             <input type="hidden" name="s" value="">
                             <input type="hidden" name="search_type" value="4">
                             <input type="text" placeholder="532nm" name="s" class="inputText">
                             <input type="submit" value="検索" class="inputButton">
                         </form>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <p class="down"><a href="#">もっと細かく指定する<span>+</span></a></p>
                 <div class="conditionsBox">
@@ -72,11 +72,11 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             <li>
                                 <p class="ttl"><span>■</span>出力を指定する (入力なしの場合は全て表示されます)</p>
                                 <div class="radioBox radioBox_w">
-                                    <input type="number" id="mW" name="output" placeholder="200" class="txtInput wavetext wavetext01">
-                                    <input type="number" name="output" placeholder="200" class="txtInput wavetext wavetext02">
+                                    <input type="number" id="mW" name="output" class="txtInput wavetext wavetext01">
+                                    <input type="number" id="W" name="output" class="txtInput wavetext wavetext02">
                                     <ul class="rdoUl">
-                                        <li><label><input type="radio" id="mW" name="w" value="mW" checked="checked"><span>mW</span></label></li>
-                                        <li><label><input type="radio" name="w" value="W"><span>W</span></label></li>
+                                        <li><label><input type="radio" id="mW" name="w" value="mW" onclick="keepInputValue()"><span>mW</span></label></li>
+                                        <li><label><input type="radio" id="W" name="w" value="W" onclick="keepInputValue()"><span>W</span></label></li>
                                     </ul>
                                 </div>
                                 <div class="cnt_area cnt_danger">mWでの検索は1~999までの整数のみ対応しております。</div>

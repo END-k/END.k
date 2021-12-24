@@ -53,20 +53,24 @@ $product_query = new WP_Query($args)
                         <?php }?>
                         <?php if(count($restArr)){ ?>
                         <div class="downBox">
-                                <div class="comLinkUlBox">
-                                    <ul class="comLinkUl flexC">
-                                    <?php for($i=0;$i < count($restArr);$i++){ ?>
-                                        <li><a href="<?php echo get_term_link( $restArr[$i] );?>"><span><?php echo $nameArr[$i];?></span></a></li>
-                                    <?php } ?>
-                                    </ul>
-                                </div>
-                                <p class="down pc"><a href="#">もっと見る <span>+</span></a></p>
+                            <div class="comLinkUlBox">
+                                <ul class="comLinkUl flexC">
+                                <?php for($i=0;$i < count($restArr);$i++){ ?>
+                                    <li>
+                                        <a href="<?php echo get_term_link( $restArr[$i] );?>">
+                                            <span><?php echo $nameArr[$i];?></span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                </ul>
+                            </div>
+                            <p class="down pc"><a href="#">もっと見る <span>+</span></a></p>
                         </div>
                         <?php } ?>
                     </div>
-                    <?php if(count($restArr)){ ?>
+                    <?php //if(count($restArr) > 0){ ?>
                     <p class="down sp"><a href="#">もっと見る <span>+</span></a></p>
-                    <?php } ?>
+                    <?php //} ?>
                 </div>
             </div>
             <?php endif; ?>

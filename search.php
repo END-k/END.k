@@ -336,55 +336,62 @@ if($search_type == 1){
                                     <div class="iptBox">
                                         <input type="hidden" name="cat01" class="cat01">
                                         <a href="#" class="link01" data-id01="">選択してください</a>
-                                                                                                        <div class="enUlBox enUlBox01">
+                                        <div class="enUlBox enUlBox01">
                                             <ul class="enUl01">
-                                                                                        <li><a href="#" data-id01="2">自社製品(設計・試作・OEM)</a>
-                                                                                                                                            <ul class="conterUl">
-                                                        <li><a href="#" data-id01="2">■すべて</a></li>
-                                                                                                        <li><a href="#" data-id01="3">光ファイバ</a>
-                                                                                                                                                                    <div class="subWrap">
+                                                <li>
+                                                    <a href="#" data-id01="2">自社製品(設計・試作・OEM)</a>
+                                                    <ul class="conterUl">
+                                                        <li>
+                                                            <a href="#" data-id01="2">■すべて</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" data-id01="3">光ファイバ</a>
+                                                            <div class="subWrap">
                                                                 <ul class="subUl flexB">
                                                                     <li><a href="#" data-id01="3">光ファイバすべて</a></li>
-                                                                                                                                <li><a href="#" data-id01="4">シングルモードファイバパッチコード(SM)</a></li>
-                                                                                                                                <li><a href="#" data-id01="5">マルチモードファイバパッチコード(MM)</a></li>
-                                                                                                                                <li><a href="#" data-id01="6">偏波保持ファイバパッチコード(PM、パンダ)</a></li>
-                                                                                                                                <li><a href="#" data-id01="7">プラスチックファイバパッチコード(POF)</a></li>
-                                                                                                                                <li><a href="#" data-id01="8">分岐ファイバ</a></li>
-                                                                                                                                <li><a href="#" data-id01="9">バンドルファイバ</a></li>
-                                                                                                                                <li><a href="#" data-id01="10">ファイバアレイ</a></li>
-                                                                                                                                <li><a href="#" data-id01="11">コネクタ・アダプタ各種</a></li>
-                                                                                                                                <li><a href="#" data-id01="12">ファイバ補強スリーブ</a></li>
-                                                                                                                                <li><a href="#" data-id01="13">ファイバ保護チューブ</a></li>
-                                                                                                                                <li><a href="#" data-id01="14">フェルール</a></li>
-                                                                                                                                <li><a href="#" data-id01="15">真空フィードスルー</a></li>
-                                                                                                                            </ul>
+                                                                    <li><a href="#" data-id01="4">シングルモードファイバパッチコード(SM)</a></li>
+                                                                    <li><a href="#" data-id01="5">マルチモードファイバパッチコード(MM)</a></li>
+                                                                    <li><a href="#" data-id01="6">偏波保持ファイバパッチコード(PM、パンダ)</a></li>
+                                                                    <li><a href="#" data-id01="7">プラスチックファイバパッチコード(POF)</a></li>
+                                                                    <li><a href="#" data-id01="8">分岐ファイバ</a></li>
+                                                                    <li><a href="#" data-id01="9">バンドルファイバ</a></li>
+                                                                    <li><a href="#" data-id01="10">ファイバアレイ</a></li>
+                                                                    <li><a href="#" data-id01="11">コネクタ・アダプタ各種</a></li>
+                                                                    <li><a href="#" data-id01="12">ファイバ補強スリーブ</a></li>
+                                                                    <li><a href="#" data-id01="13">ファイバ保護チューブ</a></li>
+                                                                    <li><a href="#" data-id01="14">フェルール</a></li>
+                                                                    <li><a href="#" data-id01="15">真空フィードスルー</a></li>
+                                                                </ul>
                                                             </div>
-                                                                                                            </li>
-                                                                                                        <li><a href="#" data-id01="17">コリメータ</a>
-                                                                                                                                                                    <div class="subWrap">
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" data-id01="17">コリメータ</a>
+                                                            <div class="subWrap">
                                                                 <ul class="subUl flexB">
                                                                     <li><a href="#" data-id01="17">コリメータすべて</a></li>
-                                                                                                                                <li><a href="#" data-id01="18">コリメータ</a></li>
-                                                                                                                                <li><a href="#" data-id01="19">ファイバ一体型コリメータ</a></li>
-                                                                                                                                <li><a href="#" data-id01="20">FCレセプタクルコリメータ</a></li>
-                                                                                                                                <li><a href="#" data-id01="21">長距離用コリメータ</a></li>
-                                                                                                                            </ul>
+                                                                    <li><a href="#" data-id01="18">コリメータ</a></li>
+                                                                    <li><a href="#" data-id01="19">ファイバ一体型コリメータ</a></li>
+                                                                    <li><a href="#" data-id01="20">FCレセプタクルコリメータ</a></li>
+                                                                    <li><a href="#" data-id01="21">長距離用コリメータ</a></li>
+                                                                </ul>
                                                             </div>
-                                                                                                            </li>
-                                                                                                        <li><a href="#" data-id01="22">レーザーポインタ</a>
-                                                                                                                                                                    <div class="subWrap">
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" data-id01="22">レーザーポインタ</a>
+                                                            <div class="subWrap">
                                                                 <ul class="subUl flexB">
                                                                     <li><a href="#" data-id01="22">レーザーポインタすべて</a></li>
-                                                                                                                                <li><a href="#" data-id01="23">レーザーポインタ</a></li>
-                                                                                                                                <li><a href="#" data-id01="24">真円レーザーポインタ</a></li>
-                                                                                                                                <li><a href="#" data-id01="25">ラインレーザーポインタ</a></li>
-                                                                                                                                <li><a href="#" data-id01="26">出力調整コントローラ</a></li>
-                                                                                                                                <li><a href="#" data-id01="27">パワーサプライ(専用電源)</a></li>
-                                                                                                                            </ul>
+                                                                    <li><a href="#" data-id01="23">レーザーポインタ</a></li>
+                                                                    <li><a href="#" data-id01="24">真円レーザーポインタ</a></li>
+                                                                    <li><a href="#" data-id01="25">ラインレーザーポインタ</a></li>
+                                                                    <li><a href="#" data-id01="26">出力調整コントローラ</a></li>
+                                                                    <li><a href="#" data-id01="27">パワーサプライ(専用電源)</a></li>
+                                                                </ul>
                                                             </div>
-                                                                                                            </li>
-                                                                                                        <li><a href="#" data-id01="29">光源装置</a>
-                                                                                                                                                                    <div class="subWrap">
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" data-id01="29">光源装置</a>
+                                                            <div class="subWrap">
                                                                 <ul class="subUl flexB">
                                                                     <li><a href="#" data-id01="29">光源装置すべて</a></li>
                                                                                                                                 <li><a href="#" data-id01="30">LD光源装置</a></li>
@@ -1076,26 +1083,26 @@ if($search_type == 1){
                                             <ul class="enUl03">
                                                 <li><p><span>波長域から探す</span></p>
                                                     <ul class="flex">
-                                                        <li><a href="#" data-id01="286">200nm~</a></li>
-                                                        <li><a href="#" data-id01="290">300nm~</a></li>
-                                                        <li><a href="#" data-id01="301">400nm~</a></li>
-                                                        <li><a href="#" data-id01="323">500nm~</a></li>
-                                                        <li><a href="#" data-id01="345">600nm~</a></li>
-                                                        <li><a href="#" data-id01="372">700nm~</a></li>
-                                                        <li><a href="#" data-id01="388">800nm~</a></li>
-                                                        <li><a href="#" data-id01="401">900nm~</a></li>
-                                                        <li><a href="#" data-id01="418">1000nm~</a></li>
-                                                        <li><a href="#" data-id01="475">1500nm~</a></li>
-                                                        <li><a href="#" data-id01="518">2000nm~</a></li>
-                                                        <li><a href="#" data-id01="612">多波長チューナブル~</a></li>
+                                                        <li><a href="#" data-id01="617">200nm~</a></li>
+                                                        <li><a href="#" data-id01="612">300nm~</a></li>
+                                                        <li><a href="#" data-id01="286">400nm~</a></li>
+                                                        <li><a href="#" data-id01="583">500nm~</a></li>
+                                                        <li><a href="#" data-id01="591">600nm~</a></li>
+                                                        <li><a href="#" data-id01="287">700nm~</a></li>
+                                                        <li><a href="#" data-id01="288">800nm~</a></li>
+                                                        <li><a href="#" data-id01="592">900nm~</a></li>
+                                                        <li><a href="#" data-id01="289">1000nm~</a></li>
+                                                        <li><a href="#" data-id01="593">1500nm~</a></li>
+                                                        <li><a href="#" data-id01="594">2000nm~</a></li>
+                                                        <li><a href="#" data-id01="290">多波長チューナブル~</a></li>
                                                     </ul>
                                                 </li>
                                                 <li><p><span>良く探されている波長から探す</span></p>
                                                     <ul class="flex">
-                                                        <li><a href="#" data-id01="332">532nm</a></li>
-                                                        <li><a href="#" data-id01="390">808nm</a></li>
-                                                        <li><a href="#" data-id01="394">850nm</a></li>
-                                                        <li><a href="#" data-id01="409">940nm</a></li>
+                                                        <li><a href="#" data-id01="608">532nm</a></li>
+                                                        <li><a href="#" data-id01="291">808nm</a></li>
+                                                        <li><a href="#" data-id01="584">850nm</a></li>
+                                                        <li><a href="#" data-id01="324">940nm</a></li>
                                                         <li><a href="#" data-id01="mul01">976/980nm</a></li>
                                                         <li><a href="#" data-id01="mul02">1060/1064nm</a></li>
                                                         <li><a href="#" data-id01="mul03">1310/1550nm</a></li>
@@ -1123,13 +1130,13 @@ if($search_type == 1){
                             <?php if($distributor){ ?><li style="border-color: #0fd000;"><?php $title = get_post($distributor)->post_title; echo $title; ?></li><?php } ?>
                             <?php if($wavelength){ ?>
                             <?php if($wavelength == 'mul01'){ ?>
-                            <li style="border-color: #0fd000; background-color: #f20000;">976/980nm</li>
+                            <li class="rainbow"><div class="in">976/980nm</div></li>
                             <?php }else if($wavelength == 'mul02'){ ?>
-                            <li style="border-color: #0fd000; background-color: #f20000;">1060/1064nm</li>
+                            <li class="rainbow"><div class="in">1060/1064nm</div></li>
                             <?php }else if($wavelength == 'mul03'){ ?>
-                            <li style="border-color: #0fd000; background-color: #f20000;">1310/1550nm</li>
+                            <li class="rainbow"><div class="in">1310/1550nm</div></li>
                             <?php }else { ?>
-                            <?php $wavelengthitem = get_term_by('id',$wavelength,'wavelengthcat'); ?><li style="border-color: #0fd000; background-color: #f20000;"><?php echo $wavelengthitem->name; ?></li>
+                            <?php $wavelengthitem = get_term_by('id',$wavelength,'wavelengthcat'); ?><li class="rainbow"><div class="in"><?php echo $wavelengthitem->name; ?><div></li>
                             <?php } } ?>
                             <?php if($s){ ?><li style="border-color: #0fd000;"><?php echo $s; ?></li><?php } ?>
                         </ul>
@@ -1892,26 +1899,26 @@ if($search_type == 1){
                                             <ul class="enUl03">
                                                 <li><p><span>波長域から探す</span></p>
                                                     <ul class="flex">
-                                                        <li><a href="#" data-id01="286">200nm~</a></li>
-                                                        <li><a href="#" data-id01="290">300nm~</a></li>
-                                                        <li><a href="#" data-id01="301">400nm~</a></li>
-                                                        <li><a href="#" data-id01="323">500nm~</a></li>
-                                                        <li><a href="#" data-id01="345">600nm~</a></li>
-                                                        <li><a href="#" data-id01="372">700nm~</a></li>
-                                                        <li><a href="#" data-id01="388">800nm~</a></li>
-                                                        <li><a href="#" data-id01="401">900nm~</a></li>
-                                                        <li><a href="#" data-id01="418">1000nm~</a></li>
-                                                        <li><a href="#" data-id01="475">1500nm~</a></li>
-                                                        <li><a href="#" data-id01="518">2000nm~</a></li>
-                                                        <li><a href="#" data-id01="612">多波長チューナブル~</a></li>
+                                                        <li><a href="#" data-id01="617">200nm~</a></li>
+                                                        <li><a href="#" data-id01="612">300nm~</a></li>
+                                                        <li><a href="#" data-id01="286">400nm~</a></li>
+                                                        <li><a href="#" data-id01="583">500nm~</a></li>
+                                                        <li><a href="#" data-id01="591">600nm~</a></li>
+                                                        <li><a href="#" data-id01="287">700nm~</a></li>
+                                                        <li><a href="#" data-id01="288">800nm~</a></li>
+                                                        <li><a href="#" data-id01="592">900nm~</a></li>
+                                                        <li><a href="#" data-id01="289">1000nm~</a></li>
+                                                        <li><a href="#" data-id01="593">1500nm~</a></li>
+                                                        <li><a href="#" data-id01="594">2000nm~</a></li>
+                                                        <li><a href="#" data-id01="290">多波長チューナブル~</a></li>
                                                     </ul>
                                                 </li>
                                                 <li><p><span>良く探されている波長から探す</span></p>
                                                     <ul class="flex">
-                                                        <li><a href="#" data-id01="332">532nm</a></li>
-                                                        <li><a href="#" data-id01="390">808nm</a></li>
-                                                        <li><a href="#" data-id01="394">850nm</a></li>
-                                                        <li><a href="#" data-id01="409">940nm</a></li>
+                                                        <li><a href="#" data-id01="608">532nm</a></li>
+                                                        <li><a href="#" data-id01="291">808nm</a></li>
+                                                        <li><a href="#" data-id01="584">850nm</a></li>
+                                                        <li><a href="#" data-id01="324">940nm</a></li>
                                                         <li><a href="#" data-id01="mul01">976/980nm</a></li>
                                                         <li><a href="#" data-id01="mul02">1060/1064nm</a></li>
                                                         <li><a href="#" data-id01="mul03">1310/1550nm</a></li>
@@ -1965,7 +1972,7 @@ if($search_type == 1){
                                 <?php if($ff_wavelengthlabel): ?>
                                 <li class="rainbow"><span><?php echo $ff_wavelengthlabel; ?></span></li>
                                 <?php elseif (is_object_in_term($post->ID, 'wavelengthcat','multi-wavelength')): ?>
-                                <li class="rainbow"><span>多波長チューナブル</span></li>
+                                <li class="rainbow"><span>多波長、チューナブル</span></li>
                                 <?php foreach($terms02 as $term02){ ?>
                                 <?php if($term02->parent != 0){ ?><li class="rainbow"><span><?php echo $term02->name; ?></span></li><?php } ?>
                                 <?php } ?>
@@ -1991,13 +1998,13 @@ if($search_type == 1){
                             <?php if($distributor){ ?><li style="border-color: #0fd000;"><?php $title = get_post($distributor)->post_title; echo $title; ?></li><?php } ?>
                             <?php if($wavelength){ ?>
                             <?php if($wavelength == 'mul01'){ ?>
-                            <li style="border-color: #0fd000; background-color: #f20000;">976/980nm</li>
+                            <li class="rainbow"><div class="in">976/980nm</div></li>
                             <?php }else if($wavelength == 'mul02'){ ?>
-                            <li style="border-color: #0fd000; background-color: #f20000;">1060/1064nm</li>
+                            <li class="rainbow"><div class="in">1060/1064nm</div></li>
                             <?php }else if($wavelength == 'mul03'){ ?>
-                            <li style="border-color: #0fd000; background-color: #f20000;">1310/1550nm</li>
+                            <li class="rainbow"><div class="in">1310/1550nm</div></li>
                             <?php }else { ?>
-                            <?php $wavelengthitem = get_term_by('id',$wavelength,'wavelengthcat'); ?><li style="border-color: #0fd000; background-color: #f20000;"><?php echo $wavelengthitem->name; ?></li>
+                            <?php $wavelengthitem = get_term_by('id',$wavelength,'wavelengthcat'); ?><li class="rainbow"><div class="in"><?php echo $wavelengthitem->name; ?></div></li>
                             <?php } } ?>
                             <?php if($s){ ?><li style="border-color: #0fd000;"><?php echo $s; ?></li><?php } ?>
                         </ul>
@@ -2760,26 +2767,26 @@ if($search_type == 1){
                                             <ul class="enUl03">
                                                 <li><p><span>波長域から探す</span></p>
                                                     <ul class="flex">
-                                                        <li><a href="#" data-id01="286">200nm~</a></li>
-                                                        <li><a href="#" data-id01="290">300nm~</a></li>
-                                                        <li><a href="#" data-id01="301">400nm~</a></li>
-                                                        <li><a href="#" data-id01="323">500nm~</a></li>
-                                                        <li><a href="#" data-id01="345">600nm~</a></li>
-                                                        <li><a href="#" data-id01="372">700nm~</a></li>
-                                                        <li><a href="#" data-id01="388">800nm~</a></li>
-                                                        <li><a href="#" data-id01="401">900nm~</a></li>
-                                                        <li><a href="#" data-id01="418">1000nm~</a></li>
-                                                        <li><a href="#" data-id01="475">1500nm~</a></li>
-                                                        <li><a href="#" data-id01="518">2000nm~</a></li>
-                                                        <li><a href="#" data-id01="612">多波長チューナブル~</a></li>
+                                                        <li><a href="#" data-id01="617">200nm~</a></li>
+                                                        <li><a href="#" data-id01="612">300nm~</a></li>
+                                                        <li><a href="#" data-id01="286">400nm~</a></li>
+                                                        <li><a href="#" data-id01="583">500nm~</a></li>
+                                                        <li><a href="#" data-id01="591">600nm~</a></li>
+                                                        <li><a href="#" data-id01="287">700nm~</a></li>
+                                                        <li><a href="#" data-id01="288">800nm~</a></li>
+                                                        <li><a href="#" data-id01="592">900nm~</a></li>
+                                                        <li><a href="#" data-id01="289">1000nm~</a></li>
+                                                        <li><a href="#" data-id01="593">1500nm~</a></li>
+                                                        <li><a href="#" data-id01="594">2000nm~</a></li>
+                                                        <li><a href="#" data-id01="290">多波長チューナブル~</a></li>
                                                     </ul>
                                                 </li>
                                                 <li><p><span>良く探されている波長から探す</span></p>
                                                     <ul class="flex">
-                                                        <li><a href="#" data-id01="332">532nm</a></li>
-                                                        <li><a href="#" data-id01="390">808nm</a></li>
-                                                        <li><a href="#" data-id01="394">850nm</a></li>
-                                                        <li><a href="#" data-id01="409">940nm</a></li>
+                                                        <li><a href="#" data-id01="608">532nm</a></li>
+                                                        <li><a href="#" data-id01="291">808nm</a></li>
+                                                        <li><a href="#" data-id01="584">850nm</a></li>
+                                                        <li><a href="#" data-id01="324">940nm</a></li>
                                                         <li><a href="#" data-id01="mul01">976/980nm</a></li>
                                                         <li><a href="#" data-id01="mul02">1060/1064nm</a></li>
                                                         <li><a href="#" data-id01="mul03">1310/1550nm</a></li>

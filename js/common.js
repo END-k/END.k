@@ -319,6 +319,17 @@ $(window).on('load', function () {
 	}
 });
 
+/* 入力した値を連動させる */
+function keepInputValue() {
+	const mwradio = document.getElementById("mW");
+	const wradio = document.getElementById("W");
+	const mwvalue = document.getElementById("mW").value;
+	const wvalue = document.getElementById("W").value;
+
+	mwradio.value = wvalue;
+	wradio.value = mwvalue;
+}
+
 $(function(){
 	/* nameがoutputのラジオボタンが変更された場合の処理 */
 	$( 'input[name="w"]:radio' ).change( function() {
@@ -344,7 +355,7 @@ $(function(){
         let cnt = $(this).val().length;
         //現在の文字数を表示
         $('.now_cnt').text(cnt);
-		console.log(cnt);
+		//console.log(cnt);
         if(cnt > 0 && 4 > cnt){
             //1文字(桁)以上かつ4文字(桁)より下の場合はボタンを有効化＆黒字
             $('.linkbtn').prop('disabled', false);
@@ -359,4 +370,25 @@ $(function(){
     });
     //リロード時に初期文字列が入っていた時の対策
     $('.wavetext01').trigger('input');
+
+	//インプット要素を取得する
+	let inputs = $('input');
+	//読み込み時に「:checked」の疑似クラスを持っているinputの値を取得する
+	let checked = inputs.filter(':checked').val();
+
+	//インプット要素がクリックされたら
+	inputs.on('click', function(){
+		//クリックされたinputとcheckedを比較
+		if($(this).val() === checked) {
+			//inputの「:checked」をfalse
+			$(this).prop('checked', false);
+			//checkedを初期化
+			checked = '';
+		} else {
+			//inputの「:checked」をtrue
+			$(this).prop('checked', true);
+			//inputの値をcheckedに代入
+			checked = $(this).val();
+		}
+	});
 });
