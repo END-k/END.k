@@ -1130,13 +1130,13 @@ if($search_type == 1){
                             <?php if($distributor){ ?><li style="border-color: #0fd000;"><?php $title = get_post($distributor)->post_title; echo $title; ?></li><?php } ?>
                             <?php if($wavelength){ ?>
                             <?php if($wavelength == 'mul01'){ ?>
-                            <li class="rainbow"><div class="in">976/980nm</div></li>
+                            <li class="rainbow"><p>976/980nm</p></li>
                             <?php }else if($wavelength == 'mul02'){ ?>
-                            <li class="rainbow"><div class="in">1060/1064nm</div></li>
+                            <li class="rainbow"><span>1060/1064nm</span></li>
                             <?php }else if($wavelength == 'mul03'){ ?>
-                            <li class="rainbow"><div class="in">1310/1550nm</div></li>
+                            <li class="rainbow"><span>1310/1550nm</span></li>
                             <?php }else { ?>
-                            <?php $wavelengthitem = get_term_by('id',$wavelength,'wavelengthcat'); ?><li class="rainbow"><div class="in"><?php echo $wavelengthitem->name; ?><div></li>
+                            <?php $wavelengthitem = get_term_by('id',$wavelength,'wavelengthcat'); ?><li class="rainbow"><p class="in"><?php echo $wavelengthitem->name; ?></p></li>
                             <?php } } ?>
                             <?php if($s){ ?><li style="border-color: #0fd000;"><?php echo $s; ?></li><?php } ?>
                         </ul>
@@ -1998,13 +1998,13 @@ if($search_type == 1){
                             <?php if($distributor){ ?><li style="border-color: #0fd000;"><?php $title = get_post($distributor)->post_title; echo $title; ?></li><?php } ?>
                             <?php if($wavelength){ ?>
                             <?php if($wavelength == 'mul01'){ ?>
-                            <li class="rainbow"><div class="in">976/980nm</div></li>
+                            <li class="rainbow"><span>976/980nm</span></li>
                             <?php }else if($wavelength == 'mul02'){ ?>
-                            <li class="rainbow"><div class="in">1060/1064nm</div></li>
+                            <li class="rainbow"><span>1060/1064nm</span></li>
                             <?php }else if($wavelength == 'mul03'){ ?>
-                            <li class="rainbow"><div class="in">1310/1550nm</div></li>
+                            <li class="rainbow"><span>1310/1550nm</span></li>
                             <?php }else { ?>
-                            <?php $wavelengthitem = get_term_by('id',$wavelength,'wavelengthcat'); ?><li class="rainbow"><div class="in"><?php echo $wavelengthitem->name; ?></div></li>
+                            <?php $wavelengthitem = get_term_by('id',$wavelength,'wavelengthcat'); ?><li class="rainbow"><span><?php echo $wavelengthitem->name; ?></span></li>
                             <?php } } ?>
                             <?php if($s){ ?><li style="border-color: #0fd000;"><?php echo $s; ?></li><?php } ?>
                         </ul>

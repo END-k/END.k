@@ -1515,7 +1515,7 @@ a[href^="tel:"] {
     height: 48px;
     padding: 3px;
     border-radius: 10px;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     line-height: 1.25;
     letter-spacing: 0.1em;
   }
@@ -2159,6 +2159,7 @@ a[href^="tel:"] {
     background-color: #fff;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+    font-size: 14px;
   }
   #gFooter .rBox .link02 .fatUl .subUl > li:nth-child(3n + 2) a {
     border: 1px solid #0fd000;
@@ -2433,6 +2434,7 @@ a[href^="tel:"] {
   padding-left: 11px;
   font-size: 2.4rem;
   font-weight: 700;
+  height: 10vh;
 }
 
 .headLine02::before {
@@ -5276,7 +5278,7 @@ a[href^="tel:"] {
 
 .product.result .sdwBox .tag li {
   margin-right: 1px;
-  padding: 1px 7px;
+  /* padding: 1px 7px; */
   width: auto;
   display: inline-block;
   font-size: 1.2rem;
@@ -5299,14 +5301,13 @@ a[href^="tel:"] {
   border: none;
 }
 
-.product.result .sdwBox .tag li.rainbow .in {
+.product.result .sdwBox .tag li.rainbow .in{
   background-color: white;
   position: relative;
-  right: 6px;
-  padding-right: 3px;
-  border-radius: 7px;
-  text-align: center;
-  width: calc(100% + 8px);
+  z-index: 2;
+  border-radius: 10px;
+  display: block;
+  padding: 1px 7px;
 }
 
 .product.result .sdwBox .tag li.rainbow::after {
@@ -5624,7 +5625,7 @@ a[href^="tel:"] {
   }
   .product.result .sdwBox .tag li {
     margin: 8px 1px 0 0;
-    padding: 1px 7px;
+    /* padding: 1px 7px; */
     width: auto;
   }
   .product.result .sdwBox .sdwLink a {
