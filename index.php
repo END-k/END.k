@@ -55,14 +55,15 @@
             <div class="rBox">
                 <p class="ttl">製品検索</p>
                 <p class="sp text01">商品名・型番・メーカーまたはキーワードを入力</p>
+                <p id="output-message"></p>
                 <div class="inputBox">
-                    <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
-                        <input type="text" name="s" placeholder="商品名・型番・メーカーまたはキーワードを入力" class="inputText">
-                        <input type="submit" value="検索" class="inputButton">
+                    <form role="search" id="search_form" method="get" name="form1" action="<?php echo home_url( '/' ); ?>">
+                        <input type="text" id="input-message" name="s" placeholder="商品名・型番・メーカーまたはキーワードを入力" class="inputText" value="<?php fwsearch($input_words); ?>">
+                        <input type="submit" id="word_search" value="検索" class="inputButton">
                     </form>
                 </div>
                 <form role="search" method="get" action="<?php echo home_url( '/' ); ?>" class="form01">
-                    <input type="hidden" name="s" value="">
+                    <input type="hidden" name="s" value="<?php echo fwsearch($input_words); ?>">
                     <input type="hidden" name="search_type" value="1">
                     <ul class="comSelectUl flex">
                         <li>
@@ -101,7 +102,7 @@
                                             ?>
                                             <?php $terms01 = get_terms( $args01 ); if($terms01){ ?>
                                             <ul class="conterUl">
-                                                <li><a href="#" data-id01="<?php echo $bigId; ?>">■すべて</a></li>
+                                                <li><a href="#" data-id01="<?php echo $bigId; ?>">■ <?php echo $term->name;?>すべて</a></li>
                                                 <?php foreach($terms01 as $term01) { ?>
                                                 <li><a href="#" data-id01="<?php echo $term01->term_id; ?>"><?php echo $term01->name; $secondId = $term01->term_id; ?></a>
                                                     <?php
@@ -203,7 +204,7 @@
                                                 <li><a href="#" data-id01="289">1000nm~</a></li>
                                                 <li><a href="#" data-id01="593">1500nm~</a></li>
                                                 <li><a href="#" data-id01="594">2000nm~</a></li>
-                                                <li><a href="#" data-id01="290">多波長チューナブル~</a></li>
+                                                <li><a href="#" data-id01="290">多波長、チューナブル</a></li>
                                             </ul>
                                         </li>
                                         <li><p><span>良く探されている波長から探す</span></p>
@@ -212,9 +213,9 @@
                                                 <li><a href="#" data-id01="291">808nm</a></li>
                                                 <li><a href="#" data-id01="584">850nm</a></li>
                                                 <li><a href="#" data-id01="324">940nm</a></li>
-                                                <li><a href="#" data-id01="mul01">976/980nm</a></li>
-                                                <li><a href="#" data-id01="mul02">1060/1064nm</a></li>
-                                                <li><a href="#" data-id01="mul03">1310/1550nm</a></li>
+                                                <li><a href="#" data-id01="601">976/980nm</a></li>
+                                                <li><a href="#" data-id01="610">1060/1064nm</a></li>
+                                                <li><a href="#" data-id01="293">1310/1550nm</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -357,12 +358,9 @@
                 <li><a href="<?php bloginfo('url');?>/wavelengthcat/808nm"><span>808<small>nm</small></span></a></li>
                 <li><a href="<?php bloginfo('url');?>/wavelengthcat/850nm"><span>850<small>nm</small></span></a></li>
                 <li><a href="<?php bloginfo('url');?>/wavelengthcat/940nm"><span>940<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/wavelengthcat/976nm"><span>976<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/wavelengthcat/980nm"><span>980<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1060nm"><span>1060<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1064nm"><span>1064<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1310nm"><span>1310<small>nm</small></span></a></li>
-                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1550nm"><span>1550<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/976nm"><span>976/980<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1064nm"><span>1060/1064<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1310-1550nm"><span>1310/1550<small>nm</small></span></a></li>
             </ul>
         </div>
         <div class="point">

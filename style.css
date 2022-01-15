@@ -364,12 +364,12 @@ a[href^="tel:"] {
 
 .selectBox .selectInner {
   margin: 0 auto;
-  max-width: 1240px;
+  max-width: 1120px;
 }
 
 .selectBox .selectInner .lBpx {
   margin-right: 5px;
-  width: 316px;
+  width: auto;
 }
 
 .selectBox .selectInner p {
@@ -379,8 +379,8 @@ a[href^="tel:"] {
 }
 
 .selectBox .inputBox {
-  width: 306px;
-  margin-bottom: 0;
+  width: 70%;
+  margin-bottom: 30px;
   overflow: hidden;
   position: relative;
 }
@@ -5354,7 +5354,7 @@ a[href^="tel:"] {
 }
 
 .wavelength .comLinkUl li a span {
-  font-size: 2.2rem;
+  font-size: 1.7rem;
 }
 
 .wavelength .down {
@@ -5371,7 +5371,7 @@ a[href^="tel:"] {
 
 .wavelength .conditionsBox .conUl > li {
   margin-top: 25px;
-  width: 40%;
+  width: 45%;
   display: inline-block;
   vertical-align: top;
 }
@@ -5416,6 +5416,7 @@ a[href^="tel:"] {
 }
 
 .wavelength .conditionsBox .rdoUl {
+  width:102%;
   display: inline-block;
 }
 
@@ -5643,7 +5644,7 @@ a[href^="tel:"] {
     display: none;
   }
   .wavelength .comLinkUl li a span {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
   .wavelength .conditionsBox .conUl {
     margin-top: 0;
@@ -8658,10 +8659,15 @@ _:-ms-fullscreen,
 }
 
 .cnt_area{
-  display:none;
   color: #FF0000;
 }
 
 .cnt_danger{
   display:none;
+}
+
+.rainbow_mark{
+  background: linear-gradient(to right, red, orange, yellow, green, aqua, blue, purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

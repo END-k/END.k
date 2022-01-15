@@ -11,7 +11,7 @@
                 </form>
                 <p class="ttl">ご質問・資料請求などはこちらから</p>
                 <div class="comBtn"><a href="<?php bloginfo('url');?>/contact">お問い合わせ</a></div>
-                <address class="pc">&copy;2021 optronscience,inc.</address>
+                <address class="pc">&copy;2022 optronscience,inc.</address>
             </div>
             <div class="rBox">
                 <ul class="link01">
@@ -352,3 +352,68 @@
 <?php wp_footer(); ?>
 </body>
 </html>
+
+<!-- フリーワード検索、ラスト１文字"ー"の場合削除 -->
+<script>
+// ボタンのイベントを設定する
+//   $('#word_search').on('click', function() {
+//     $("form").submit(function() {
+//         const textbox = document.getElementById("input-message");
+//         let value = textbox.value;
+//         let last = value.slice(-1);
+//         const url = new URL(location);
+//         const test = url.toString();
+        
+//         // alert(last + "送信します。");
+//         // if(last !== "ー"){
+//             //let text = value;
+//         // }else{
+//             let text = value.substring(0, value.length - 1);
+//         // }
+//         alert(test + "送信します。");
+//     });
+//   });
+
+//   $('#word_search').on('click', function() {
+//     $("form").submit(function() {
+//         const url = new URL(window.location.href);
+//         const params = url.searchParams;
+
+//         if( params.get('s') ) {
+//             params.set('s','taro');
+//             alert(params.get('s'));
+//         }
+//     });
+// });
+
+/* 余計なGET送信をdisabledでコントロールする。 */
+function clickBtn1(){
+	if (document.getElementById("b1").disabled === true){
+		// disabled属性を削除
+		document.getElementById("b1").removeAttribute("disabled");
+	}else{
+		// disabled属性を設定
+		document.getElementById("b1").setAttribute("disabled", true);
+	}
+}
+
+function clickBtn2(){
+	if (document.getElementById("b2").disabled === true){
+		// disabled属性を削除
+		document.getElementById("b2").removeAttribute("disabled");
+	}else{
+		// disabled属性を設定
+		document.getElementById("b2").setAttribute("disabled", true);
+	}
+}
+
+function clickBtn3(){
+	if (document.getElementById("b3").disabled === true){
+		// disabled属性を削除
+		document.getElementById("b3").removeAttribute("disabled");
+	}else{
+		// disabled属性を設定
+		document.getElementById("b3").setAttribute("disabled", true);
+	}
+}
+</script>
