@@ -58,12 +58,27 @@
                 <p id="output-message"></p>
                 <div class="inputBox">
                     <form role="search" id="search_form" method="get" name="form1" action="<?php echo home_url( '/' ); ?>">
-                        <input type="text" id="input-message" name="s" placeholder="商品名・型番・メーカーまたはキーワードを入力" class="inputText" value="<?php fwsearch($input_words); ?>">
-                        <input type="submit" id="word_search" value="検索" class="inputButton">
+                        <input type="text" id="input-message" class="inputText" name="s" value="" placeholder="商品名・型番・メーカーまたはキーワードを入力（全角）">
+                        <input type="submit" id="word_search" value="検索" onclick="<?php fwsearch(); ?>" class="inputButton">
                     </form>
                 </div>
+                <?php
+                function fwsearch(){
+                    // パラメータが存在する場合のみ処理が走る
+                    if(!empty($_GET['s'])) {
+                        // パラメータクエリの最後の文字取得
+                        if(mb_substr($_GET['s'], -1) == "ー") {
+                            // ハイフンを削除して表示
+                            echo rtrim($_GET['s'], $_GET['s'], -1);
+                        } else {
+                            // ハイフンなければそのまま表示
+                            echo ($_GET['s']);
+                        }
+                    }
+                }
+                ?>
                 <form role="search" method="get" action="<?php echo home_url( '/' ); ?>" class="form01">
-                    <input type="hidden" name="s" value="<?php echo fwsearch($input_words); ?>">
+                    <input type="hidden" name="s" value="">
                     <input type="hidden" name="search_type" value="1">
                     <ul class="comSelectUl flex">
                         <li>

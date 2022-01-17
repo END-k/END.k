@@ -159,7 +159,7 @@
                 <p>商品名・型番・メーカーまたはキーワードを入力</p>
                 <div class="inputBox">
                     <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
-                        <input type="text" placeholder="" name="s" class="inputText">
+                        <input type="text" placeholder="商品名・型番・メーカーまたはキーワードを入力（全角）" name="s" class="inputText">
                         <input type="submit" value="検索" class="inputButton">
                     </form>
                 </div>

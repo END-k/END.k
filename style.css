@@ -452,6 +452,9 @@ a[href^="tel:"] {
             flex-direction: column;
     gap: 12px;
   }
+  .selectBox .inputBox .inputText {
+    font-size: 1.1rem;
+  }
 }
 
 .selectBox .comBtn-wrap .comBtn--close {

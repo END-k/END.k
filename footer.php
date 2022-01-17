@@ -387,33 +387,41 @@
 // });
 
 /* 余計なGET送信をdisabledでコントロールする。 */
-function clickBtn1(){
-	if (document.getElementById("b1").disabled === true){
-		// disabled属性を削除
-		document.getElementById("b1").removeAttribute("disabled");
-	}else{
-		// disabled属性を設定
-		document.getElementById("b1").setAttribute("disabled", true);
-	}
+function myCheck1(){
+    // 1番目のラジオボタンがチェックされているかを判定
+    if(document.form1.outputs[0].checked){
+        //alert(document.form1.fruits[0].value + "が選択されました。");
+        // disabled属性を設定
+        document.getElementById("b2").setAttribute("disabled", true);
+        document.getElementById("b3").setAttribute("disabled", true);
+    }
 }
-
-function clickBtn2(){
-	if (document.getElementById("b2").disabled === true){
-		// disabled属性を削除
+function myCheck2(){
+    // 2番目のラジオボタン(mW)がチェックされているかを判定
+    if(document.form1.outputs[1].checked){
+        //alert(document.form1.fruits[1].value + "が選択されました。");
+        // disabled属性を削除
 		document.getElementById("b2").removeAttribute("disabled");
-	}else{
-		// disabled属性を設定
-		document.getElementById("b2").setAttribute("disabled", true);
-	}
+
+        // disabled属性を設定
+        document.getElementById("b3").setAttribute("disabled", true);
+    }
+}
+function myCheck3(){
+    // 3番目のラジオボタン(W)がチェックされているかを判定
+    if(document.form1.outputs[2].checked){
+        //alert(document.form1.fruits[2].value + "が選択されました。");
+        // disabled属性を削除
+		document.getElementById("b3").removeAttribute("disabled");
+
+        // disabled属性を設定
+        document.getElementById("b2").setAttribute("disabled", true);
+
+    }
 }
 
-function clickBtn3(){
-	if (document.getElementById("b3").disabled === true){
-		// disabled属性を削除
-		document.getElementById("b3").removeAttribute("disabled");
-	}else{
-		// disabled属性を設定
-		document.getElementById("b3").setAttribute("disabled", true);
-	}
-}
+
+
+
+
 </script>

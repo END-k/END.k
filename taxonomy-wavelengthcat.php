@@ -54,16 +54,14 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                 </div>
                 <p class="down"><a href="#">もっと細かく指定する<span>+</span></a></p>
                 <div class="conditionsBox">
-                    <form role="search" class="form03" method="get" action="<?php echo home_url( '/' ); ?>">
+                    <form role="search" name="form1" class="form03" method="get" action="<?php echo home_url( '/' ); ?>">
                         <input type="hidden" name="s" value="">
                         <input type="hidden" name="search_type" value="3">
                         <ul class="conUl">
                             <li>
-                                <p class="ttl"><span class="rainbow_mark">■</span>波長域</p>
+                                <p class="ttl"><span class="rainbow_mark">■</span>波長を指定する</p>
                                 <ul class="rdoUl">
-                                <label><input type="checkbox" value="" onclick="clickBtn1()">波長域を指定する</label>
-                                    <select name="nanowave[]" id="b1" disabled>
-                                        <!-- <option name="nanowave[]" value="">選択してください</option> -->
+                                    <select name="nanowave[]" id="b1">
                                         <option name="nanowave[]" value="200nm~">200nm~</option>
                                         <option name="nanowave[]" value="300nm~">300nm~</option>
                                         <option name="nanowave[]" value="400nm~">400nm~</option>
@@ -78,45 +76,47 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                                         <option name="nanowave[]" value="多波長、チューナブル">多波長、チューナブル</option>
                                     </select>
                                 </ul>
+                                <div class="cnt_area">波長は必ず指定してください</div>
                             </li>
                             <li>
                                 <p class="ttl"><span>■</span>出力を指定する (入力なしの場合は全て表示されます)</p>
-                                <ul class="rdoUl">mW : 
-                                <label><input type="checkbox" value="" onclick="clickBtn2()">出力（mW）を指定する</label>
-                                    <select name="mwat[]" id="b2" disabled>
-                                        <!-- <option name="nanowave[]" value="">選択してください</option> -->
-                                        <option name="mwat[]" value="1mw">1mw</option>
-                                        <option name="mwat[]" value="2mw">2mW</option>
-                                        <option name="mwat[]" value="3mw">3mW</option>
-                                        <option name="mwat[]" value="4mw">4mW</option>
-                                        <option name="mwat[]" value="5mw">5mW</option>
-                                        <option name="mwat[]" value="6mw">6mW</option>
-                                        <option name="mwat[]" value="7mw">7mW</option>
-                                        <option name="mwat[]" value="8mw">8mW</option>
-                                        <option name="mwat[]" value="9mw">9mW</option>
-                                        <option name="mwat[]" value="10~19mw">10~19mW</option>
-                                        <option name="mwat[]" value="20~29mw">20~29mW</option>
-                                        <option name="mwat[]" value="30~39mw">30~39mW</option>
-                                        <option name="mwat[]" value="40~49mw">40~49mW</option>
-                                        <option name="mwat[]" value="50~59mw">50~59mW</option>
-                                        <option name="mwat[]" value="60~69mw">60~69mW</option>
-                                        <option name="mwat[]" value="70~79mw">70~79mW</option>
-                                        <option name="mwat[]" value="80~89mw">80~89mW</option>
-                                        <option name="mwat[]" value="90~99mw">90~99mW</option>
-                                        <option name="mwat[]" value="100~199mw">100~199mW</option>
-                                        <option name="mwat[]" value="200~299mw">200~299mW</option>
-                                        <option name="mwat[]" value="300~399mw">300~399mW</option>
-                                        <option name="mwat[]" value="400~499mw">400~499mW</option>
-                                        <option name="mwat[]" value="500~599mw">500~599mW</option>
-                                        <option name="mwat[]" value="600~699mw">600~699mW</option>
-                                        <option name="mwat[]" value="700~799mw">700~799mW</option>
-                                        <option name="mwat[]" value="800~899mw">800~899mW</option>
-                                        <option name="mwat[]" value="900~999mw">900~999mW</option>
-                                    </select>
-                                </ul>
-                                <ul class="rdoUl">W　: 
-                                    <label><input type="checkbox" value="" onclick="clickBtn3()">出力（W）を指定する</label>
-                                    <select name="wat[]" id="b3" disabled>
+                                <div><input type="radio" name="outputs" value="0" onclick="myCheck1();" checked="checked">出力を指定しない</div>
+                                <div>
+                                    <input type="radio" name="outputs" value="1" onclick="myCheck2();">出力（mW）を指定する
+                                        mW : <select name="mwat[]" id="b2" disabled>
+                                            <!-- <option name="nanowave[]" value="">選択してください</option> -->
+                                            <option name="mwat[]" value="1mw">1mw</option>
+                                            <option name="mwat[]" value="2mw">2mW</option>
+                                            <option name="mwat[]" value="3mw">3mW</option>
+                                            <option name="mwat[]" value="4mw">4mW</option>
+                                            <option name="mwat[]" value="5mw">5mW</option>
+                                            <option name="mwat[]" value="6mw">6mW</option>
+                                            <option name="mwat[]" value="7mw">7mW</option>
+                                            <option name="mwat[]" value="8mw">8mW</option>
+                                            <option name="mwat[]" value="9mw">9mW</option>
+                                            <option name="mwat[]" value="10~19mw">10~19mW</option>
+                                            <option name="mwat[]" value="20~29mw">20~29mW</option>
+                                            <option name="mwat[]" value="30~39mw">30~39mW</option>
+                                            <option name="mwat[]" value="40~49mw">40~49mW</option>
+                                            <option name="mwat[]" value="50~59mw">50~59mW</option>
+                                            <option name="mwat[]" value="60~69mw">60~69mW</option>
+                                            <option name="mwat[]" value="70~79mw">70~79mW</option>
+                                            <option name="mwat[]" value="80~89mw">80~89mW</option>
+                                            <option name="mwat[]" value="90~99mw">90~99mW</option>
+                                            <option name="mwat[]" value="100~199mw">100~199mW</option>
+                                            <option name="mwat[]" value="200~299mw">200~299mW</option>
+                                            <option name="mwat[]" value="300~399mw">300~399mW</option>
+                                            <option name="mwat[]" value="400~499mw">400~499mW</option>
+                                            <option name="mwat[]" value="500~599mw">500~599mW</option>
+                                            <option name="mwat[]" value="600~699mw">600~699mW</option>
+                                            <option name="mwat[]" value="700~799mw">700~799mW</option>
+                                            <option name="mwat[]" value="800~899mw">800~899mW</option>
+                                            <option name="mwat[]" value="900~999mw">900~999mW</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="outputs" value="2" onclick="myCheck3();">出力（W）を指定する
+                                        W　:　<select name="wat[]" id="b3" disabled>
                                         <!-- <option name="nanowave[]" value="">選択してください</option> -->
                                         <option name="wat[]" value="1w">1W</option>
                                         <option name="wat[]" value="2w">2W</option>
@@ -147,8 +147,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                                         <option name="wat[]" value="900~999w">900~999W</option>
                                         <option name="wat[]" value="1000~w">1000~W</option>
                                     </select>
-                                </ul>
-                                <div class="cnt_area">mWでの検索は1~999までの整数のみ対応しております。</div>
+                                </div>
                             </li>
                             <li>
                                 <p class="ttl"><span>■</span>発振形式 (複数選択可能)</p>
@@ -207,7 +206,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                     $curSlug = $term->slug;
                     $array01=explode('n', $term->name);
             ?>
-            <?php if($array01[0] === "多波長チューナブル"){ ?>
+            <?php if($array01[0] === "多波長、チューナブル"){ ?>
             <p class="waveTtl"><span><?php $array01=explode('n', $term->name); echo $array01[0]; ?></span></p>
             <?php } else{ ?>
             <p class="waveTtl"><span><?php $array01=explode('n', $term->name); echo $array01[0]; ?><small>nm</small></span></p>
