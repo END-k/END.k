@@ -451,12 +451,12 @@ function get_the_terms_orderby_termorder($taxonomy){
 // 	}
 // }
 
-// function fwsearch(){
-// 	$input_words = $_GET['s'];//検索文字
-// 	$string = mb_substr($input_words,-1);//ラスト１文字取得
-// 		if($string === "ー"){
-// 			$input_words = mb_substr($_GET['s'], 0, -1);//$wordが「あいー」だった場合、文末１文字消されて「あい」に
-// 		}
-// 	// 受け取った値を画面に出力
-// 	return $input_words;
-// }
+function fwsearch(){
+	$input_words = $_GET['s'];//検索文字
+	$string = mb_substr($input_words,-1);//ラスト１文字取得
+		if($string === "ー"){
+			$input_words = mb_substr($_GET['s'], 0, -1);//$wordが「あいー」だった場合、文末１文字消されて「あい」に
+		}
+	// 受け取った値を画面に出力
+	return $input_words;
+}

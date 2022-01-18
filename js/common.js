@@ -110,11 +110,11 @@ $(function () {
 	});
 
 	//TOPページ、ヘッダー検索submit
-	$('.comBtn2 a').click(function () {
-		$('.form03').cleanQuery();
-		$('.selectBox .form03').submit();
-		return false;
-	});
+	// $('.comBtn2 a').click(function () {
+	// 	$('.form03').cleanQuery();
+	// 	$('.selectBox .form03').submit();
+	// 	return false;
+	// });
 
 	$('.enUlBox a').click(function () {
 		if ($(this).next('ul').length || $(this).next('div').length) {
@@ -379,3 +379,14 @@ $(function(){
 		}
 	});
 });
+
+/* 余計なGET送信をdisabledでコントロールする。 */
+// function clickBtn1(){
+// 	if (document.getElementById("b1").disabled === true){
+// 		// disabled属性を削除
+// 		document.getElementById("b1").removeAttribute("disabled");
+// 	}else{
+// 		// disabled属性を設定
+// 		document.getElementById("b1").setAttribute("disabled", true);
+// 	}
+// }

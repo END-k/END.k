@@ -453,7 +453,7 @@ a[href^="tel:"] {
     gap: 12px;
   }
   .selectBox .inputBox .inputText {
-    font-size: 1.1rem;
+    font-size: 0;
   }
 }
 
@@ -2051,6 +2051,9 @@ a[href^="tel:"] {
     height: 40px;
     font-size: 1.6rem;
     border-radius: 0;
+  }
+  #gFooter .lBox .inputBox .inputText::placeholder {
+    color:#fff;
   }
   #gFooter .lBox .inputBox .inputButton:hover {
     color: #fff;

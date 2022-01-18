@@ -2,7 +2,7 @@
         <div class="hBox flexB">
             <div class="lBox">
                 <div class="fLogo"><a href="<?php bloginfo('url');?>"><img src="<?php bloginfo('template_url');?>/img/common/f_logo.png" alt="株式会社オプトロンサイエンスOptronscience,Inc."></a></div>
-                <p class="place sp">商品名・型番・メーカーまたはキーワードを入力</p>
+                <p class="place">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                 <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
                     <div class="inputBox">
                         <input type="text" name="s" class="inputText">
@@ -388,7 +388,7 @@
 
 /* 余計なGET送信をdisabledでコントロールする。 */
 function myCheck1(){
-    // 1番目のラジオボタンがチェックされているかを判定
+    // 1番目のラジオボタン（出力検索しない）がチェックされているかを判定
     if(document.form1.outputs[0].checked){
         //alert(document.form1.fruits[0].value + "が選択されました。");
         // disabled属性を設定
@@ -419,9 +419,4 @@ function myCheck3(){
 
     }
 }
-
-
-
-
-
 </script>

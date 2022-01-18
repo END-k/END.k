@@ -118,7 +118,7 @@ $product_query = new WP_Query($args)
                             <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
                             <?php } ?>
                             <?php
-                                $terms02 = get_ordered_terms($post->ID,'slug', 'ASC', 'wavelengthcat');
+                                $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                             ?>
                             <?php if($terms02): ?>
                             <?php if($ff_wavelengthlabel): ?>

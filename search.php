@@ -811,7 +811,7 @@ if($search_type == 1){
                             <?php
                                 $taxonomy = 'productcat';
                                 $terms01 = get_the_terms($post->ID,$taxonomy);
-                                $terms02 = get_ordered_terms($post->ID,'slug', 'ASC', 'wavelengthcat');
+                                $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                                 $ancestor_maxnum = 1;
                                 $ff_wavelengthlabel = get_field('ff_wavelengthlabel');
                             ?>

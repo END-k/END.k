@@ -156,10 +156,10 @@
         <div class="selectInner">
             <div class="lBpx">
                 <p class="hTtl sp">製品検索</p>
-                <p>商品名・型番・メーカーまたはキーワードを入力</p>
+                <p>商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                 <div class="inputBox">
                     <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
-                        <input type="text" placeholder="商品名・型番・メーカーまたはキーワードを入力（全角）" name="s" class="inputText">
+                        <input type="text" name="s" class="inputText">
                         <input type="submit" value="検索" class="inputButton">
                     </form>
                 </div>
@@ -245,6 +245,9 @@
                                                         $args04 = array(
                                                             'post_type' => 'distributor',
                                                             'posts_per_page' => -1,
+                                                            'orderby' => 'meta_value',
+                                                            'order' => 'ASC',
+                                                            'meta_key'=>'ff_yomi',
                                                             'tax_query' => array(
                                                                 array(
                                                                     'taxonomy' => 'distributorcat',

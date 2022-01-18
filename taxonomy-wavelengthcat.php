@@ -81,8 +81,8 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             <li>
                                 <p class="ttl"><span>■</span>出力を指定する (入力なしの場合は全て表示されます)</p>
                                 <div><input type="radio" name="outputs" value="0" onclick="myCheck1();" checked="checked">出力を指定しない</div>
-                                <div>
-                                    <input type="radio" name="outputs" value="1" onclick="myCheck2();">出力（mW）を指定する
+                                <div><input type="radio" name="outputs" value="1" onclick="myCheck2();">出力（mW）を指定する
+                                <!-- <ul class="rdoUl"> -->
                                         mW : <select name="mwat[]" id="b2" disabled>
                                             <!-- <option name="nanowave[]" value="">選択してください</option> -->
                                             <option name="mwat[]" value="1mw">1mw</option>
@@ -112,10 +112,8 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                                             <option name="mwat[]" value="700~799mw">700~799mW</option>
                                             <option name="mwat[]" value="800~899mw">800~899mW</option>
                                             <option name="mwat[]" value="900~999mw">900~999mW</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <input type="radio" name="outputs" value="2" onclick="myCheck3();">出力（W）を指定する
+                                        </select></div>
+                                    <div><input type="radio" name="outputs" value="2" onclick="myCheck3();">出力（W）を指定する
                                         W　:　<select name="wat[]" id="b3" disabled>
                                         <!-- <option name="nanowave[]" value="">選択してください</option> -->
                                         <option name="wat[]" value="1w">1W</option>
@@ -146,8 +144,8 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                                         <option name="wat[]" value="800~899w">800~899W</option>
                                         <option name="wat[]" value="900~999w">900~999W</option>
                                         <option name="wat[]" value="1000~w">1000~W</option>
-                                    </select>
-                                </div>
+                                    </select></div>
+                                <!-- </ul> -->
                             </li>
                             <li>
                                 <p class="ttl"><span>■</span>発振形式 (複数選択可能)</p>
@@ -271,7 +269,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
                             <?php } ?>
                             <?php
-                                $terms02 = get_ordered_terms($post_id,'slug', 'ASC', 'wavelengthcat');
+                                $terms02 = get_ordered_terms($post_id,'description', 'ASC', 'wavelengthcat');
                             ?>
                             <?php if($terms02): ?>
                             <?php if($ff_wavelengthlabel): ?>
@@ -337,7 +335,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
                             <?php } ?>
                             <?php
-                                $terms02 = get_ordered_terms($post->ID,'slug', 'ASC', 'wavelengthcat');
+                                $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                             ?>
                             <?php if($terms02): ?>
                             <?php if($ff_wavelengthlabel): ?>
