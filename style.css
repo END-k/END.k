@@ -8677,3 +8677,11 @@ _:-ms-fullscreen,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+#b2{
+  width:10rem;
+}
+
+#b3{
+  width:10.1rem;
+}

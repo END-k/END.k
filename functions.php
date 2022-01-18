@@ -460,3 +460,54 @@ function fwsearch(){
 	// 受け取った値を画面に出力
 	return $input_words;
 }
+
+// mWとWのチェックボックスをAND検索からOR検索に変更
+// function change_pre_get_posts($query) {
+
+//     // 管理画面,メインクエリ以外に干渉しないため
+//     if ( is_admin() || ! $query->is_main_query() ){
+//         return;
+//     }
+
+//     // カスタム投稿タイプが製品ページ「product」だけ、以下のクエリ変更を行う。
+//     if($query->is_post_type_archive( 'product' )) {
+
+// 		// OR検索に
+//         $meta_query = [
+//             'relation' => 'LIKE',
+//         ];
+
+//         // 製品の出力（mW）
+//         if(!empty($_GET['mwat[]']) and is_array($_GET['mwat[]'])) {
+//             $sub_meta_query = [
+//                 'relation' => 'LIKE',
+//             ];
+//             foreach ($_GET['mwat[]'] as $index => $m_wat) {
+//                 $sub_meta_query[] = [
+//                     'key'     => 'mw',
+//                     'value'   => $m_wat,
+//                     'compare' => '='
+//                 ];
+//             }
+//             $meta_query[] = $sub_meta_query;
+//         }
+
+//         // 製品の出力（W）
+//         if(!empty($_GET['wat[]']) and is_array($_GET['wat[]'])) {
+//             $sub_meta_query = [
+//                 'relation' => 'LIKE',
+//             ];
+//             foreach ($_GET['wat[]'] as $index => $wat_status) {
+//                 $sub_meta_query[] = [
+//                     'key'     => 'w',
+//                     'value'   => $wat_status,
+//                     'compare' => '='
+//                 ];
+//             }
+//             $meta_query[] = $sub_meta_query;
+//         }
+        
+//         $query->set('meta_query', $meta_query);
+//     }
+// }
+// add_action( 'pre_get_posts', 'change_pre_get_posts' );

@@ -113,8 +113,8 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                                             <option name="mwat[]" value="800~899mw">800~899mW</option>
                                             <option name="mwat[]" value="900~999mw">900~999mW</option>
                                         </select></div>
-                                    <div><input type="radio" name="outputs" value="2" onclick="myCheck3();">出力（W）を指定する
-                                        W　:　<select name="wat[]" id="b3" disabled>
+                                    <div><input type="radio" name="outputs" value="2" onclick="myCheck3();">出力　（W）を指定する
+                                        W　: <select name="wat[]" id="b3" disabled>
                                         <!-- <option name="nanowave[]" value="">選択してください</option> -->
                                         <option name="wat[]" value="1w">1W</option>
                                         <option name="wat[]" value="2w">2W</option>
@@ -147,7 +147,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                                     </select></div>
                                 <!-- </ul> -->
                             </li>
-                            <li>
+                            <li style="width:100%;">
                                 <p class="ttl"><span>■</span>発振形式 (複数選択可能)</p>
                                 <ul class="rdoUl">
                                     <li><label><input type="checkbox" name="mode[]" value="空間出力"><span>空間出力</span></label></li>

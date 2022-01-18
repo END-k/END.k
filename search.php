@@ -380,10 +380,10 @@ if($search_type == 1){
                     </div>
                     <div class="rBox sdwBox--toggle">
                         <p class="headLine04">検索条件を変更する</p>
-                        <p class="sp text01">商品名・型番・メーカーまたはキーワードを入力</p>
+                        <p class="text01">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                                <input type="text" name="s" placeholder="商品名・型番・メーカーまたはキーワードを入力" class="inputText">
+                                <input type="text" name="s" class="inputText">
                                 <input type="submit" value="検索" class="inputButton">
                             </form>
                         </div>
@@ -586,10 +586,10 @@ if($search_type == 1){
                     </div>
                     <div class="rBox sdwBox--toggle">
                         <p class="headLine04">検索条件を変更する</p>
-                        <p class="sp text01">商品名・型番・メーカーまたはキーワードを入力</p>
+                        <p class="text01">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                                <input type="text" name="s" placeholder="商品名・型番・メーカーまたはキーワードを入力" class="inputText">
+                                <input type="text" name="s" class="inputText">
                                 <input type="submit" value="検索" class="inputButton">
                             </form>
                         </div>
@@ -873,10 +873,10 @@ if($search_type == 1){
                     </div>
                     <div class="rBox sdwBox--toggle">
                         <p class="headLine04">検索条件を変更する</p>
-                        <p class="sp text01">商品名・型番・メーカーまたはキーワードを入力</p>
+                        <p class="text01">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                                <input type="text" name="s" placeholder="商品名・型番・メーカーまたはキーワードを入力" class="inputText">
+                                <input type="text" name="s" class="inputText">
                                 <input type="submit" value="検索" class="inputButton">
                             </form>
                         </div>
