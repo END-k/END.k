@@ -379,12 +379,12 @@ if($search_type == 1){
                         </ul>
                     </div>
                     <div class="rBox sdwBox--toggle">
-                        <p class="headLine04">検索条件を変更する</p>
+                        <p class="headLine04">検索条件を変更するaaaa</p>
                         <p class="text01">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <input type="text" name="s" class="inputText">
-                                <input type="submit" value="検索" class="inputButton">
+                                <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
                             </form>
                         </div>
                         <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="form01">
@@ -590,7 +590,7 @@ if($search_type == 1){
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <input type="text" name="s" class="inputText">
-                                <input type="submit" value="検索" class="inputButton">
+                                <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
                             </form>
                         </div>
                         <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="form01">
@@ -877,7 +877,7 @@ if($search_type == 1){
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <input type="text" name="s" class="inputText">
-                                <input type="submit" value="検索" class="inputButton">
+                                <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
                             </form>
                         </div>
                         <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="form01">

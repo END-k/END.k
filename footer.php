@@ -419,4 +419,16 @@ function myCheck3(){
 
     }
 }
+
+function paramMod(obj) {
+    let inputText = $(obj).siblings()[0].value;
+    
+    // 検索文字にハイフンがあればハイフン削除
+    if(inputText.slice(-1) == "ー") {
+       inputText = inputText.slice(0, -1);
+    }
+
+    // inputに戻す
+    $(obj).siblings()[0].value = inputText;
+}
 </script>

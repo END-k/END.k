@@ -39,9 +39,6 @@
                     $args = array(
                         'post_type' => 'distributor',
                         'posts_per_page' => -1,
-                        'orderby' => 'meta_value',
-                        'order' => 'ASC',
-                        'meta_key'=>'ff_yomi',
                         'tax_query' => array(
                             array(
                                 'taxonomy' => 'distributorcat',

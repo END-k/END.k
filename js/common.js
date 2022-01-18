@@ -381,12 +381,12 @@ $(function(){
 });
 
 /* 余計なGET送信をdisabledでコントロールする。 */
-// function clickBtn1(){
-// 	if (document.getElementById("b1").disabled === true){
-// 		// disabled属性を削除
-// 		document.getElementById("b1").removeAttribute("disabled");
-// 	}else{
-// 		// disabled属性を設定
-// 		document.getElementById("b1").setAttribute("disabled", true);
-// 	}
-// }
+function clickBtn1(){
+	if (document.getElementById("b1").disabled === true){
+		// disabled属性を削除
+		document.getElementById("b1").removeAttribute("disabled");
+	}else{
+		// disabled属性を設定
+		document.getElementById("b1").setAttribute("disabled", true);
+	}
+}
