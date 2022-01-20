@@ -364,12 +364,12 @@ a[href^="tel:"] {
 
 .selectBox .selectInner {
   margin: 0 auto;
-  max-width: 1240px;
+  max-width: 1120px;
 }
 
 .selectBox .selectInner .lBpx {
   margin-right: 5px;
-  width: 316px;
+  width: auto;
 }
 
 .selectBox .selectInner p {
@@ -379,8 +379,8 @@ a[href^="tel:"] {
 }
 
 .selectBox .inputBox {
-  width: 306px;
-  margin-bottom: 0;
+  width: 70%;
+  margin-bottom: 30px;
   overflow: hidden;
   position: relative;
 }
@@ -451,6 +451,9 @@ a[href^="tel:"] {
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 12px;
+  }
+  .selectBox .inputBox .inputText {
+    font-size: 0;
   }
 }
 
@@ -688,6 +691,10 @@ a[href^="tel:"] {
   border-radius: 5px;
   border: solid 1px #e5e5e5;
   background-color: #ffffff;
+}
+
+.comSelectUl .enUlBox01{
+  right: -440px;
 }
 
 .comSelectUl .enUl01 > li {
@@ -1511,7 +1518,7 @@ a[href^="tel:"] {
     height: 48px;
     padding: 3px;
     border-radius: 10px;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     line-height: 1.25;
     letter-spacing: 0.1em;
   }
@@ -2045,6 +2052,9 @@ a[href^="tel:"] {
     font-size: 1.6rem;
     border-radius: 0;
   }
+  #gFooter .lBox .inputBox .inputText::placeholder {
+    color:#fff;
+  }
   #gFooter .lBox .inputBox .inputButton:hover {
     color: #fff;
     background-color: #0b7ef1;
@@ -2155,6 +2165,7 @@ a[href^="tel:"] {
     background-color: #fff;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+    font-size: 14px;
   }
   #gFooter .rBox .link02 .fatUl .subUl > li:nth-child(3n + 2) a {
     border: 1px solid #0fd000;
@@ -2429,6 +2440,7 @@ a[href^="tel:"] {
   padding-left: 11px;
   font-size: 2.4rem;
   font-weight: 700;
+  height: 10vh;
 }
 
 .headLine02::before {
@@ -2661,9 +2673,9 @@ a[href^="tel:"] {
     width: auto;
     max-width: 62%;
   }
-  .comCaseList li .pho span {
-    padding-bottom: 54.04%;
-  }
+  /* .comCaseList li .pho span {
+    padding-bottom: 0;
+  } */
   .comCaseList li .pho img {
     width: 100%;
   }
@@ -5272,7 +5284,7 @@ a[href^="tel:"] {
 
 .product.result .sdwBox .tag li {
   margin-right: 1px;
-  padding: 1px 7px;
+  /* padding: 1px 7px; */
   width: auto;
   display: inline-block;
   font-size: 1.2rem;
@@ -5287,6 +5299,35 @@ a[href^="tel:"] {
 .product.result .sdwBox .tag li span:not(:first-of-type)::before {
   content: ' / ';
   display: inline-block;
+}
+
+.product.result .sdwBox .tag li.rainbow {
+  background-color: white;
+  position: relative;
+  border: none;
+}
+
+.product.result .sdwBox .tag li.rainbow .in{
+  background-color: white;
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+  display: block;
+  padding: 1px 7px;
+}
+
+.product.result .sdwBox .tag li.rainbow::after {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  background: -webkit-gradient(linear, left top, right top, from(red), color-stop(orange), color-stop(yellow), color-stop(green), color-stop(aqua), color-stop(blue), to(purple));
+  background: linear-gradient(to right, red, orange, yellow, green, aqua, blue, purple);
+  content: '';
+  z-index: -1;
+  border-radius: 10px;
+  width: calc(100% + 2px);
 }
 
 .product.result .sdwBox .sdwLink {
@@ -5319,7 +5360,7 @@ a[href^="tel:"] {
 }
 
 .wavelength .comLinkUl li a span {
-  font-size: 2.2rem;
+  font-size: 1.7rem;
 }
 
 .wavelength .down {
@@ -5336,7 +5377,7 @@ a[href^="tel:"] {
 
 .wavelength .conditionsBox .conUl > li {
   margin-top: 25px;
-  width: 40%;
+  width: 45%;
   display: inline-block;
   vertical-align: top;
 }
@@ -5381,6 +5422,7 @@ a[href^="tel:"] {
 }
 
 .wavelength .conditionsBox .rdoUl {
+  width:102%;
   display: inline-block;
 }
 
@@ -5590,7 +5632,7 @@ a[href^="tel:"] {
   }
   .product.result .sdwBox .tag li {
     margin: 8px 1px 0 0;
-    padding: 1px 7px;
+    /* padding: 1px 7px; */
     width: auto;
   }
   .product.result .sdwBox .sdwLink a {
@@ -5608,7 +5650,7 @@ a[href^="tel:"] {
     display: none;
   }
   .wavelength .comLinkUl li a span {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
   .wavelength .conditionsBox .conUl {
     margin-top: 0;
@@ -7891,10 +7933,10 @@ a[href^="tel:"] {
     margin-bottom: 22px;
   }
   .policy .pageTitle h2 {
-    margin-left: 62px;
+    /* margin-left: 62px; */
     left: 0;
-    -webkit-transform: translate(0, -50%);
-            transform: translate(0, -50%);
+    -webkit-transform: translate(0,0);
+            transform: translate(0,0);
   }
   .policy .headLine01 {
     margin-bottom: 36px;
@@ -8095,8 +8137,8 @@ a[href^="tel:"] {
 
 @media all and (max-width: 896px) {
   .privacy .pageTitle h2 {
-    -webkit-transform: translate(0%, -50%);
-            transform: translate(0%, -50%);
+    -webkit-transform: translate(0%, 0);
+            transform: translate(0%, 0);
     /* margin-left: -135px; */
   }
   .privacy #main {
@@ -8623,10 +8665,23 @@ _:-ms-fullscreen,
 }
 
 .cnt_area{
-  display:none;
   color: #FF0000;
 }
 
 .cnt_danger{
   display:none;
+}
+
+.rainbow_mark{
+  background: linear-gradient(to right, red, orange, yellow, green, aqua, blue, purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#b2{
+  width:10rem;
+}
+
+#b3{
+  width:10.1rem;
 }

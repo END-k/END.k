@@ -53,20 +53,24 @@ $product_query = new WP_Query($args)
                         <?php }?>
                         <?php if(count($restArr)){ ?>
                         <div class="downBox">
-                                <div class="comLinkUlBox">
-                                    <ul class="comLinkUl flexC">
-                                    <?php for($i=0;$i < count($restArr);$i++){ ?>
-                                        <li><a href="<?php echo get_term_link( $restArr[$i] );?>"><span><?php echo $nameArr[$i];?></span></a></li>
-                                    <?php } ?>
-                                    </ul>
-                                </div>
-                                <p class="down pc"><a href="#">もっと見る <span>+</span></a></p>
+                            <div class="comLinkUlBox">
+                                <ul class="comLinkUl flexC">
+                                <?php for($i=0;$i < count($restArr);$i++){ ?>
+                                    <li>
+                                        <a href="<?php echo get_term_link( $restArr[$i] );?>">
+                                            <span><?php echo $nameArr[$i];?></span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                </ul>
+                            </div>
+                            <p class="down pc"><a href="#">もっと見る <span>+</span></a></p>
                         </div>
                         <?php } ?>
                     </div>
-                    <?php if(count($restArr)){ ?>
+                    <?php //if(count($restArr) > 0){ ?>
                     <p class="down sp"><a href="#">もっと見る <span>+</span></a></p>
-                    <?php } ?>
+                    <?php //} ?>
                 </div>
             </div>
             <?php endif; ?>
@@ -77,7 +81,21 @@ $product_query = new WP_Query($args)
                 <li>
                     <a href="<?php the_permalink(); ?>">
                         <div class="phoBox"><div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></div></div>
-                        <h3 class="headLine04"><?php the_title(); ?></h3>
+                        <h3 class="headLine04">
+                        <?php
+                            //整形したい文字列
+                            $text = get_the_title();
+                            //文字数の上限
+                            $limit = 33;
+                            //分岐
+                            if(mb_strlen($text) > $limit) {
+                            $title = mb_substr($text,0,$limit);
+                            echo $title . '･･･' ;
+                            } else {
+                            the_title();
+                            }
+                            ?>
+                        </h3>
                         <?php
                         $featured_posts = get_field('ff_distributor');
                         if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>
@@ -100,7 +118,7 @@ $product_query = new WP_Query($args)
                             <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
                             <?php } ?>
                             <?php
-                                $terms02 = get_ordered_terms($post->ID,'slug', 'ASC', 'wavelengthcat');
+                                $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                             ?>
                             <?php if($terms02): ?>
                             <?php if($ff_wavelengthlabel): ?>

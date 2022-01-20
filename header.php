@@ -153,14 +153,14 @@
         </div>
     </header>
     <div class="selectBox">
-        <div class="selectInner flex">
+        <div class="selectInner">
             <div class="lBpx">
                 <p class="hTtl sp">製品検索</p>
-                <p>商品名・型番・メーカーまたはキーワードを入力</p>
+                <p>商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                 <div class="inputBox">
                     <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
-                        <input type="text" placeholder="" name="s" class="inputText">
-                        <input type="submit" value="検索" class="inputButton">
+                        <input type="text" name="s" class="inputText">
+                        <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
                     </form>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                                             ?>
                                             <?php $terms11 = get_terms( $args11 ); if($terms11){ ?>
                                             <ul class="conterUl">
-                                                <li><a href="#" data-id01="<?php echo $bigId; ?>">■すべて</a></li>
+                                                <li><a href="#" data-id01="<?php echo $bigId; ?>">■<?php echo $term->name;?>すべて</a></li>
                                             <?php foreach($terms11 as $term11) { ?>
                                                 <li><a href="#" data-id01="<?php echo $term11->term_id; ?>">■<?php echo $term11->name; $secondId = $term11->term_id; ?></a>
                                                     <?php
@@ -245,6 +245,9 @@
                                                         $args04 = array(
                                                             'post_type' => 'distributor',
                                                             'posts_per_page' => -1,
+                                                            'orderby' => 'meta_value',
+                                                            'order' => 'ASC',
+                                                            'meta_key'=>'ff_yomi',
                                                             'tax_query' => array(
                                                                 array(
                                                                     'taxonomy' => 'distributorcat',
@@ -280,7 +283,7 @@
                                     <ul class="enUl03">
                                         <li><p><span>波長域から探す</span></p>
                                             <ul class="flex">
-                                            <li><a href="#" data-id01="617">200nm~</a></li>
+                                                <li><a href="#" data-id01="617">200nm~</a></li>
                                                 <li><a href="#" data-id01="612">300nm~</a></li>
                                                 <li><a href="#" data-id01="286">400nm~</a></li>
                                                 <li><a href="#" data-id01="583">500nm~</a></li>
@@ -296,13 +299,13 @@
                                         </li>
                                         <li><p><span>良く探されている波長から探す</span></p>
                                             <ul class="flex">
-                                            <li><a href="#" data-id01="608">532nm</a></li>
+                                                <li><a href="#" data-id01="608">532nm</a></li>
                                                 <li><a href="#" data-id01="291">808nm</a></li>
                                                 <li><a href="#" data-id01="584">850nm</a></li>
                                                 <li><a href="#" data-id01="324">940nm</a></li>
-                                                <li><a href="#" data-id01="mul01">976/980nm</a></li>
-                                                <li><a href="#" data-id01="mul02">1060/1064nm</a></li>
-                                                <li><a href="#" data-id01="mul03">1310/1550nm</a></li>
+                                                <li><a href="#" data-id01="601">976/980nm</a></li>
+                                                <li><a href="#" data-id01="610">1060/1064nm</a></li>
+                                                <li><a href="#" data-id01="293">1310/1550nm</a></li>
                                             </ul>
                                         </li>
                                     </ul>

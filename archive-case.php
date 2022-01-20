@@ -20,7 +20,21 @@
                         <div class="subBox flexB">
                             <div class="pho"><span style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></span></div>
                             <div class="txtBox">
-                                <h3 class="headLine02"><?php the_title(); ?></h3>
+                                <h3 class="headLine02">
+                                    <?php
+                                    //整形したい文字列
+                                    $text = get_the_title();
+                                    //文字数の上限
+                                    $limit = 24;
+                                    //分岐
+                                    if(mb_strlen($text) > $limit) {
+                                    $title = mb_substr($text,0,$limit);
+                                    echo $title . '･･･' ;
+                                    } else {
+                                    the_title();
+                                    }
+                                    ?>
+                                </h3>
                                 <p><?php get_excerpt(48); ?></p>
                             </div>
                         </div>

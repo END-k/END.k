@@ -36,7 +36,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         <?php
                         foreach($terms as $term) {
                             $array=explode('n', $term->name);
-                            if($array[0] === "多波長チューナブル"){
+                            if($array[0] === "多波長、チューナブル"){
                         ?>
                             <li><a href="<?php echo home_url( '/' ); ?>?s=&search_type=2&cat03=<?php echo $term->term_id; ?>"><span><?php $array=explode('n', $term->name); echo $array[0]; ?></span></a></li>
                             <?php } else{ ?>
@@ -51,49 +51,125 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         </ul>
                     </div>
                     <?php } ?>
-                    <div class="sBox">
-                        <p class="ttl headLine04">具体的な波長を入力して検索</p>
-                        <div class="inputBox">
-                        <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
-                            <input type="hidden" name="s" value="">
-                            <input type="hidden" name="search_type" value="4">
-                            <input type="text" placeholder="532nm" name="s" class="inputText">
-                            <input type="submit" value="検索" class="inputButton">
-                        </form>
-                        </div>
-                    </div>
                 </div>
                 <p class="down"><a href="#">もっと細かく指定する<span>+</span></a></p>
                 <div class="conditionsBox">
-                    <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
+                    <form role="search" name="form1" class="form03" method="get" action="<?php echo home_url( '/' ); ?>">
                         <input type="hidden" name="s" value="">
                         <input type="hidden" name="search_type" value="3">
                         <ul class="conUl">
                             <li>
-                                <p class="ttl"><span>■</span>出力を指定する (入力なしの場合は全て表示されます)</p>
-                                <div class="radioBox radioBox_w">
-                                    <input type="number" id="mW" name="output" placeholder="200" class="txtInput wavetext wavetext01">
-                                    <input type="number" name="output" placeholder="200" class="txtInput wavetext wavetext02">
-                                    <ul class="rdoUl">
-                                        <li><label><input type="radio" id="mW" name="w" value="mW" checked="checked"><span>mW</span></label></li>
-                                        <li><label><input type="radio" name="w" value="W"><span>W</span></label></li>
-                                    </ul>
-                                </div>
-                                <div class="cnt_area cnt_danger">mWでの検索は1~999までの整数のみ対応しております。</div>
+                                <p class="ttl"><span class="rainbow_mark">■</span>波長を指定する</p>
+                                <ul class="rdoUl">
+                                    <select name="nanowave" id="b1">
+                                        <option value="200nm〜">200nm~</option>
+                                        <option value="300nm〜">300nm~</option>
+                                        <option value="400nm〜">400nm~</option>
+                                        <option value="500nm〜">500nm~</option>
+                                        <option value="600nm〜">600nm~</option>
+                                        <option value="700nm〜">700nm~</option>
+                                        <option value="800nm〜">800nm~</option>
+                                        <option value="900nm〜">900nm~</option>
+                                        <option value="1000nm〜">1000nm~</option>
+                                        <option value="1500nm〜">1500nm~</option>
+                                        <option value="2000nm〜">2000nm~</option>
+                                        <option value="多波長、チューナブル">多波長、チューナブル</option>
+                                    </select>
+                                </ul>
+                                <div class="cnt_area">波長は必ず指定してください</div>
                             </li>
                             <li>
+                                <p class="ttl"><span>■</span>出力を指定する (入力なしの場合は全て表示されます)</p>
+                                <div><input type="radio" name="outputs" value="0" onclick="myCheck1();" checked="checked">出力を指定しない</div>
+                                <div><input type="radio" name="outputs" value="1" onclick="myCheck2();">出力（mw）を指定する
+                                <!-- <ul class="rdoUl"> -->
+                                        mw : <select name="mwat" id="b2" disabled>
+                                            <!-- <option name="nanowave[]" value="">選択してください</option> -->
+                                            <option value="1mw">1mw</option>
+                                            <option value="2mw">2mw</option>
+                                            <option value="3mw">3mw</option>
+                                            <option value="4mw">4mw</option>
+                                            <option value="5mw">5mw</option>
+                                            <option value="6mw">6mw</option>
+                                            <option value="7mw">7mw</option>
+                                            <option value="8mw">8mw</option>
+                                            <option value="9mw">9mw</option>
+                                            <option value="10~19mw">10~19mw</option>
+                                            <option value="20~29mw">20~29mw</option>
+                                            <option value="30~39mw">30~39mw</option>
+                                            <option value="40~49mw">40~49mw</option>
+                                            <option value="50~59mw">50~59mw</option>
+                                            <option value="60~69mw">60~69mw</option>
+                                            <option value="70~79mw">70~79mw</option>
+                                            <option value="80~89mw">80~89mw</option>
+                                            <option value="90~99mw">90~99mw</option>
+                                            <option value="100~199mw">100~199mw</option>
+                                            <option value="200~299mw">200~299mw</option>
+                                            <option value="300~399mw">300~399mw</option>
+                                            <option value="400~499mw">400~499mw</option>
+                                            <option value="500~599mw">500~599mw</option>
+                                            <option value="600~699mw">600~699mw</option>
+                                            <option value="700~799mw">700~799mw</option>
+                                            <option value="800~899mw">800~899mw</option>
+                                            <option value="900~999mw">900~999mw</option>
+                                        </select></div>
+                                    <div><input type="radio" name="outputs" value="2" onclick="myCheck3();">出力　（W）を指定する
+                                        W　: <select name="wat" id="b3" disabled>
+                                        <!-- <option name="nanowave[]" value="">選択してください</option> -->
+                                        <option value="1W">1W</option>
+                                        <option value="2W">2W</option>
+                                        <option value="3W">3W</option>
+                                        <option value="4W">4W</option>
+                                        <option value="5W">5W</option>
+                                        <option value="6W">6W</option>
+                                        <option value="7W">7W</option>
+                                        <option value="8W">8W</option>
+                                        <option value="9W">9W</option>
+                                        <option value="10~19W">10~19W</option>
+                                        <option value="20~29W">20~29W</option>
+                                        <option value="30~39W">30~39W</option>
+                                        <option value="40~49W">40~49W</option>
+                                        <option value="50~59W">50~59W</option>
+                                        <option value="60~69W">60~69W</option>
+                                        <option value="70~79W">70~79W</option>
+                                        <option value="80~89W">80~89W</option>
+                                        <option value="90~99W">90~99W</option>
+                                        <option value="100~199W">100~199W</option>
+                                        <option value="200~299W">200~299W</option>
+                                        <option value="300~399W">300~399W</option>
+                                        <option value="400~499W">400~499W</option>
+                                        <option value="500~599W">500~599W</option>
+                                        <option value="600~699W">600~699W</option>
+                                        <option value="700~799W">700~799W</option>
+                                        <option value="800~899W">800~899W</option>
+                                        <option value="900~999W">900~999W</option>
+                                        <option value="1000W~">1000W~</option>
+                                    </select></div>
+                                <!-- </ul> -->
+                            </li>
+                            <li style="width:100%;">
                                 <p class="ttl"><span>■</span>発振形式 (複数選択可能)</p>
                                 <ul class="rdoUl">
+                                    <li><label><input type="checkbox" name="mode[]" value="空間出力"><span>空間出力</span></label></li>
+                                    <li><label><input type="checkbox" name="mode[]" value="ファイバ出力"><span>ファイバ出力</span></label></li>
                                     <li><label><input type="checkbox" name="mode[]" value="CW"><span>CW</span></label></li>
                                     <li><label><input type="checkbox" name="mode[]" value="パルス"><span>パルス</span></label></li>
                                     <li><label><input type="checkbox" name="mode[]" value="超短パルス"><span>超短パルス</span></label></li>
                                     <li><label><input type="checkbox" name="mode[]" value="CW&パルス"><span>CW&amp;パルス</span></label></li>
+                                    <li><label><input type="checkbox" name="mode[]" value="その他"><span>その他</span></label></li>
                                 </ul>
                             </li>
                             <li>
                                 <p class="ttl"><span>■</span>光源種類 (複数選択可能)</p>
                                 <ul class="rdoUl">
-                                    <li><label><input type="checkbox" name="source[]" value="LD"><span>LD</span></label></li>
+                                    <li><label><input type="checkbox" name="source[]" value="ファイバーレーザ/ファイバーアンプ"><span>ファイバーレーザ/ファイバーアンプ</span></label></li>
+                                    <li><label><input type="checkbox" name="source[]" value="半導体レーザ・VCSEL"><span>半導体レーザ・VCSEL</span></label></li>
+                                    <li><label><input type="checkbox" name="source[]" value="LED・SLD・SOA"><span>LED・SLD・SOA</span></label></li>
+                                    <li><label><input type="checkbox" name="source[]" value="LD・LED光源装置"><span>LD・LED光源装置</span></label></li>
+                                    <li><label><input type="checkbox" name="source[]" value="固体レーザ"><span>固体レーザ</span></label></li>
+                                    <li><label><input type="checkbox" name="source[]" value="広帯域・その他光源"><span>広帯域・その他光源</span></label></li>
+
+                                    <!-- <li><label><input type="checkbox" name="source[]" value="LD"><span>LD</span></label></li>
                                     <li><label><input type="checkbox" name="source[]" value="LED"><span>LED</span></label></li>
                                     <li><label><input type="checkbox" name="source[]" value="VCSEL"><span>VCSEL</span></label></li>
                                     <li><label><input type="checkbox" name="source[]" value="LED/SLD/SOA"><span>LED/SLD/SOA</span></label></li>
@@ -101,13 +177,13 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                                     <li><label><input type="checkbox" name="source[]" value="ファイナーレーザ/ファイバーアンプ"><span>ファイナーレーザ/ファイバーアンプ</span></label></li>
                                     <li><label><input type="checkbox" name="source[]" value="単一周波数"><span>単一周波数</span></label></li>
                                     <li><label><input type="checkbox" name="source[]" value="ブロードバンド"><span>ブロードバンド</span></label></li>
-                                    <li><label><input type="checkbox" name="source[]" value="その他"><span>その他</span></label></li>
+                                    <li><label><input type="checkbox" name="source[]" value="その他"><span>その他</span></label></li> -->
                                 </ul>
                             </li>
                         </ul>
                         <div class="lkBox flexC">
                             <p>指定した条件で</p>
-                            <div class="link linkbtn"><a href="#">検索</a></div>
+                            <div class="link comBtn2"><a href="#">検索</a></div>
                         </div>
                     </form>
                 </div>
@@ -128,7 +204,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                     $curSlug = $term->slug;
                     $array01=explode('n', $term->name);
             ?>
-            <?php if($array01[0] === "多波長チューナブル"){ ?>
+            <?php if($array01[0] === "多波長、チューナブル"){ ?>
             <p class="waveTtl"><span><?php $array01=explode('n', $term->name); echo $array01[0]; ?></span></p>
             <?php } else{ ?>
             <p class="waveTtl"><span><?php $array01=explode('n', $term->name); echo $array01[0]; ?><small>nm</small></span></p>
@@ -152,7 +228,21 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                 <li>
                     <a href="<?php the_permalink(); ?>">
                         <div class="phoBox"><div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></div></div>
-                        <h3 class="headLine04"><?php the_title(); ?></h3>
+                        <h3 class="headLine04">
+                        <?php
+                            //整形したい文字列
+                            $text = get_the_title();
+                            //文字数の上限
+                            $limit = 33;
+                            //分岐
+                            if(mb_strlen($text) > $limit) {
+                            $title = mb_substr($text,0,$limit);
+                            echo $title . '･･･' ;
+                            } else {
+                            the_title();
+                            }
+                            ?>
+                        </h3>
                         <?php
                         $featured_posts = get_field('ff_distributor');
                         if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>
@@ -179,7 +269,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
                             <?php } ?>
                             <?php
-                                $terms02 = get_ordered_terms($post_id,'slug', 'ASC', 'wavelengthcat');
+                                $terms02 = get_ordered_terms($post_id,'description', 'ASC', 'wavelengthcat');
                             ?>
                             <?php if($terms02): ?>
                             <?php if($ff_wavelengthlabel): ?>
@@ -208,7 +298,21 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                 <li>
                     <a href="<?php the_permalink(); ?>">
                         <div class="phoBox"><div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></div></div>
-                        <h3 class="headLine04"><?php the_title(); ?></h3>
+                        <h3 class="headLine04">
+                        <?php
+                            //整形したい文字列
+                            $text = get_the_title();
+                            //文字数の上限
+                            $limit = 33;
+                            //分岐
+                            if(mb_strlen($text) > $limit) {
+                            $title = mb_substr($text,0,$limit);
+                            echo $title . '･･･' ;
+                            } else {
+                            the_title();
+                            }
+                        ?>
+                        </h3>
                         <?php
                         $featured_posts = get_field('ff_distributor');
                         if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>
@@ -231,7 +335,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
                             <?php } ?>
                             <?php
-                                $terms02 = get_ordered_terms($post->ID,'slug', 'ASC', 'wavelengthcat');
+                                $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                             ?>
                             <?php if($terms02): ?>
                             <?php if($ff_wavelengthlabel): ?>
@@ -308,16 +412,13 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                 </div>
                 <p class="waveTtl"><span>良く探されている<br class="sp">波長から探す</span></p>
                 <ul class="comLinkUl comLinkUl01 comLinkUl02 flex">
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/532nm" class="bor bor05"><span>532<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/808nm"><span>808<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/850nm"><span>850<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/940nm"><span>940<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/976nm"><span>976<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/980nm"><span>980<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/1060nm"><span>1060<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/1064nm"><span>1064<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/1310nm"><span>1310<small>nm</small></span></a></li>
-                    <li><a href="<?php bloginfo('url');?>/wavelengthcat/1550nm"><span>1550<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/532nm" class="bor bor05"><span>532<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/808nm"><span>808<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/850nm"><span>850<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/940nm"><span>940<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/976nm"><span>976/980<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1064nm"><span>1060/1064<small>nm</small></span></a></li>
+                <li><a href="<?php bloginfo('url');?>/wavelengthcat/1310-1550nm"><span>1310/1550<small>nm</small></span></a></li>
                 </ul>
             </div>
 

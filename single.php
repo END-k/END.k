@@ -16,7 +16,21 @@ get_header();
 		<div class="content">
 			<div class="comDetailBox">
 				<div class="ttlBox">
-					<p class="title"><?php the_title(); ?></p>
+					<p class="title">
+                    <?php
+                        //整形したい文字列
+                        $text = get_the_title();
+                        //文字数の上限
+                        $limit = 5000;
+                        //分岐
+                        if(mb_strlen($text) > $limit) {
+                        $title = mb_substr($text,0,$limit);
+                        echo $title . '･･･' ;
+                        } else {
+                        the_title();
+                        }
+                    ?>
+                    </p>
 					<p class="date"><?php the_time('Y.m.d'); ?><span class="tag"  <?php if(!in_category(array('optronnews', 'notice'))): ?>style="background-color:<?php if(in_category(array('new-products', 'others'))): ?>#0fd000;<?php elseif(in_category('exhibition')): ?>#0b7ef1<?php endif; ?>"<?php endif; ?>><?php echo $cat_name; ?></span></p>
 				</div>
 				<?php if(has_post_thumbnail()): ?>
@@ -49,7 +63,21 @@ get_header();
                     <li>
                         <a href="<?php the_permalink(); ?>">
                             <div class="phoBox"><div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></div></div>
-                            <h3 class="headLine04"><?php the_title(); ?></h3>
+                            <h3 class="headLine04">
+                            <?php
+                                //整形したい文字列
+                                $text = get_the_title();
+                                //文字数の上限
+                                $limit = 33;
+                                //分岐
+                                if(mb_strlen($text) > $limit) {
+                                $title = mb_substr($text,0,$limit);
+                                echo $title . '･･･' ;
+                                } else {
+                                the_title();
+                                }
+                            ?>
+                            </h3>
                             <?php
                             $featured_posts = get_field('ff_distributor');
                             if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>

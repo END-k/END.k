@@ -52,7 +52,7 @@ get_header();
                                 $taxonomy = 'productcat';
                                 $terms01 = get_the_terms($post->ID,$taxonomy);
 
-                                $terms02 = get_ordered_terms($post->ID,'slug', 'ASC', 'wavelengthcat');
+                                $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                                 $ancestor_maxnum = 1;
                                 $ff_wavelengthlabel = get_field('ff_wavelengthlabel');
                             ?>
@@ -282,7 +282,21 @@ get_header();
                     <li>
                         <a href="<?php the_permalink(); ?>">
                             <div class="phoBox"><div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></div></div>
-                            <h3 class="headLine04"><?php the_title(); ?></h3>
+                            <h3 class="headLine04">
+                            <?php
+                            //整形したい文字列
+                            $text = get_the_title();
+                            //文字数の上限
+                            $limit = 33;
+                            //分岐
+                            if(mb_strlen($text) > $limit) {
+                            $title = mb_substr($text,0,$limit);
+                            echo $title . '･･･' ;
+                            } else {
+                            the_title();
+                            }
+                            ?>
+                            </h3>
                             <?php
                             $featured_posts = get_field('ff_distributor');
                             if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>
@@ -329,7 +343,7 @@ get_header();
             <?php
                 $args = array(
                     'post_type' => 'product',
-                    'post__not_in' => array($post_id),
+                    'post__not_in'=> array(get_the_ID()),// post__not_inパラメータに現在のページのIDを代入。表示している製品と同じものをお勧めしない為。
                     'posts_per_page' => 3,
                     'tax_query' => array(
                         array(
@@ -351,7 +365,21 @@ get_header();
                     <li>
                         <a href="<?php the_permalink(); ?>">
                             <div class="phoBox"><div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></div></div>
-                            <h3 class="headLine04"><?php the_title(); ?></h3>
+                            <h3 class="headLine04">
+                            <?php
+                            //整形したい文字列
+                            $text = get_the_title();
+                            //文字数の上限
+                            $limit = 33;
+                            //分岐
+                            if(mb_strlen($text) > $limit) {
+                            $title = mb_substr($text,0,$limit);
+                            echo $title . '･･･' ;
+                            } else {
+                            the_title();
+                            }
+                            ?>
+                            </h3>
                             <?php
                             $featured_posts = get_field('ff_distributor');
                             if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>
@@ -363,7 +391,7 @@ get_header();
                             <?php
                                 $taxonomy = 'productcat';
                                 $terms01 = get_the_terms($post->ID,$taxonomy);
-                                $terms02 = get_ordered_terms($post->ID,'slug', 'ASC', 'wavelengthcat');
+                                $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                                 $ancestor_maxnum = 1;
                                 $ff_wavelengthlabel = get_field('ff_wavelengthlabel');
                             ?>

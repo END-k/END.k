@@ -257,16 +257,57 @@ function new_post_product(){
 			'show_in_rest' => true,
 			)
 		);
+	register_taxonomy(
+		'waveoutputcatmwat',
+		'product',
+		array(
+			'label' => '波長出力カテゴリ(mW)',
+			'public' => true,
+			'hierarchical' => true,
+			'show_in_rest' => true,
+			)
+		);
+	register_taxonomy(
+		'waveoutputcat',
+		'product',
+		array(
+			'label' => '波長出力カテゴリ(W)',
+			'public' => true,
+			'hierarchical' => true,
+			'show_in_rest' => true,
+			)
+		);
+	register_taxonomy(
+		'oscillationcat',
+		'product',
+		array(
+			'label' => '発振形式',
+			'public' => true,
+			'hierarchical' => true,
+			'show_in_rest' => true,
+			)
+		);
+	register_taxonomy(
+		'lightsourcecat',
+		'product',
+		array(
+			'label' => '光源種類',
+			'public' => true,
+			'hierarchical' => true,
+			'show_in_rest' => true,
+			)
+		);
 		register_taxonomy(
-			'waveoutputcat',
+			'waveoutputcatwat',
 			'product',
 			array(
-				'label' => '波長出力カテゴリ',
+				'label' => '（テスト）波長出力カテゴリ(W)',
 				'public' => true,
 				'hierarchical' => true,
 				'show_in_rest' => true,
-				)
-			);
+			)
+		);
+	
 	
 }
 add_action('init', 'new_post_product');
@@ -300,12 +341,12 @@ function mytheme_admin_enqueue() {
 }
 add_action( 'admin_enqueue_scripts', 'mytheme_admin_enqueue' );
 
-
+//検索ロジック
 function SearchFilter($query) {
-  if ($query->is_search) {
-    $query->set('post_type', 'product');
-  }
-return $query;
+	if ($query->is_search) {
+		$query->set('post_type', 'product');
+	}
+	return $query;
 }
 add_filter('pre_get_posts','SearchFilter');
 
@@ -317,38 +358,59 @@ global $wpdb;
 
 //サーチページ以外だったら終了
 if (!$wp_query->is_search)
- return $search;
+	return $search;
 
 if (!isset($wp_query->query_vars))
- return $search;
+	return $search;
 
-// タグ名・カテゴリ名も検索対象に
-$search_words = explode(' ', isset($wp_query->query_vars['s']) ? $wp_query->query_vars['s'] : '');
+/**
+ * サイト内検索の範囲に、カテゴリー名、タグ名、を含める
+ */
+// 検索した文字列、文末が”ー”だったら、ー消す
+$input_words = $_GET['s'];//検索文字
+$string = mb_substr($input_words,-1);//ラスト１文字取得
+if($string === "ー"){
+	$input_words = mb_substr($_GET['s'], 0, -1);//$wordが「あいー」だった場合、文末１文字消されて「あい」に
+}
+//echo $input_words;
+//echo $string;
+
+//$_GET['s']が存在していれば
+// if(isset($_GET['s']) && $_GET['s'] != ''){
+//     echo '<strong>$_GET[\'s\']が送信されました。値は[ '.$_GET['s'].' ]です。'."</strong><br/>\n";
+    
+// }else{
+//     echo '<strong>$_GET[\'s\']はまだ送信されていません。'."</strong><br/>\n";
+// }
+
+// die;
+//スペースでの検索を許可
+$search_words = explode(' ', isset($input_words) ? $input_words : '');
 if ( count($search_words) > 0 ) {
-   	$search = '';
+	$search = '';
 	foreach ( $search_words as $word ) {
-    	if ( !empty($word) ) {
-       		$search_word = $wpdb->escape("%{$word}%");
-       		$search .= " AND (
-           		{$wpdb->posts}.post_title LIKE '{$search_word}'
-           		OR {$wpdb->posts}.post_content LIKE '{$search_word}'
-		   		OR {$wpdb->posts}.ID IN (
+		if ( !empty($word) ) {
+			$search_word = $wpdb->escape("%{$word}%");
+			$search .= " AND (
+				{$wpdb->posts}.post_title LIKE '{$search_word}'
+				OR {$wpdb->posts}.post_content LIKE '{$search_word}'
+				OR {$wpdb->posts}.ID IN (
 					SELECT distinct post_id
 					FROM {$wpdb->postmeta}
 					WHERE {$wpdb->postmeta}.meta_key IN ('ff_distributor_search', 'ff_modelnumber') AND meta_value LIKE '{$search_word}'
 				)
-           		OR {$wpdb->posts}.ID IN (
-             		SELECT distinct r.object_id
-             		FROM {$wpdb->term_relationships} AS r
-             		INNER JOIN {$wpdb->term_taxonomy} AS tt ON r.term_taxonomy_id = tt.term_taxonomy_id
-             		INNER JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id
-             		WHERE t.name LIKE '{$search_word}'
-           			OR t.slug LIKE '{$search_word}'
-           			OR tt.description LIKE '{$search_word}'
-           		)
-       		) ";
-     	}
-   	}
+				OR {$wpdb->posts}.ID IN (
+					SELECT distinct r.object_id
+					FROM {$wpdb->term_relationships} AS r
+					INNER JOIN {$wpdb->term_taxonomy} AS tt ON r.term_taxonomy_id = tt.term_taxonomy_id
+					INNER JOIN {$wpdb->terms} AS t ON tt.term_id = t.term_id
+					WHERE t.name LIKE '{$search_word}'
+					OR t.slug LIKE '{$search_word}'
+					OR tt.description LIKE '{$search_word}'
+				)
+			) ";
+		}
+	}
 }
 
 return $search;
@@ -418,3 +480,64 @@ function get_the_terms_orderby_termorder($taxonomy){
 
 	return $array;
 }
+
+function fwsearch(){
+	$input_words = $_GET['s'];//検索文字
+	$string = mb_substr($input_words,-1);//ラスト１文字取得
+		if($string === "ー"){
+			$input_words = mb_substr($_GET['s'], 0, -1);//$wordが「あいー」だった場合、文末１文字消されて「あい」に
+		}
+	// 受け取った値を画面に出力
+	return $input_words;
+}
+
+// mWとWのチェックボックスをAND検索からOR検索に変更
+// function change_pre_get_posts($query) {
+
+//     // 管理画面,メインクエリ以外に干渉しないため
+//     if ( is_admin() || ! $query->is_main_query() ){
+//         return;
+//     }
+
+//     // カスタム投稿タイプが製品ページ「product」だけ、以下のクエリ変更を行う。
+//     if($query->is_post_type_archive( 'product' )) {
+
+// 		// OR検索に
+//         $meta_query = [
+//             'relation' => 'LIKE',
+//         ];
+
+//         // 製品の出力（mW）
+//         if(!empty($_GET['mwat[]']) and is_array($_GET['mwat[]'])) {
+//             $sub_meta_query = [
+//                 'relation' => 'LIKE',
+//             ];
+//             foreach ($_GET['mwat[]'] as $index => $m_wat) {
+//                 $sub_meta_query[] = [
+//                     'key'     => 'mw',
+//                     'value'   => $m_wat,
+//                     'compare' => '='
+//                 ];
+//             }
+//             $meta_query[] = $sub_meta_query;
+//         }
+
+//         // 製品の出力（W）
+//         if(!empty($_GET['wat[]']) and is_array($_GET['wat[]'])) {
+//             $sub_meta_query = [
+//                 'relation' => 'LIKE',
+//             ];
+//             foreach ($_GET['wat[]'] as $index => $wat_status) {
+//                 $sub_meta_query[] = [
+//                     'key'     => 'w',
+//                     'value'   => $wat_status,
+//                     'compare' => '='
+//                 ];
+//             }
+//             $meta_query[] = $sub_meta_query;
+//         }
+        
+//         $query->set('meta_query', $meta_query);
+//     }
+// }
+// add_action( 'pre_get_posts', 'change_pre_get_posts' );
