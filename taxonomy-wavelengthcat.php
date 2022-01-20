@@ -61,19 +61,19 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             <li>
                                 <p class="ttl"><span class="rainbow_mark">■</span>波長を指定する</p>
                                 <ul class="rdoUl">
-                                    <select name="nanowave[]" id="b1">
-                                        <option name="nanowave[]" value="200nm~">200nm~</option>
-                                        <option name="nanowave[]" value="300nm~">300nm~</option>
-                                        <option name="nanowave[]" value="400nm~">400nm~</option>
-                                        <option name="nanowave[]" value="500nm~">500nm~</option>
-                                        <option name="nanowave[]" value="600nm~">600nm~</option>
-                                        <option name="nanowave[]" value="700nm~">700nm~</option>
-                                        <option name="nanowave[]" value="800nm~">800nm~</option>
-                                        <option name="nanowave[]" value="900nm~">900nm~</option>
-                                        <option name="nanowave[]" value="1000nm~">1000nm~</option>
-                                        <option name="nanowave[]" value="1500nm~">1500nm~</option>
-                                        <option name="nanowave[]" value="2000nm~">2000nm~</option>
-                                        <option name="nanowave[]" value="多波長、チューナブル">多波長、チューナブル</option>
+                                    <select name="nanowave" id="b1">
+                                        <option value="200nm〜">200nm~</option>
+                                        <option value="300nm〜">300nm~</option>
+                                        <option value="400nm〜">400nm~</option>
+                                        <option value="500nm〜">500nm~</option>
+                                        <option value="600nm〜">600nm~</option>
+                                        <option value="700nm〜">700nm~</option>
+                                        <option value="800nm〜">800nm~</option>
+                                        <option value="900nm〜">900nm~</option>
+                                        <option value="1000nm〜">1000nm~</option>
+                                        <option value="1500nm〜">1500nm~</option>
+                                        <option value="2000nm〜">2000nm~</option>
+                                        <option value="多波長、チューナブル">多波長、チューナブル</option>
                                     </select>
                                 </ul>
                                 <div class="cnt_area">波長は必ず指定してください</div>
@@ -81,69 +81,69 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             <li>
                                 <p class="ttl"><span>■</span>出力を指定する (入力なしの場合は全て表示されます)</p>
                                 <div><input type="radio" name="outputs" value="0" onclick="myCheck1();" checked="checked">出力を指定しない</div>
-                                <div><input type="radio" name="outputs" value="1" onclick="myCheck2();">出力（mW）を指定する
+                                <div><input type="radio" name="outputs" value="1" onclick="myCheck2();">出力（mw）を指定する
                                 <!-- <ul class="rdoUl"> -->
-                                        mW : <select name="mwat[]" id="b2" disabled>
+                                        mw : <select name="mwat" id="b2" disabled>
                                             <!-- <option name="nanowave[]" value="">選択してください</option> -->
-                                            <option name="mwat[]" value="1mw">1mw</option>
-                                            <option name="mwat[]" value="2mw">2mW</option>
-                                            <option name="mwat[]" value="3mw">3mW</option>
-                                            <option name="mwat[]" value="4mw">4mW</option>
-                                            <option name="mwat[]" value="5mw">5mW</option>
-                                            <option name="mwat[]" value="6mw">6mW</option>
-                                            <option name="mwat[]" value="7mw">7mW</option>
-                                            <option name="mwat[]" value="8mw">8mW</option>
-                                            <option name="mwat[]" value="9mw">9mW</option>
-                                            <option name="mwat[]" value="10~19mw">10~19mW</option>
-                                            <option name="mwat[]" value="20~29mw">20~29mW</option>
-                                            <option name="mwat[]" value="30~39mw">30~39mW</option>
-                                            <option name="mwat[]" value="40~49mw">40~49mW</option>
-                                            <option name="mwat[]" value="50~59mw">50~59mW</option>
-                                            <option name="mwat[]" value="60~69mw">60~69mW</option>
-                                            <option name="mwat[]" value="70~79mw">70~79mW</option>
-                                            <option name="mwat[]" value="80~89mw">80~89mW</option>
-                                            <option name="mwat[]" value="90~99mw">90~99mW</option>
-                                            <option name="mwat[]" value="100~199mw">100~199mW</option>
-                                            <option name="mwat[]" value="200~299mw">200~299mW</option>
-                                            <option name="mwat[]" value="300~399mw">300~399mW</option>
-                                            <option name="mwat[]" value="400~499mw">400~499mW</option>
-                                            <option name="mwat[]" value="500~599mw">500~599mW</option>
-                                            <option name="mwat[]" value="600~699mw">600~699mW</option>
-                                            <option name="mwat[]" value="700~799mw">700~799mW</option>
-                                            <option name="mwat[]" value="800~899mw">800~899mW</option>
-                                            <option name="mwat[]" value="900~999mw">900~999mW</option>
+                                            <option value="1mw">1mw</option>
+                                            <option value="2mw">2mw</option>
+                                            <option value="3mw">3mw</option>
+                                            <option value="4mw">4mw</option>
+                                            <option value="5mw">5mw</option>
+                                            <option value="6mw">6mw</option>
+                                            <option value="7mw">7mw</option>
+                                            <option value="8mw">8mw</option>
+                                            <option value="9mw">9mw</option>
+                                            <option value="10~19mw">10~19mw</option>
+                                            <option value="20~29mw">20~29mw</option>
+                                            <option value="30~39mw">30~39mw</option>
+                                            <option value="40~49mw">40~49mw</option>
+                                            <option value="50~59mw">50~59mw</option>
+                                            <option value="60~69mw">60~69mw</option>
+                                            <option value="70~79mw">70~79mw</option>
+                                            <option value="80~89mw">80~89mw</option>
+                                            <option value="90~99mw">90~99mw</option>
+                                            <option value="100~199mw">100~199mw</option>
+                                            <option value="200~299mw">200~299mw</option>
+                                            <option value="300~399mw">300~399mw</option>
+                                            <option value="400~499mw">400~499mw</option>
+                                            <option value="500~599mw">500~599mw</option>
+                                            <option value="600~699mw">600~699mw</option>
+                                            <option value="700~799mw">700~799mw</option>
+                                            <option value="800~899mw">800~899mw</option>
+                                            <option value="900~999mw">900~999mw</option>
                                         </select></div>
                                     <div><input type="radio" name="outputs" value="2" onclick="myCheck3();">出力　（W）を指定する
-                                        W　: <select name="wat[]" id="b3" disabled>
+                                        W　: <select name="wat" id="b3" disabled>
                                         <!-- <option name="nanowave[]" value="">選択してください</option> -->
-                                        <option name="wat[]" value="1w">1W</option>
-                                        <option name="wat[]" value="2w">2W</option>
-                                        <option name="wat[]" value="3w">3W</option>
-                                        <option name="wat[]" value="4w">4W</option>
-                                        <option name="wat[]" value="5w">5W</option>
-                                        <option name="wat[]" value="6w">6W</option>
-                                        <option name="wat[]" value="7w">7W</option>
-                                        <option name="wat[]" value="8w">8W</option>
-                                        <option name="wat[]" value="9w">9W</option>
-                                        <option name="wat[]" value="10~19w">10~19W</option>
-                                        <option name="wat[]" value="20~29w">20~29W</option>
-                                        <option name="wat[]" value="30~39w">30~39W</option>
-                                        <option name="wat[]" value="40~49w">40~49W</option>
-                                        <option name="wat[]" value="50~59w">50~59W</option>
-                                        <option name="wat[]" value="60~69w">60~69W</option>
-                                        <option name="wat[]" value="70~79w">70~79W</option>
-                                        <option name="wat[]" value="80~89w">80~89W</option>
-                                        <option name="wat[]" value="90~99w">90~99W</option>
-                                        <option name="wat[]" value="100~199w">100~199W</option>
-                                        <option name="wat[]" value="200~299w">200~299W</option>
-                                        <option name="wat[]" value="300~399w">300~399W</option>
-                                        <option name="wat[]" value="400~499w">400~499W</option>
-                                        <option name="wat[]" value="500~599w">500~599W</option>
-                                        <option name="wat[]" value="600~699w">600~699W</option>
-                                        <option name="wat[]" value="700~799w">700~799W</option>
-                                        <option name="wat[]" value="800~899w">800~899W</option>
-                                        <option name="wat[]" value="900~999w">900~999W</option>
-                                        <option name="wat[]" value="1000~w">1000~W</option>
+                                        <option value="1W">1W</option>
+                                        <option value="2W">2W</option>
+                                        <option value="3W">3W</option>
+                                        <option value="4W">4W</option>
+                                        <option value="5W">5W</option>
+                                        <option value="6W">6W</option>
+                                        <option value="7W">7W</option>
+                                        <option value="8W">8W</option>
+                                        <option value="9W">9W</option>
+                                        <option value="10~19W">10~19W</option>
+                                        <option value="20~29W">20~29W</option>
+                                        <option value="30~39W">30~39W</option>
+                                        <option value="40~49W">40~49W</option>
+                                        <option value="50~59W">50~59W</option>
+                                        <option value="60~69W">60~69W</option>
+                                        <option value="70~79W">70~79W</option>
+                                        <option value="80~89W">80~89W</option>
+                                        <option value="90~99W">90~99W</option>
+                                        <option value="100~199W">100~199W</option>
+                                        <option value="200~299W">200~299W</option>
+                                        <option value="300~399W">300~399W</option>
+                                        <option value="400~499W">400~499W</option>
+                                        <option value="500~599W">500~599W</option>
+                                        <option value="600~699W">600~699W</option>
+                                        <option value="700~799W">700~799W</option>
+                                        <option value="800~899W">800~899W</option>
+                                        <option value="900~999W">900~999W</option>
+                                        <option value="1000W~">1000W~</option>
                                     </select></div>
                                 <!-- </ul> -->
                             </li>

@@ -257,16 +257,57 @@ function new_post_product(){
 			'show_in_rest' => true,
 			)
 		);
+	register_taxonomy(
+		'waveoutputcatmwat',
+		'product',
+		array(
+			'label' => '波長出力カテゴリ(mW)',
+			'public' => true,
+			'hierarchical' => true,
+			'show_in_rest' => true,
+			)
+		);
+	register_taxonomy(
+		'waveoutputcat',
+		'product',
+		array(
+			'label' => '波長出力カテゴリ(W)',
+			'public' => true,
+			'hierarchical' => true,
+			'show_in_rest' => true,
+			)
+		);
+	register_taxonomy(
+		'oscillationcat',
+		'product',
+		array(
+			'label' => '発振形式',
+			'public' => true,
+			'hierarchical' => true,
+			'show_in_rest' => true,
+			)
+		);
+	register_taxonomy(
+		'lightsourcecat',
+		'product',
+		array(
+			'label' => '光源種類',
+			'public' => true,
+			'hierarchical' => true,
+			'show_in_rest' => true,
+			)
+		);
 		register_taxonomy(
-			'waveoutputcat',
+			'waveoutputcatwat',
 			'product',
 			array(
-				'label' => '波長出力カテゴリ',
+				'label' => '（テスト）波長出力カテゴリ(W)',
 				'public' => true,
 				'hierarchical' => true,
 				'show_in_rest' => true,
-				)
-			);
+			)
+		);
+	
 	
 }
 add_action('init', 'new_post_product');
@@ -439,17 +480,6 @@ function get_the_terms_orderby_termorder($taxonomy){
 
 	return $array;
 }
-
-//波長配下の絞り込み
-// function wavesearch(){
-// 	if(isset($_GET["nanowave"])) {
-// 	// セレクトボックスで選択された値を受け取る
-// 	$wave = $_GET["nanowave"]."&".$_GET["mwat"]."&".$_GET["wat"];
-
-// 	// 受け取った値を画面に出力
-// 	return $wave;
-// 	}
-// }
 
 function fwsearch(){
 	$input_words = $_GET['s'];//検索文字

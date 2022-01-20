@@ -7,9 +7,9 @@ $wavelength = $_GET['cat03'] ? $_GET['cat03'] : '';
 $s = $_GET['s'] ? $_GET['s'] : '';
 $w = $_GET['w'] ? $_GET['w'] : '';
 $output = $_GET['output'] ? $_GET['output'] : '';
-$nanowave = $_GET['nanowave'] ? $_GET['nanowave'] : array();
-$mwat = $_GET['mwat'] ? $_GET['mwat'] : array();
-$wat = $_GET['wat'] ? $_GET['wat'] : array();
+$nanowave = $_GET['nanowave'] ? $_GET['nanowave'] : '';
+$mwat = $_GET['mwat'] ? $_GET['mwat'] : '';
+$wat = $_GET['wat'] ? $_GET['wat'] : '';
 $mode = $_GET['mode'] ? $_GET['mode'] : array();
 $source = $_GET['source'] ? $_GET['source'] : array();
 if($search_type == 1){
@@ -191,71 +191,80 @@ if($search_type == 1){
         $args02 = '';
     }
 
-    if(count($mode)){
+    if(isset($mode)){
         $args03 = array(
-            'key'     => 'ff_oscillationform2',
-            'value'   => $mode,
-            'compare' => 'IN',
+            'taxonomy' => 'oscillationcat',
+            'field' => 'name',
+            'terms' => $mode,
         );
     }else {
         $args03 = '';
     }
 
-    if(count($source)){
+    if(isset($source)){
         $args04 = array(
-            'key'     => 'ff_lightsourcetype2',
-            'value'   => $source,
-            'compare' => 'IN',
+            'taxonomy' => 'lightsourcecat',
+            'field' => 'name',
+            'terms' => $source,
         );
     }else {
         $args04 = '';
     }
 
-    if(count($nanowave)){
+    if(isset($nanowave)){
         $args05 = array(
-            'key'     => 'nm',
-            'value'   => $nanowave,
-            'compare' => 'IN',
+            'taxonomy' => 'wavelengthcat',
+            'field' => 'name',
+            'terms' => array($nanowave),
         );
     }else {
         $args05 = '';
     }
 
-    if(count($mwat)){
+    if(isset($mwat)){
         $args06 = array(
-            'key'     => 'mw',
-            'value'   => $mwat,
-            'compare' => 'IN',
+            'taxonomy' => 'waveoutputcatmwat',
+            'field' => 'name',
+            'terms' => array($mwat),
         );
     }else {
         $args06 = '';
     }
 
-    if(count($wat)){
+    if(isset($wat)){
         $args07 = array(
-            'key'     => 'w',
-            'value'   => $wat,
-            'compare' => 'IN',
+            'taxonomy' => 'waveoutputcat',
+            'field' => 'name',
+            'terms' => array($wat),
         );
     }else {
         $args07 = '';
     }
-
     $args = array(
         'post_type' => 'product',
         'paged' => $paged,
         'posts_per_page' => 12,
-        'meta_query' => array(
+        'tax_query' => array(
             'relation' => 'AND',
-            $args01,
-            $args02,
-            $args03,
-            $args04,
-            $args05,
-            $args06,
-            $args07,
+//            $args01,
         ),
     );
+
+    // 各パラメータの中身があれば検索条件に追加
+    if(!empty($args02["terms"][0])) { $args["tax_query"][] = $args02; }
+    if(!empty($args03["terms"][0])) { $args["tax_query"][] = $args03; }
+    if(!empty($args04["terms"][0])) { $args["tax_query"][] = $args04; }
+    if(!empty($args05["terms"][0])) { $args["tax_query"][] = $args05; }
+    if(!empty($args06["terms"][0])) { $args["tax_query"][] = $args06; }
+    if(!empty($args07["terms"][0])) { $args["tax_query"][] = $args07; }
+    // if(!empty($args02)) { $args["tax_query"][] = $args02; }
+    // if(!empty($args03)) { $args["tax_query"][] = $args03; }
+    // if(!empty($args04)) { $args["tax_query"][] = $args04; }
+    // if(!empty($args05)) { $args["tax_query"][] = $args05; }
+    // if(!empty($args06)) { $args["tax_query"][] = $args06; }
+    //if(!empty($args07)) { $args["tax_query"][] = $args07; }
+
+
     $argsearch = array(
         'post_type' => 'product',
         'posts_per_page' => -1,
@@ -266,8 +275,14 @@ if($search_type == 1){
             $args03,
             $args04,
             $args05,
+            array(
+            'relation' => 'OR',
             $args06,
+            ),
+            array(
+            'relation' => 'OR',
             $args07,
+            ),
         ),
     );
 }else if($search_type == 4){
@@ -329,8 +344,12 @@ if($search_type == 1){
     <div id="main">
         <div class="content">
             <?php
-                $search_query = new WP_Query( $args );
-                if ( $search_query->have_posts() ) {
+            // echo "<pre>";
+            // var_dump($mode);
+            // echo "</pre>";
+
+            $search_query = new WP_Query( $args );
+            if ( $search_query->have_posts() ) {
             ?>
             <?php if($search_type == 3): ?>
             <div class="topBox flexB">
@@ -343,7 +362,7 @@ if($search_type == 1){
                             <?php endif; ?>
                             <?php if($mode): ?>
                             <li>発振形式：
-                                <?php foreach ($mode as $value) {
+                                <?php  foreach ($mode as $value) {
                                     echo '<span>'. $value .'</span>' ;
                                 } ?>
                             </li>
@@ -357,23 +376,23 @@ if($search_type == 1){
                             <?php endif; ?>
                             <?php if($nanowave): ?>
                             <li>波長：
-                                <?php foreach ($nanowave as $value) {
-                                    echo '<span>'. $value .'</span>' ;
-                                } ?>
+                                <?php
+                                    echo '<span>'. $nanowave .'</span>' ;
+                                ?>
                             </li>
                             <?php endif; ?>
                             <?php if($mwat): ?>
                             <li>出力（mW）：
-                                <?php foreach ($mwat as $value) {
-                                    echo '<span>'. $value .'</span>' ;
-                                } ?>
+                                <?php
+                                    echo '<span>'. $mwat .'</span>' ;
+                                ?>
                             </li>
                             <?php endif; ?>
                             <?php if($wat): ?>
                             <li>出力（W）：
-                                <?php foreach ($wat as $value) {
-                                    echo '<span>'. $value .'</span>' ;
-                                } ?>
+                                <?php
+                                    echo '<span>'. $wat .'</span>' ;
+                                ?>
                             </li>
                             <?php endif; ?>
                         </ul>
@@ -384,7 +403,7 @@ if($search_type == 1){
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <input type="text" name="s" class="inputText">
-                                <input type="submit" value="検索" class="inputButton">
+                                <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
                             </form>
                         </div>
                         <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="form01">
@@ -590,7 +609,7 @@ if($search_type == 1){
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <input type="text" name="s" class="inputText">
-                                <input type="submit" value="検索" class="inputButton">
+                                <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
                             </form>
                         </div>
                         <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="form01">
@@ -877,7 +896,7 @@ if($search_type == 1){
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <input type="text" name="s" class="inputText">
-                                <input type="submit" value="検索" class="inputButton">
+                                <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
                             </form>
                         </div>
                         <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="form01">

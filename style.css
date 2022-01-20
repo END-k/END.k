@@ -2673,9 +2673,9 @@ a[href^="tel:"] {
     width: auto;
     max-width: 62%;
   }
-  .comCaseList li .pho span {
-    padding-bottom: 54.04%;
-  }
+  /* .comCaseList li .pho span {
+    padding-bottom: 0;
+  } */
   .comCaseList li .pho img {
     width: 100%;
   }

@@ -160,7 +160,7 @@
                 <div class="inputBox">
                     <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
                         <input type="text" name="s" class="inputText">
-                        <input type="submit" value="検索" class="inputButton">
+                        <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
                     </form>
                 </div>
             </div>

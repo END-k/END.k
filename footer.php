@@ -6,7 +6,7 @@
                 <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
                     <div class="inputBox">
                         <input type="text" name="s" class="inputText">
-                        <input type="submit" value="検索" class="inputButton">
+                        <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
                     </div>
                 </form>
                 <p class="ttl">ご質問・資料請求などはこちらから</p>
@@ -418,5 +418,16 @@ function myCheck3(){
         document.getElementById("b2").setAttribute("disabled", true);
 
     }
+}
+function paramMod(obj) {
+    let inputText = $(obj).siblings()[0].value;
+    
+    // 検索文字にハイフンがあればハイフン削除
+    if(inputText.slice(-1) == "ー") {
+       inputText = inputText.slice(0, -1);
+    }
+
+    // inputに戻す
+    $(obj).siblings()[0].value = inputText;
 }
 </script>

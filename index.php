@@ -59,7 +59,7 @@
                 <div class="inputBox">
                     <form role="search" id="search_form" method="get" name="form1" action="<?php echo home_url( '/' ); ?>">
                         <input type="text" id="input-message" name="s" class="inputText" value="<?php fwsearch($input_words); ?>">
-                        <input type="submit" id="word_search" value="検索" class="inputButton">
+                        <input type="submit" id="word_search" value="検索" class="inputButton" onclick="paramMod(this)">
                     </form>
                 </div>
                 <form role="search" method="get" action="<?php echo home_url( '/' ); ?>" class="form01">

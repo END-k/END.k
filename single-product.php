@@ -343,7 +343,7 @@ get_header();
             <?php
                 $args = array(
                     'post_type' => 'product',
-                    'post__not_in' => array($post_id),
+                    'post__not_in'=> array(get_the_ID()),// post__not_inパラメータに現在のページのIDを代入。表示している製品と同じものをお勧めしない為。
                     'posts_per_page' => 3,
                     'tax_query' => array(
                         array(
