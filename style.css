@@ -3968,14 +3968,17 @@ a[href^="tel:"] {
     display: block;
   }
   .comItemList > li {
-    width: auto;
-    margin: 0 0 60px !important;
+    /* width: auto;
+    margin: 0 0 60px !important; */
+    width:90%;
+    margin: 0 auto 60px auto !important;
   }
   .comItemList > li:nth-child(3n-1) {
     margin: 0;
   }
   .comItemList > li:last-child {
-    margin-bottom: 0 !important;
+    width:90%;
+    margin: 0  auto !important;
   }
   .comItemList li .phoBox {
     margin-bottom: 0;
@@ -8684,4 +8687,14 @@ _:-ms-fullscreen,
 
 #b3{
   width:10.1rem;
+}
+
+@media all and (max-width: 896px) {
+  .sdwBox--toggle .comSelectUl > li {
+    width:100%;
+  }
+
+  .sdwBox--toggle .comSelectUl .enUlBox {
+    width: 100%;
+  }
 }

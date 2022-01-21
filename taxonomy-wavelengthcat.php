@@ -74,6 +74,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                                         <option value="1500nm〜">1500nm~</option>
                                         <option value="2000nm〜">2000nm~</option>
                                         <option value="多波長、チューナブル">多波長、チューナブル</option>
+                                        <option value="(現状報告用)波長不明">(現状報告用)波長不明</option>
                                     </select>
                                 </ul>
                                 <div class="cnt_area">波長は必ず指定してください</div>

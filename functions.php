@@ -297,17 +297,6 @@ function new_post_product(){
 			'show_in_rest' => true,
 			)
 		);
-		register_taxonomy(
-			'waveoutputcatwat',
-			'product',
-			array(
-				'label' => '（テスト）波長出力カテゴリ(W)',
-				'public' => true,
-				'hierarchical' => true,
-				'show_in_rest' => true,
-			)
-		);
-	
 	
 }
 add_action('init', 'new_post_product');
@@ -362,28 +351,11 @@ if (!$wp_query->is_search)
 
 if (!isset($wp_query->query_vars))
 	return $search;
-
-/**
- * サイト内検索の範囲に、カテゴリー名、タグ名、を含める
- */
-// 検索した文字列、文末が”ー”だったら、ー消す
-$input_words = $_GET['s'];//検索文字
-$string = mb_substr($input_words,-1);//ラスト１文字取得
-if($string === "ー"){
-	$input_words = mb_substr($_GET['s'], 0, -1);//$wordが「あいー」だった場合、文末１文字消されて「あい」に
-}
-//echo $input_words;
-//echo $string;
-
-//$_GET['s']が存在していれば
-// if(isset($_GET['s']) && $_GET['s'] != ''){
-//     echo '<strong>$_GET[\'s\']が送信されました。値は[ '.$_GET['s'].' ]です。'."</strong><br/>\n";
-    
-// }else{
-//     echo '<strong>$_GET[\'s\']はまだ送信されていません。'."</strong><br/>\n";
-// }
-
-// die;
+	$input_words = $_GET['s'];//検索文字
+	$string = mb_substr($input_words,-1);//ラスト１文字取得
+	if($string === "ー"){
+		$input_words = mb_substr($_GET['s'], 0, -1);//$wordが「あいー」だった場合、文末１文字消されて「あい」に
+	}
 //スペースでの検索を許可
 $search_words = explode(' ', isset($input_words) ? $input_words : '');
 if ( count($search_words) > 0 ) {

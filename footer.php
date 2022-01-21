@@ -317,6 +317,22 @@
             $('.comSubBox').hide();
         });
     });
+    if($(window).width() < 897){
+            $('.detailSlideBox .slide').slick({
+                dots: true,
+                arrows: false,
+                autoplay: true,
+                pauseOnHover: false,
+                pauseOnFocus: false,
+                speed: 1000,
+                autoplaySpeed: 4500,
+                slidesToScroll: 1,
+                centerMode: true,
+                centerPadding: 0,
+                variableWidth: true,
+            });
+        }
+
 </script>
 <?php }else if(is_page('detail')){ ?>
 <script>
@@ -353,38 +369,20 @@
 </body>
 </html>
 
-<!-- フリーワード検索、ラスト１文字"ー"の場合削除 -->
+<!-- 〜1/21追加分 -->
 <script>
-// ボタンのイベントを設定する
-//   $('#word_search').on('click', function() {
-//     $("form").submit(function() {
-//         const textbox = document.getElementById("input-message");
-//         let value = textbox.value;
-//         let last = value.slice(-1);
-//         const url = new URL(location);
-//         const test = url.toString();
-        
-//         // alert(last + "送信します。");
-//         // if(last !== "ー"){
-//             //let text = value;
-//         // }else{
-//             let text = value.substring(0, value.length - 1);
-//         // }
-//         alert(test + "送信します。");
-//     });
-//   });
+// フリーワード検索、ラスト１文字"ー"の場合削除
+function paramMod(obj) {
+    let inputText = $(obj).siblings()[0].value;
+    
+    // 検索文字にハイフンがあればハイフン削除
+    if(inputText.slice(-1) == "ー") {
+       inputText = inputText.slice(0, -1);
+    }
 
-//   $('#word_search').on('click', function() {
-//     $("form").submit(function() {
-//         const url = new URL(window.location.href);
-//         const params = url.searchParams;
-
-//         if( params.get('s') ) {
-//             params.set('s','taro');
-//             alert(params.get('s'));
-//         }
-//     });
-// });
+    // inputに戻す
+    $(obj).siblings()[0].value = inputText;
+}
 
 /* 余計なGET送信をdisabledでコントロールする。 */
 function myCheck1(){
@@ -418,16 +416,5 @@ function myCheck3(){
         document.getElementById("b2").setAttribute("disabled", true);
 
     }
-}
-function paramMod(obj) {
-    let inputText = $(obj).siblings()[0].value;
-    
-    // 検索文字にハイフンがあればハイフン削除
-    if(inputText.slice(-1) == "ー") {
-       inputText = inputText.slice(0, -1);
-    }
-
-    // inputに戻す
-    $(obj).siblings()[0].value = inputText;
 }
 </script>
