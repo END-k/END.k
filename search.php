@@ -357,41 +357,38 @@ if($search_type == 1){
                     <div class="hadBox flexB">
                         <p class="headLine04"> 検索条件</p>
                         <ul class="tag">
-                            <?php if($w): ?>
-                            <li>出力：<?php echo $w; ?></li>
-                            <?php endif; ?>
                             <?php if($mode): ?>
-                            <li>発振形式：
+                            <li style="border-color: #f20000;">
                                 <?php  foreach ($mode as $value) {
-                                    echo '<span>'. $value .'</span>' ;
+                                    echo '<p class="in">'.'発振形式：'. $value .'</p>' ;
                                 } ?>
                             </li>
                             <?php endif; ?>
                             <?php if($source): ?>
-                            <li>光源種類：
+                            <li style="border-color: #0fd000;">
                                 <?php foreach ($source as $value) {
-                                    echo '<span>'. $value .'</span>' ;
+                                    echo '<p class="in">'.'光源種類：'. $value .'</p>' ;
                                 } ?>
                             </li>
                             <?php endif; ?>
                             <?php if($nanowave): ?>
-                            <li>波長：
+                            <li class="rainbow">
                                 <?php
-                                    echo '<span>'. $nanowave .'</span>' ;
+                                    echo '<p class="in">'.'波長：'. $nanowave .'</p>' ;
                                 ?>
                             </li>
                             <?php endif; ?>
                             <?php if($mwat): ?>
-                            <li>出力（mW）：
+                            <li>
                                 <?php
-                                    echo '<span>'. $mwat .'</span>' ;
+                                    echo '<p class="in">'.'出力（mW）：'. $mwat .'</p>' ;
                                 ?>
                             </li>
                             <?php endif; ?>
                             <?php if($wat): ?>
-                            <li>出力（W）：
+                            <li>
                                 <?php
-                                    echo '<span>'. $wat .'</span>' ;
+                                    echo '<p class="in">'.'出力（W）：'. $wat .'</p>' ;
                                 ?>
                             </li>
                             <?php endif; ?>
@@ -399,7 +396,7 @@ if($search_type == 1){
                     </div>
                     <div class="rBox sdwBox--toggle">
                         <p class="headLine04">検索条件を変更する</p>
-                        <p class="text01">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
+                        <p class="text01 introtext">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <input type="text" name="s" class="inputText">
@@ -548,7 +545,7 @@ if($search_type == 1){
                                                         <li><a href="#" data-id01="289">1000nm~</a></li>
                                                         <li><a href="#" data-id01="593">1500nm~</a></li>
                                                         <li><a href="#" data-id01="594">2000nm~</a></li>
-                                                        <li><a href="#" data-id01="290">多波長、チューナブル</a></li>
+                                                        <li><a href="#" data-id01="290">多波長・広帯域<br>・チューナブル</a></li>
                                                     </ul>
                                                 </li>
                                                 <li><p><span>良く探されている波長から探す</span></p>
@@ -583,9 +580,9 @@ if($search_type == 1){
                         <p class="headLine04"> 検索条件</p>
                         <ul class="tag">
                             <!-- 製品カテゴリ検索 -->
-                            <?php if($product){ $productitem = get_term_by('id',$product,'productcat'); ?><li style="border-color: #0fd000;"><?php echo $productitem->name; ?></li><?php } ?>
+                            <?php if($product){ $productitem = get_term_by('id',$product,'productcat'); ?><li style="border-color: #0fd000; padding:1px 10px;"><?php echo $productitem->name; ?></li><?php } ?>
                             <!-- 投稿者検索 -->
-                            <?php if($distributor){ ?><li style="border-color: #0fd000;"><?php $title = get_post($distributor)->post_title; echo $title; ?></li><?php } ?>
+                            <?php if($distributor){ ?><li style="border-color: #0fd000; padding:1px 10px;"><?php $title = get_post($distributor)->post_title; echo $title; ?></li><?php } ?>
                             <!-- 波長検索 -->
                             <?php if($wavelength){ ?>
                             <?php if($wavelength == 'mul01'){ ?>
@@ -599,13 +596,13 @@ if($search_type == 1){
                             <?php } } ?>
                             <!-- フリーワード検索 -->
                             <?php if($s){ ?>
-                                <li style="border-color: #0fd000;"><?php echo $s; ?></li>
+                                <li style="border-color: #0fd000; padding:1px 10px;"><?php echo $s; ?></li>
                             <?php } ?>
                         </ul>
                     </div>
                     <div class="rBox sdwBox--toggle">
                         <p class="headLine04">検索条件を変更する</p>
-                        <p class="text01">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
+                        <p class="text01 introtext">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <input type="text" name="s" class="inputText">
@@ -756,7 +753,7 @@ if($search_type == 1){
                                                         <li><a href="#" data-id01="289">1000nm~</a></li>
                                                         <li><a href="#" data-id01="593">1500nm~</a></li>
                                                         <li><a href="#" data-id01="594">2000nm~</a></li>
-                                                        <li><a href="#" data-id01="290">多波長、チューナブル</a></li>
+                                                        <li><a href="#" data-id01="290">多波長・広帯域<br>・チューナブル</a></li>
                                                     </ul>
                                                 </li>
                                                 <li><p><span>良く探されている波長から探す</span></p>
@@ -830,24 +827,59 @@ if($search_type == 1){
                             <?php
                                 $taxonomy = 'productcat';
                                 $terms01 = get_the_terms($post->ID,$taxonomy);
+                                //$terms01 = get_ordered_terms($post->ID,'name', 'ASC', $taxonomy);
                                 $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                                 $ancestor_maxnum = 1;
                                 $ff_wavelengthlabel = get_field('ff_wavelengthlabel');
                             ?>
                             <ul class="tag">
-                                <?php if($terms01): ?>
-                                <?php foreach($terms01 as $term01){ ?>
+                                <?php if($terms01)://カテゴリーのタグ ?>
                                 <?php
+                                //親カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
                                     $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                    if($dep < $ancestor_maxnum):
                                 ?>
-                                <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
-                                <?php } ?>
-                                <?php endif; ?>
-                                <?php if($terms02): ?>
+                                <li style="border-color: #0b7ef1;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                //子カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                    // 親でなく、自分より上の階層が１個＝子カテゴリのみ抽出
+                                    if($term01->parent != 0 && $dep === 1):
+                                ?>
+                                <li style="border-color: #0fd000;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                //孫カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                    // 親でなく、自分より上の階層が２個＝孫カテゴリのみ抽出
+                                    if($term01->parent != 0 && $dep === 2):
+                                ?>
+                                <li style="border-color: #f20000;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+                               <?php endif; ?>
+                                <?php if($terms02)://波長のタグ ?>
                                 <?php if($ff_wavelengthlabel): ?>
                                 <li class="rainbow"><p class="in"><?php echo $ff_wavelengthlabel; ?></p></li>
                                 <?php elseif (is_object_in_term($post->ID, 'wavelengthcat','multi-wavelength')): ?>
-                                <li class="rainbow"><p class="in">多波長、チューナブル</p></li>
+                                <li class="rainbow"><p class="in">多波長・広帯域・チューナブル</p></li>
                                 <?php foreach($terms02 as $term02){ ?>
                                 <?php if($term02->parent != 0){ ?><li class="rainbow"><p class="in"><?php echo $term02->name; ?></p></li><?php } ?>
                                 <?php } ?>
@@ -870,9 +902,9 @@ if($search_type == 1){
                         <p class="headLine04"> 検索条件</p>
                         <ul class="tag">
                             <!-- 製品カテゴリ検索 -->
-                            <?php if($product){ $productitem = get_term_by('id',$product,'productcat'); ?><li style="border-color: #0fd000;"><?php echo $productitem->name; ?></li><?php } ?>
+                            <?php if($product){ $productitem = get_term_by('id',$product,'productcat'); ?><li style="border-color: #0fd000; padding:1px 10px;"><?php echo $productitem->name; ?></li><?php } ?>
                             <!-- 投稿者検索 -->
-                            <?php if($distributor){ ?><li style="border-color: #0fd000;"><?php $title = get_post($distributor)->post_title; echo $title; ?></li><?php } ?>
+                            <?php if($distributor){ ?><li style="border-color: #0fd000; padding:1px 10px;"><?php $title = get_post($distributor)->post_title; echo $title; ?></li><?php } ?>
                             <!-- 波長検索 -->
                             <?php if($wavelength){ ?>
                             <?php if($wavelength == 'mul01'){ ?>
@@ -886,13 +918,13 @@ if($search_type == 1){
                             <?php } } ?>
                             <!-- フリーワード検索 -->
                             <?php if($s){ ?>
-                                <li style="border-color: #0fd000;"><?php echo $s; ?></li>
+                                <li style="border-color: #0fd000; padding:1px 10px;"><?php echo $s; ?></li>
                             <?php } ?>
                         </ul>
                     </div>
                     <div class="rBox sdwBox--toggle">
                         <p class="headLine04">検索条件を変更する</p>
-                        <p class="text01">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
+                        <p class="text01 introtext">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                         <div class="inputBox">
                             <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                                 <input type="text" name="s" class="inputText">
@@ -1052,7 +1084,7 @@ if($search_type == 1){
                                                     <li><a href="#" data-id01="289">1000nm~</a></li>
                                                     <li><a href="#" data-id01="593">1500nm~</a></li>
                                                     <li><a href="#" data-id01="594">2000nm~</a></li>
-                                                    <li><a href="#" data-id01="290">多波長、チューナブル</a></li>
+                                                    <li><a href="#" data-id01="290">多波長・広帯域<br>・チューナブル</a></li>
                                                 </ul>
                                             </li>
                                             <li><p><span>良く探されている波長から探す</span></p>

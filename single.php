@@ -89,13 +89,47 @@ get_header();
                                 $ff_wavelengthlabel = get_field('ff_wavelengthlabel', $val->ID);
                             ?>
                             <ul class="tag">
-                                    <?php foreach($terms01 as $term01){ ?>
-                                    <?php
+                                <!-- タームの親子孫による色分け -->
+                                <?php
+                                    //親カテゴリ一斉表示
+                                    foreach($terms01 as $term01){
+                                        // カテゴリの親・子・孫取得
                                         $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                        if($dep < $ancestor_maxnum):
                                     ?>
-                                    <!-- タームの親子孫による色分け -->
-                                    <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
-                                    <?php } ?>
+                                    <li style="border-color: #0b7ef1;"><?php echo $term01->name; ?></li>
+                                    <?php
+                                    endif;
+                                    }
+                                    ?>
+
+                                    <?php
+                                    //子カテゴリ一斉表示
+                                    foreach($terms01 as $term01){
+                                        // カテゴリの親・子・孫取得
+                                        $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                        // 親でなく、自分より上の階層が１個＝子カテゴリのみ抽出
+                                        if($term01->parent != 0 && $dep === 1):
+                                    ?>
+                                    <li style="border-color: #0fd000;"><?php echo $term01->name; ?></li>
+                                    <?php
+                                    endif;
+                                    }
+                                    ?>
+
+                                    <?php
+                                    //孫カテゴリ一斉表示
+                                    foreach($terms01 as $term01){
+                                        // カテゴリの親・子・孫取得
+                                        $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                        // 親でなく、自分より上の階層が2個＝孫カテゴリのみ抽出
+                                        if($term01->parent != 0 && $dep === 2):
+                                    ?>
+                                    <li style="border-color: #f20000;"><?php echo $term01->name; ?></li>
+                                    <?php
+                                    endif;
+                                    }
+                                    ?>
                                 <?php
                                     $terms02 = get_ordered_terms($val->ID,'slug', 'ASC', 'wavelengthcat');//投稿ID「$val->ID」に属する波長カテゴリのスラッグ昇順
                                 ?>
@@ -120,10 +154,10 @@ get_header();
 		</div>
 	</div>
 </div>
-<div class="comSubBox">
+<!-- <div class="comSubBox">
 	<p>ご応募はこちらから</p>
 	<p class="comBtn"><a href="<?php bloginfo('url');?>/contact">お問い合わせ</a></p>
-</div>
+</div> -->
 <ul id="pagePath">
 	<li><a href="<?php bloginfo('url');?>">TOP</a>&gt;</li>
 	<li><a href="<?php bloginfo('url');?>/news">ニュース一覧</a>&gt;</li>

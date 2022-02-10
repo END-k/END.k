@@ -156,17 +156,17 @@
         <div class="selectInner">
             <div class="lBpx">
                 <p class="hTtl sp">製品検索</p>
-                <p>商品名・型番・メーカーまたはキーワードを入力（全角）</p>
+                <p class="text01">商品名・型番・メーカーまたはキーワードを入力（全角）</p>
                 <div class="inputBox">
                     <form role="search" method="get" action="<?php echo home_url( '/' ); ?>">
-                        <input type="text" name="s" class="inputText">
-                        <input type="submit" value="検索" class="inputButton" onclick="paramMod(this)">
+                        <input type="text" id="input-message" name="s" class="inputText" value="<?php fwsearch($input_words); ?>">
+                        <input type="submit" id="word_search" value="検索" class="inputButton" onclick="paramMod(this)">
                     </form>
                 </div>
             </div>
             <form role="search" method="get" action="<?php echo home_url( '/' ); ?>" class="form01">
                 <input type="hidden" name="search_type" value="1">
-                <input type="hidden" name="s" value="">
+                <input type="hidden" name="s" value="<?php echo fwsearch($input_words); ?>">
                 <div class="centerBox">
                     <ul class="comSelectUl flex">
                         <li>
@@ -294,7 +294,7 @@
                                                 <li><a href="#" data-id01="289">1000nm~</a></li>
                                                 <li><a href="#" data-id01="593">1500nm~</a></li>
                                                 <li><a href="#" data-id01="594">2000nm~</a></li>
-                                                <li><a href="#" data-id01="290">多波長チューナブル~</a></li>
+                                                <li><a href="#" data-id01="290">多波長・広帯域・チューナブル</a></li>
                                             </ul>
                                         </li>
                                         <li><p><span>良く探されている波長から探す</span></p>

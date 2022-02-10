@@ -207,7 +207,7 @@
                                                 <li><a href="#" data-id01="289">1000nm~</a></li>
                                                 <li><a href="#" data-id01="593">1500nm~</a></li>
                                                 <li><a href="#" data-id01="594">2000nm~</a></li>
-                                                <li><a href="#" data-id01="290">多波長、チューナブル</a></li>
+                                                <li><a href="#" data-id01="290">多波長・広帯域<br>・チューナブル</a></li>
                                             </ul>
                                         </li>
                                         <li><p><span>良く探されている波長から探す</span></p>
@@ -350,7 +350,7 @@
                     <li>
                         <ul>
                             <li><a href="<?php bloginfo('url');?>/wavelengthcat/2000nm"><span>2000<small>nm~</small></span></a></li>
-                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/multi-wavelength"><span class="txt">多波長<br>チューナブル</span></a></li>
+                            <li><a href="<?php bloginfo('url');?>/wavelengthcat/multi-wavelength"><span class="txt">多波長・広帯域<br>・チューナブル</span></a></li>
                         </ul>
                     </li>
                 </ul>

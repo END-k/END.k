@@ -51,25 +51,59 @@ get_header();
                         <?php
                                 $taxonomy = 'productcat';
                                 $terms01 = get_the_terms($post->ID,$taxonomy);
-
+                                //$terms01 = get_ordered_terms($post->ID,'name', 'ASC', $taxonomy);
                                 $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                                 $ancestor_maxnum = 1;
                                 $ff_wavelengthlabel = get_field('ff_wavelengthlabel');
                             ?>
                             <ul class="tag">
-                                <?php if($terms01): ?>
-                                <?php foreach($terms01 as $term01){ ?>
                                 <?php
-                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                if($terms01)://カテゴリーのタグ
+                                //親カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                    if($dep < $ancestor_maxnum):
                                 ?>
-                                <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
-                                <?php } ?>
+                                <li style="border-color: #0b7ef1;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                //子カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                    // 親でなく、自分より上の階層が１個＝子カテゴリのみ抽出
+                                    if($term01->parent != 0 && $dep === 1):
+                                ?>
+                                <li style="border-color: #0fd000;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                //孫カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                    // 親でなく、自分より上の階層が２個＝ 孫カテゴリのみ抽出
+                                    if($term01->parent != 0 && $dep === 2):
+                                ?>
+                                <li style="border-color: #f20000;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
                                 <?php endif; ?>
-                                <?php if($terms02): ?>
+                                <?php if($terms02)://波長のタグ ?>
                                 <?php if($ff_wavelengthlabel): ?>
                                 <li class="rainbow"><span><?php echo $ff_wavelengthlabel; ?></span></li>
                                 <?php elseif (is_object_in_term($post->ID, 'wavelengthcat','multi-wavelength')): ?>
-                                <li class="rainbow"><span>多波長チューナブル</span></li>
+                                <li class="rainbow"><span>多波長・広帯域・チューナブル</span></li>
                                 <?php foreach($terms02 as $term02){ ?>
                                 <?php if($term02->parent != 0){ ?><li class="rainbow"><span><?php echo $term02->name; ?></span></li><?php } ?>
                                 <?php } ?>
@@ -302,19 +336,55 @@ get_header();
 
                             <?php
                                 $taxonomy = 'productcat';
-                                $terms01 = get_the_terms($val->ID,$taxonomy);
+                                $terms01 = get_the_terms($post->ID,$taxonomy);
+                                //$terms01 = get_ordered_terms($post->ID,'name', 'ASC', $taxonomy);
                                 $ancestor_maxnum = 1;
                                 $ff_wavelengthlabel = get_field('ff_wavelengthlabel', $val->ID);
                             ?>
                             <ul class="tag">
-                                    <?php foreach($terms01 as $term01){ ?>
-                                    <?php
-                                        $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
-                                    ?>
-                                    <!-- タームの親子孫による色分け -->
-                                    <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
-                                    <?php } ?>
                                 <?php
+                                //親カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                    if($dep < $ancestor_maxnum):
+                                ?>
+                                <li style="border-color: #0b7ef1;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                //子カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                    // 親でなく、自分より上の階層が１個＝子カテゴリのみ抽出
+                                    if($term01->parent != 0 && $dep === 1):
+                                ?>
+                                <li style="border-color: #0fd000;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                //孫カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                    // 親でなく、自分より上の階層が2個＝孫カテゴリのみ抽出
+                                    if($term01->parent != 0 && $dep === 2):
+                                ?>
+                                <li style="border-color: #f20000;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                    //波長のタグ
                                     $terms02 = get_ordered_terms($val->ID,'slug', 'ASC', 'wavelengthcat');//投稿ID「$val->ID」に属する波長カテゴリのスラッグ昇順
                                 ?>
                                 <?php if($terms02): ?>
@@ -386,20 +456,56 @@ get_header();
                             <?php
                                 $taxonomy = 'productcat';
                                 $terms01 = get_the_terms($post->ID,$taxonomy);
+                                //$terms01 = get_ordered_terms($post->ID,'name', 'ASC', $taxonomy);
                                 $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                                 $ancestor_maxnum = 1;
                                 $ff_wavelengthlabel = get_field('ff_wavelengthlabel');
                             ?>
                             <ul class="tag">
-                                <?php if($terms01): ?>
-                                <?php foreach($terms01 as $term01){ ?>
                                 <?php
-                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                    // カテゴリーのタグ
+                                    if($terms01):
+                                    //親カテゴリ一斉表示
+                                    foreach($terms01 as $term01){
+                                        // カテゴリの親・子・孫取得
+                                        $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                        if($dep < $ancestor_maxnum):
+                                    ?>
+                                    <li style="border-color: #0b7ef1;"><?php echo $term01->name; ?></li>
+                                    <?php
+                                    endif;
+                                    }
+                                    ?>
+
+                                    <?php
+                                    //子カテゴリ一斉表示
+                                    foreach($terms01 as $term01){
+                                        // カテゴリの親・子・孫取得
+                                        $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                        // 親でなく、自分より上の階層が１個＝子カテゴリのみ抽出
+                                        if($term01->parent != 0 && $dep === 1):
+                                    ?>
+                                    <li style="border-color: #0fd000;"><?php echo $term01->name; ?></li>
+                                    <?php
+                                    endif;
+                                    }
+                                    ?>
+
+                                    <?php
+                                    //孫カテゴリ一斉表示
+                                    foreach($terms01 as $term01){
+                                        // カテゴリの親・子・孫取得
+                                        $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                        // 親でなく、自分より上の階層が2個＝孫カテゴリのみ抽出
+                                        if($term01->parent != 0 && $dep === 2):
+                                    ?>
+                                    <li style="border-color: #f20000;"><?php echo $term01->name; ?></li>
+                                    <?php
+                                    endif;
+                                    }
                                 ?>
-                                <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
-                                <?php } ?>
                                 <?php endif; ?>
-                                <?php if($terms02): ?>
+                                <?php if($terms02)://波長のタグ ?>
                                 <?php if($ff_wavelengthlabel): ?>
                                 <li class="rainbow"><span><?php echo $ff_wavelengthlabel; ?></span></li>
                                 <?php else: ?>

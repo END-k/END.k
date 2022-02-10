@@ -64,7 +64,7 @@
                     if($terms02){ foreach($terms02 as $term02) { $secondId = $term02->term_id; $secendshowimg = get_field('ff_showimg', 'productcat_'.$secondId); ?>
                     <li>
                         <p class="ttlLink"><a href="<?php echo get_term_link( $secondId );?>"><span><?php echo $term02->name;?></span></a></p>
-                        <div class="pho"><img src="<?php echo $secendshowimg; ?>" alt="<?php echo $term02->name;?>"></div>
+                        <div class="pho"><img class="pho_img" src="<?php echo $secendshowimg; ?>" alt="<?php echo $term02->name;?>"></div>
                         <?php
                             $args03 = array(
                                 'taxonomy' => 'productcat',
