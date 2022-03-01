@@ -97,66 +97,111 @@
                 <div class="comBtn"><a href="<?php bloginfo('url');?>/contact">お問い合わせ</a></div>
             </div>
 
-            <?php if( have_rows('ff_related') ): ?>
+            <?php
+                $ff_related_content = get_field('ff_related_content');//関連製品データの出所はここ。ここの投稿ID取得する必要がある。
+                if( $ff_related_content ):
+            ?>
             <h3 class="headLine06">関連製品</h3>
             <p class="comTxt">併せて使うと便利な製品をご紹介します</p>
             <div class="detailSlideBox">
                 <ul class="comItemList slide flex">
-                    <?php
-                        while( have_rows('ff_related') ): the_row();
-                        $ff_related_content = get_sub_field('ff_related_content');
-                    ?>
-                    <?php
-                        $args = array(
-                            'post_type' => 'product',
-                            'post__in' => array($ff_related_content),
-                            'posts_per_page' => 1,
-                        );
-                        $related_query = new WP_Query($args);
-                    ?>
-                    <?php while ( $related_query->have_posts() ) : $related_query->the_post(); ?>
+                <?php
+                    foreach( $ff_related_content as $val ):
+                    //投稿ID取得する為、foreachの内側で宣言
+                    $ff_excerpt = get_field('ff_excerpt',$val->ID);//カスタムフィールド「ff_related_content」と関連投稿ID「$val->ID」から得た情報をもとに抜粋情報ゲット
+                    $featured_posts = get_field('ff_distributor',$val->ID);//カスタムフィールド「ff_related_content」と関連投稿ID「$val->ID」から得た情報をもとにメーカー情報ゲット
+                ?>
                     <li>
-                        <a href="<?php the_permalink(); ?>">
-                        <div class="phoBox"><div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ the_post_thumbnail_url('full'); }?>);"></div></div>
-                        <h3 class="headLine04">
-                        <?php
-                            //整形したい文字列
-                            $text = get_the_title();
+                        <a href="<?php echo get_permalink( $val->ID ); ?>">
+                            <div class="phoBox">
+                                <div class="pho" style="background-image: url(<?php if(has_post_thumbnail()){ echo get_the_post_thumbnail_url( $val->ID, 'full' ); }?>);"></div>
+                            </div>
+                            <h3 class="headLine04">
+                            <?php
+                            $text = $val->post_title;
                             //文字数の上限
-                            $limit = 33;
+                            $limit = 66;
                             //分岐
                             if(mb_strlen($text) > $limit) {
                             $title = mb_substr($text,0,$limit);
                             echo $title . '･･･' ;
                             } else {
-                            the_title();
+                            echo $text;
                             }
-                        ?>
-                        </h3>
-                        <?php
-                        $featured_posts = get_field('ff_distributor');
-                        if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>
-                        <p class="ttl"><?php the_title(); ?></p>
-                        <?php endforeach;wp_reset_postdata(); endif; ?>
-                        <p class="txt"><?php get_excerpt(54); ?></p>
-                        <?php $terms01 = get_the_terms($post->ID,'productcat'); if($terms01){ ?>
-                        <ul class="tag">
-                            <?php foreach($terms01 as $term01){ ?>
-                            <?php if($term01->parent == 0){ $biggestId = $term01->term_id; ?><li><?php echo $term01->name; ?></li><?php } ?>
-                            <?php } ?>
-                            <?php foreach($terms01 as $term01){ ?>
-                            <?php if($term01->parent == $biggestId){ $secondId = $term01->term_id; ?><li style="border-color: #0fd000;"><?php echo $term01->name; ?></li><?php } ?>
-                            <?php } ?>
-                            <?php foreach($terms01 as $term01){ ?>
-                            <?php if($term01->parent == $secondId){ ?><li style="border-color: #0fd000;"><?php echo $term01->name; ?></li><?php } ?>
-                            <?php } ?>
-                        </ul>
-                        <?php } ?>
+                            ?>
+                            </h3>
+                            <?php
+                            if( $featured_posts ): foreach( $featured_posts as $post ): setup_postdata($post); ?>
+                            <p class="ttl"><?php the_title(); ?></p>
+                            <?php endforeach;wp_reset_postdata(); endif; ?>
+
+                            <div class="txt"><?php echo $ff_excerpt; ?></div>
+
+                            <?php
+                                $taxonomy = 'productcat';
+                                $terms01 = get_the_terms($val->ID,$taxonomy);
+                                $ancestor_maxnum = 1;
+                                $ff_wavelengthlabel = get_field('ff_wavelengthlabel', $val->ID);
+                            ?>
+                            <ul class="tag">
+                                <?php
+                                //親カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                    if($dep < $ancestor_maxnum):
+                                ?>
+                                <li style="border-color: #0b7ef1;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                //子カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                    // 親でなく、自分より上の階層が１個＝子カテゴリのみ抽出
+                                    if($term01->parent != 0 && $dep === 1):
+                                ?>
+                                <li style="border-color: #0fd000;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                //孫カテゴリ一斉表示
+                                foreach($terms01 as $term01){
+                                    // カテゴリの親・子・孫取得
+                                    $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                    // 親でなく、自分より上の階層が2個＝孫カテゴリのみ抽出
+                                    if($term01->parent != 0 && $dep === 2):
+                                ?>
+                                <li style="border-color: #f20000;"><?php echo $term01->name; ?></li>
+                                <?php
+                                endif;
+                                }
+                                ?>
+
+                                <?php
+                                    $terms02 = get_ordered_terms($val->ID,'slug', 'ASC', 'wavelengthcat');//投稿ID「$val->ID」に属する波長カテゴリのスラッグ昇順
+                                ?>
+                                <?php if($terms02): ?>
+                                <?php if($ff_wavelengthlabel): ?>
+                                <li class="rainbow"><span><?php echo $ff_wavelengthlabel; ?></span></li>
+                                <?php else: ?>
+                                <?php foreach($terms02 as $term02){ ?>
+                                <?php if($term02->parent != 0){ ?><li class="rainbow"><span><?php echo $term02->name; ?></span></li><?php } ?>
+                                <?php } ?>
+                                <?php endif; ?>
+                                <?php endif; ?>
+                            </ul>
                         </a>
                     </li>
-                    <?php endwhile; ?>
                     <?php wp_reset_postdata(); ?>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             <?php endif; ?>

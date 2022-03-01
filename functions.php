@@ -297,17 +297,6 @@ function new_post_product(){
 			'show_in_rest' => true,
 			)
 		);
-		register_taxonomy(
-			'waveoutputcatwat',
-			'product',
-			array(
-				'label' => '（テスト）波長出力カテゴリ(W)',
-				'public' => true,
-				'hierarchical' => true,
-				'show_in_rest' => true,
-			)
-		);
-	
 	
 }
 add_action('init', 'new_post_product');
@@ -362,28 +351,11 @@ if (!$wp_query->is_search)
 
 if (!isset($wp_query->query_vars))
 	return $search;
-
-/**
- * サイト内検索の範囲に、カテゴリー名、タグ名、を含める
- */
-// 検索した文字列、文末が”ー”だったら、ー消す
-$input_words = $_GET['s'];//検索文字
-$string = mb_substr($input_words,-1);//ラスト１文字取得
-if($string === "ー"){
-	$input_words = mb_substr($_GET['s'], 0, -1);//$wordが「あいー」だった場合、文末１文字消されて「あい」に
-}
-//echo $input_words;
-//echo $string;
-
-//$_GET['s']が存在していれば
-// if(isset($_GET['s']) && $_GET['s'] != ''){
-//     echo '<strong>$_GET[\'s\']が送信されました。値は[ '.$_GET['s'].' ]です。'."</strong><br/>\n";
-    
-// }else{
-//     echo '<strong>$_GET[\'s\']はまだ送信されていません。'."</strong><br/>\n";
-// }
-
-// die;
+	$input_words = $_GET['s'];//検索文字
+	$string = mb_substr($input_words,-1);//ラスト１文字取得
+	if($string === "ー"){
+		$input_words = mb_substr($_GET['s'], 0, -1);//$wordが「あいー」だった場合、文末１文字消されて「あい」に
+	}
 //スペースでの検索を許可
 $search_words = explode(' ', isset($input_words) ? $input_words : '');
 if ( count($search_words) > 0 ) {
@@ -490,54 +462,3 @@ function fwsearch(){
 	// 受け取った値を画面に出力
 	return $input_words;
 }
-
-// mWとWのチェックボックスをAND検索からOR検索に変更
-// function change_pre_get_posts($query) {
-
-//     // 管理画面,メインクエリ以外に干渉しないため
-//     if ( is_admin() || ! $query->is_main_query() ){
-//         return;
-//     }
-
-//     // カスタム投稿タイプが製品ページ「product」だけ、以下のクエリ変更を行う。
-//     if($query->is_post_type_archive( 'product' )) {
-
-// 		// OR検索に
-//         $meta_query = [
-//             'relation' => 'LIKE',
-//         ];
-
-//         // 製品の出力（mW）
-//         if(!empty($_GET['mwat[]']) and is_array($_GET['mwat[]'])) {
-//             $sub_meta_query = [
-//                 'relation' => 'LIKE',
-//             ];
-//             foreach ($_GET['mwat[]'] as $index => $m_wat) {
-//                 $sub_meta_query[] = [
-//                     'key'     => 'mw',
-//                     'value'   => $m_wat,
-//                     'compare' => '='
-//                 ];
-//             }
-//             $meta_query[] = $sub_meta_query;
-//         }
-
-//         // 製品の出力（W）
-//         if(!empty($_GET['wat[]']) and is_array($_GET['wat[]'])) {
-//             $sub_meta_query = [
-//                 'relation' => 'LIKE',
-//             ];
-//             foreach ($_GET['wat[]'] as $index => $wat_status) {
-//                 $sub_meta_query[] = [
-//                     'key'     => 'w',
-//                     'value'   => $wat_status,
-//                     'compare' => '='
-//                 ];
-//             }
-//             $meta_query[] = $sub_meta_query;
-//         }
-        
-//         $query->set('meta_query', $meta_query);
-//     }
-// }
-// add_action( 'pre_get_posts', 'change_pre_get_posts' );

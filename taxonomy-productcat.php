@@ -107,17 +107,54 @@ $product_query = new WP_Query($args)
                         <?php
                             $taxonomy = 'productcat';
                             $terms01 = get_the_terms($post->ID,$taxonomy);
+                            //$terms01 = get_ordered_terms($post->ID,'name', 'ASC', $taxonomy);
                             $ancestor_maxnum = 1;
                             $ff_wavelengthlabel = get_field('ff_wavelengthlabel');
                         ?>
                         <ul class="tag">
-                            <?php foreach($terms01 as $term01){ ?>
                             <?php
-                                $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                            //親カテゴリ一斉表示
+                            foreach($terms01 as $term01){
+                                // カテゴリの親・子・孫取得
+                                $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                if($dep < $ancestor_maxnum):
                             ?>
-                            <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
-                            <?php } ?>
+                            <li style="border-color: #0b7ef1;"><?php echo $term01->name; ?></li>
                             <?php
+                            endif;
+                            }
+                            ?>
+
+                            <?php
+                            //子カテゴリ一斉表示
+                            foreach($terms01 as $term01){
+                                // カテゴリの親・子・孫取得
+                                $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                // 親でなく、自分より上の階層が１個＝子カテゴリのみ抽出
+                                if($term01->parent != 0 && $dep === 1):
+                            ?>
+                            <li style="border-color: #0fd000;"><?php echo $term01->name; ?></li>
+                            <?php
+                            endif;
+                            }
+                            ?>
+
+                            <?php
+                            //孫カテゴリ一斉表示
+                            foreach($terms01 as $term01){
+                                // カテゴリの親・子・孫取得
+                                $dep = count(get_ancestors($term01->term_id, $taxonomy));//get_ancestors=配列階層の下から上へ返すやつ
+                                // 親でなく、自分より上の階層が2個＝孫カテゴリのみ抽出
+                                if($term01->parent != 0 && $dep === 2):
+                            ?>
+                            <li style="border-color: #f20000;"><?php echo $term01->name; ?></li>
+                            <?php
+                            endif;
+                            }
+                            ?>
+
+                            <?php
+                                //波長のタグ
                                 $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                             ?>
                             <?php if($terms02): ?>

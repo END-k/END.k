@@ -36,9 +36,9 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         <?php
                         foreach($terms as $term) {
                             $array=explode('n', $term->name);
-                            if($array[0] === "多波長、チューナブル"){
+                            if($array[0] === "多波長・広帯域・チューナブル"){
                         ?>
-                            <li><a href="<?php echo home_url( '/' ); ?>?s=&search_type=2&cat03=<?php echo $term->term_id; ?>"><span><?php $array=explode('n', $term->name); echo $array[0]; ?></span></a></li>
+                            <li><a href="<?php echo home_url( '/' ); ?>?s=&search_type=2&cat03=<?php echo $term->term_id; ?>"><span><small><?php $array=explode('n', $term->name); echo $array[0]; ?></small></span></a></li>
                             <?php } else{ ?>
                             <li><a href="<?php echo home_url( '/' ); ?>?s=&search_type=2&cat03=<?php echo $term->term_id; ?>"><span><?php $array=explode('n', $term->name); echo $array[0]; ?><small>nm</small></span></a></li>
                         <?php } } ?>
@@ -73,7 +73,8 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                                         <option value="1000nm〜">1000nm~</option>
                                         <option value="1500nm〜">1500nm~</option>
                                         <option value="2000nm〜">2000nm~</option>
-                                        <option value="多波長、チューナブル">多波長、チューナブル</option>
+                                        <option value="多波長・広帯域・チューナブル">多波長・広帯域・チューナブル</option>
+                                        <option value="(現状報告用)波長不明">(現状報告用)波長不明</option>
                                     </select>
                                 </ul>
                                 <div class="cnt_area">波長は必ず指定してください</div>
@@ -81,37 +82,37 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             <li>
                                 <p class="ttl"><span>■</span>出力を指定する (入力なしの場合は全て表示されます)</p>
                                 <div><input type="radio" name="outputs" value="0" onclick="myCheck1();" checked="checked">出力を指定しない</div>
-                                <div><input type="radio" name="outputs" value="1" onclick="myCheck2();">出力（mw）を指定する
+                                <div><input type="radio" name="outputs" value="1" onclick="myCheck2();">出力（mW）を指定する
                                 <!-- <ul class="rdoUl"> -->
-                                        mw : <select name="mwat" id="b2" disabled>
+                                        mW : <select name="mwat" id="b2" disabled>
                                             <!-- <option name="nanowave[]" value="">選択してください</option> -->
-                                            <option value="1mw">1mw</option>
-                                            <option value="2mw">2mw</option>
-                                            <option value="3mw">3mw</option>
-                                            <option value="4mw">4mw</option>
-                                            <option value="5mw">5mw</option>
-                                            <option value="6mw">6mw</option>
-                                            <option value="7mw">7mw</option>
-                                            <option value="8mw">8mw</option>
-                                            <option value="9mw">9mw</option>
-                                            <option value="10~19mw">10~19mw</option>
-                                            <option value="20~29mw">20~29mw</option>
-                                            <option value="30~39mw">30~39mw</option>
-                                            <option value="40~49mw">40~49mw</option>
-                                            <option value="50~59mw">50~59mw</option>
-                                            <option value="60~69mw">60~69mw</option>
-                                            <option value="70~79mw">70~79mw</option>
-                                            <option value="80~89mw">80~89mw</option>
-                                            <option value="90~99mw">90~99mw</option>
-                                            <option value="100~199mw">100~199mw</option>
-                                            <option value="200~299mw">200~299mw</option>
-                                            <option value="300~399mw">300~399mw</option>
-                                            <option value="400~499mw">400~499mw</option>
-                                            <option value="500~599mw">500~599mw</option>
-                                            <option value="600~699mw">600~699mw</option>
-                                            <option value="700~799mw">700~799mw</option>
-                                            <option value="800~899mw">800~899mw</option>
-                                            <option value="900~999mw">900~999mw</option>
+                                            <option value="1mw">1mW</option>
+                                            <option value="2mw">2mW</option>
+                                            <option value="3mw">3mW</option>
+                                            <option value="4mw">4mW</option>
+                                            <option value="5mw">5mW</option>
+                                            <option value="6mw">6mW</option>
+                                            <option value="7mw">7mW</option>
+                                            <option value="8mw">8mW</option>
+                                            <option value="9mw">9mW</option>
+                                            <option value="10~19mw">10~19mW</option>
+                                            <option value="20~29mw">20~29mW</option>
+                                            <option value="30~39mw">30~39mW</option>
+                                            <option value="40~49mw">40~49mW</option>
+                                            <option value="50~59mw">50~59mW</option>
+                                            <option value="60~69mw">60~69mW</option>
+                                            <option value="70~79mw">70~79mW</option>
+                                            <option value="80~89mw">80~89mW</option>
+                                            <option value="90~99mw">90~99mW</option>
+                                            <option value="100~199mw">100~199mW</option>
+                                            <option value="200~299mw">200~299mW</option>
+                                            <option value="300~399mw">300~399mW</option>
+                                            <option value="400~499mw">400~499mW</option>
+                                            <option value="500~599mw">500~599mW</option>
+                                            <option value="600~699mw">600~699mW</option>
+                                            <option value="700~799mw">700~799mW</option>
+                                            <option value="800~899mw">800~899mW</option>
+                                            <option value="900~999mw">900~999mW</option>
                                         </select></div>
                                     <div><input type="radio" name="outputs" value="2" onclick="myCheck3();">出力　（W）を指定する
                                         W　: <select name="wat" id="b3" disabled>
@@ -204,7 +205,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                     $curSlug = $term->slug;
                     $array01=explode('n', $term->name);
             ?>
-            <?php if($array01[0] === "多波長、チューナブル"){ ?>
+            <?php if($array01[0] === "多波長・広帯域・チューナブル"){ ?>
             <p class="waveTtl"><span><?php $array01=explode('n', $term->name); echo $array01[0]; ?></span></p>
             <?php } else{ ?>
             <p class="waveTtl"><span><?php $array01=explode('n', $term->name); echo $array01[0]; ?><small>nm</small></span></p>
@@ -262,13 +263,49 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                             $ff_wavelengthlabel = get_field('ff_wavelengthlabel', $post_id);
                         ?>
                         <ul class="tag">
-                            <?php foreach($terms01 as $term01){ ?>
                             <?php
+                            //親カテゴリ一斉表示
+                            foreach($terms01 as $term01){
+                                // カテゴリの親・子・孫取得
                                 $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                if($dep < $ancestor_maxnum):
                             ?>
-                            <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
-                            <?php } ?>
+                            <li style="border-color: #0b7ef1;"><?php echo $term01->name; ?></li>
                             <?php
+                            endif;
+                            }
+                            ?>
+
+                            <?php
+                            //子カテゴリ一斉表示
+                            foreach($terms01 as $term01){
+                                // カテゴリの親・子・孫取得
+                                $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                // 親でなく、自分より上の階層が１個＝子カテゴリのみ抽出
+                                if($term01->parent != 0 && $dep === 1):
+                            ?>
+                            <li style="border-color: #0fd000;"><?php echo $term01->name; ?></li>
+                            <?php
+                            endif;
+                            }
+                            ?>
+
+                            <?php
+                            //孫カテゴリ一斉表示
+                            foreach($terms01 as $term01){
+                                // カテゴリの親・子・孫取得
+                                $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                // 親でなく、自分より上の階層が2個＝孫カテゴリのみ抽出
+                                if($term01->parent != 0 && $dep === 2):
+                            ?>
+                            <li style="border-color: #f20000;"><?php echo $term01->name; ?></li>
+                            <?php
+                            endif;
+                            }
+                            ?>
+
+                            <?php
+                                //波長ラベル
                                 $terms02 = get_ordered_terms($post_id,'description', 'ASC', 'wavelengthcat');
                             ?>
                             <?php if($terms02): ?>
@@ -324,17 +361,53 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         <?php
                             $taxonomy = 'productcat';
                             $terms01 = get_the_terms($post->ID,$taxonomy);
+                            //$terms01 = get_ordered_terms($post->ID,'name', 'ASC', $taxonomy);
                             $ancestor_maxnum = 1;
                             $ff_wavelengthlabel = get_field('ff_wavelengthlabel');
                         ?>
                         <ul class="tag">
-                            <?php foreach($terms01 as $term01){ ?>
-                            <?php
+                        <?php
+                            //親カテゴリ一斉表示
+                            foreach($terms01 as $term01){
+                                // カテゴリの親・子・孫取得
                                 $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                if($dep < $ancestor_maxnum):
                             ?>
-                            <li <?php if($dep < $ancestor_maxnum): ?>style="border-color: #0b7ef1;"<?php elseif($dep > $ancestor_maxnum): ?>style="border-color: #f20000;"<?php else: ?>style="border-color: #0fd000;"<?php endif; ?>><?php echo $term01->name; ?></li>
-                            <?php } ?>
+                            <li style="border-color: #0b7ef1;"><?php echo $term01->name; ?></li>
                             <?php
+                            endif;
+                            }
+                            ?>
+
+                            <?php
+                            //子カテゴリ一斉表示
+                            foreach($terms01 as $term01){
+                                // カテゴリの親・子・孫取得
+                                $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                // 親でなく、自分より上の階層が１個＝子カテゴリのみ抽出
+                                if($term01->parent != 0 && $dep === 1):
+                            ?>
+                            <li style="border-color: #0fd000;"><?php echo $term01->name; ?></li>
+                            <?php
+                            endif;
+                            }
+                            ?>
+                            
+                            <?php
+                            //孫カテゴリ一斉表示
+                            foreach($terms01 as $term01){
+                                // カテゴリの親・子・孫取得
+                                $dep = count(get_ancestors($term01->term_id, $taxonomy));
+                                // 親でなく、自分より上の階層が2個＝孫カテゴリのみ抽出
+                                if($term01->parent != 0 && $dep === 2):
+                            ?>
+                            <li style="border-color: #f20000;"><?php echo $term01->name; ?></li>
+                            <?php
+                            endif;
+                            }
+                            ?>
+                            <?php
+                                //波長ラベル
                                 $terms02 = get_ordered_terms($post->ID,'description', 'ASC', 'wavelengthcat');
                             ?>
                             <?php if($terms02): ?>
@@ -404,8 +477,7 @@ if(have_posts()): $numall = 0; while (have_posts()) : the_post(); $numall++; end
                         <li>
                             <ul>
                                 <li><a href="<?php bloginfo('url');?>/wavelengthcat/2000nm"><span>2000<small>nm~</small></span></a></li>
-                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/multi-wavelength"><span class="txt">多波長<br>
-                                    チューナブル</span></a></li>
+                                <li><a href="<?php bloginfo('url');?>/wavelengthcat/multi-wavelength"><span class="txt"><small>多波長・広帯域<br>・チューナブル</small></span></a></li>
                             </ul>
                         </li>
                     </ul>
